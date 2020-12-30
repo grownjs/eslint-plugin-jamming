@@ -21,6 +21,8 @@ function postprocess(messages, filename) {
   })), []);
 }
 
+require('eslint-plugin-html');
+
 module.exports = {
   processors: {
     '.html': {

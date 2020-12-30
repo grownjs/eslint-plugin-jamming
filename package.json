@@ -27,7 +27,9 @@
 		"test": "node test"
 	},
 	"devDependencies": {
-		"eslint": ">=6.0.0",
+		"eslint": ">=6.0.0"
+	},
+	"dependencies": {
 		"eslint-plugin-html": "^6.1.1"
 	}
 }

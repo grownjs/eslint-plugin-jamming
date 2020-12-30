@@ -4,7 +4,7 @@ An ESLint plugin to preprocess fruition files before actual linting.
 
 ## Features
 
-- Seamlessly rewrite `await` keyword on `$:` labels
+- Enable the `await` keyword on `$:` labels
 
 ## Requirements
 
@@ -12,13 +12,13 @@ An ESLint plugin to preprocess fruition files before actual linting.
 
 ## Installation
 
-Install both plugins:
+Install the plugin:
 
 ```
-npm install --save-dev eslint-plugin-fruition eslint-plugin-html
+npm install --save-dev eslint-plugin-fruition
 ```
 
-Then add `fruition` and `html` to the `plugins` array in your `.eslintrc.*` config file.
+Then add `fruition` to the `plugins` array in your `.eslintrc.*` config file.
 
 For example:
 
@@ -31,7 +31,7 @@ module.exports = {
   env: {
     es6: true
   },
-  plugins: ['fruition', 'html'],
+  plugins: ['fruition'],
   rules: {
     // ...
   },
@@ -41,4 +41,4 @@ module.exports = {
 };
 ```
 
-> This plugin performs some transformations using regular expressions on `.html` files only.
+> This plugin performs some transformations using regular expressions on `.html` files before applying `eslint-plugin-html`.
