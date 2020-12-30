@@ -57,6 +57,7 @@ module.exports = {
       rules: {
         indent: 0,
         camelcase: 0,
+        'object-shorthand': 0,
         'function-paren-newline': 0,
         'arrow-body-style': 0,
         'consistent-return': 0,
@@ -69,6 +70,7 @@ module.exports = {
         'no-underscore-dangle': 0,
         'no-param-reassign': 0,
         'no-restricted-globals': 0,
+        'no-useless-computed-key': 0,
         'prefer-destructuring': 0,
         'prefer-spread': 0,
         'prefer-const': 0,
