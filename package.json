@@ -1,0 +1,33 @@
+{
+	"name": "eslint-plugin-fruition",
+	"version": "0.0.0",
+	"description": "An ESLint plugin for fruition.",
+	"keywords": [
+		"eslint",
+		"eslintplugin",
+		"fruition"
+	],
+	"files": [
+		"index.js"
+	],
+	"main": "index.js",
+	"engines": {
+		"node": ">=10"
+	},
+	"author": "Alvaro Cabrera <pateketrueke@gmail.com> (https://soypache.co)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pateketrueke/eslint-plugin-fruition"
+  },
+	"license": "MIT",
+	"peerDependencies": {
+		"eslint": ">=6.0.0"
+	},
+	"scripts": {
+		"test": "node test"
+	},
+	"devDependencies": {
+		"eslint": ">=6.0.0",
+		"eslint-plugin-html": "^6.1.1"
+	}
+}

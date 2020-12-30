@@ -1,0 +1,26 @@
+[
+  {
+    "ruleId": "no-unused-vars",
+    "severity": 2,
+    "message": "'not_used' is assigned a value but never used.",
+    "line": 2,
+    "column": 9,
+    "nodeType": "Identifier",
+    "messageId": "unusedVar",
+    "endLine": 2,
+    "endColumn": 17,
+    "source": "  const not_used = 42;"
+  },
+  {
+    "ruleId": "no-undef",
+    "severity": 2,
+    "message": "'undef' is not defined.",
+    "line": 3,
+    "column": 12,
+    "nodeType": "Identifier",
+    "messageId": "undef",
+    "endLine": 3,
+    "endColumn": 17,
+    "source": "  $: await undef;"
+  }
+]
