@@ -5,6 +5,7 @@ An ESLint plugin to preprocess fruition files before actual linting.
 ## Features
 
 - Enable the `await` keyword on `$:` labels
+- Inject exported symbols on consecutive blocks
 
 ## Requirements
 
