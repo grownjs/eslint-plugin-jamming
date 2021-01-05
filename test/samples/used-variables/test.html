@@ -1,0 +1,16 @@
+<script>
+  export let foo;
+  let bar;
+</script>
+
+{{foo}}
+{{bar}}
+{{#baz}}BUZZ{{/baz}}
+
+{{^undef}}
+  {{missing}}
+{{/undef}}
+
+{{#section bazzinga}}
+  {{> not_found}}
+{{/section}}

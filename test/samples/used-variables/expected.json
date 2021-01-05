@@ -1,0 +1,26 @@
+[
+  {
+    "ruleId": "no-undef",
+    "severity": 2,
+    "message": "'baz' is not defined.",
+    "line": 4,
+    "column": 2,
+    "nodeType": "Identifier",
+    "messageId": "undef",
+    "endLine": 4,
+    "endColumn": 5,
+    "source": ";baz, undef, bar</script>"
+  },
+  {
+    "ruleId": "no-undef",
+    "severity": 2,
+    "message": "'undef' is not defined.",
+    "line": 4,
+    "column": 7,
+    "nodeType": "Identifier",
+    "messageId": "undef",
+    "endLine": 4,
+    "endColumn": 12,
+    "source": ";baz, undef, bar</script>"
+  }
+]

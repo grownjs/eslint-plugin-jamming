@@ -2,6 +2,54 @@ const RE_EFFECTS = /\$:\s*(?:\w+[^;]+\s*\{[\s\S]+?\}|\{[\s\S]+?\};|[^;]+?;)\n/g;
 const RE_SCRIPTS = /<script([^<>]*)>([\s\S]*?)<\/script>/g;
 const RE_EXPORT_SYMBOLS = /\bexport\s+(\w+)\s+(\w+)/g;
 
+function variables(template) {
+  const info = {
+    input: [],
+  };
+
+  if (template.indexOf('{{') === -1
+    && template.indexOf('}}') === -1
+  ) return info;
+
+  let matches;
+
+  if (template.indexOf('{{#') !== -1 || template.indexOf('{{^') !== -1) {
+    do {
+      matches = template.match(/\{\{([#^]([^#{}/]+))\}\}([\s\S]+?)\{\{\/\2\}\}/);
+
+      if (matches) {
+        const fixedKey = (matches.length === 4 ? matches[2] : matches[3]).split('.')[0].trim();
+
+        template = template.replace(matches[0], '');
+
+        if (!info.input.find(x => x.key === fixedKey)) {
+          const fixedItem = { key: fixedKey };
+
+          if (matches[1].charAt() === '^') {
+            fixedItem.unless = true;
+          }
+          info.input.push(fixedItem);
+        }
+      }
+    } while (matches);
+  }
+
+  do {
+    matches = template.match(/\{\{([^#{}/^>]+)\}\}/);
+
+    if (matches) {
+      template = template.replace(matches[0], '');
+
+      const fixedKey = matches[1].replace(/^[#^]/g, '').split('.')[0].trim();
+
+      if (!info.input.find(x => x.key === fixedKey)) {
+        info.input.push({ key: fixedKey });
+      }
+    }
+  } while (matches);
+  return info;
+}
+
 function preprocess(text, filename) {
   const locals = (text.match(RE_EXPORT_SYMBOLS) || []).reduce((memo, re) => {
     const [, kind, name] = re.split(' ');
@@ -9,7 +57,9 @@ function preprocess(text, filename) {
     return memo;
   }, {});
 
-  text = text.replace(RE_SCRIPTS, (_, attrs, content) => {
+  const vars = variables(text).input.map(x => x.key);
+
+  return [text.replace(RE_SCRIPTS, (_, attrs, content) => {
     content = content.replace(RE_EFFECTS, block => {
       block = block.replace(/\bawait\b/g, '/* */');
       return block;
@@ -26,9 +76,14 @@ function preprocess(text, filename) {
       prefix = `/* eslint-disable */let ${keys.join(', ')};/* eslint-enable */`;
     }
 
-    return `<script${attrs}>${prefix}${content}</script>`;
-  });
-  return [text];
+    const fixedVars = vars.filter(x => !locals[x]);
+    let suffix = '';
+    if (fixedVars.length) {
+      suffix = `;${fixedVars.join(', ')}`;
+    }
+
+    return `<script${attrs}>${prefix}${content}${suffix}</script>`;
+  })];
 }
 
 function postprocess(messages, filename) {
