@@ -2,6 +2,8 @@ const RE_EFFECTS = /\$:\s*(?:\w+[^;]+\s*\{[\s\S]+?\}|\{[\s\S]+?\};|[^;]+?;)\n/g;
 const RE_SCRIPTS = /<script([^<>]*)>([\s\S]*?)<\/script>/g;
 const RE_EXPORT_SYMBOLS = /\bexport\s+(\w+)\s+(\w+)/g;
 
+const fs = require('fs');
+
 function variables(template) {
   const info = {
     input: [],
@@ -87,9 +89,32 @@ function preprocess(text, filename) {
 }
 
 function postprocess(messages, filename) {
+  const text = fs.readFileSync(filename).toString();
+  const vars = variables(text).input.map(x => [x.key, new RegExp(`^(.*?\\{\\{[^/>]?\\s*)${x.key}(?:\\.[\\w.]+)?\\s*\\}\\}`)]);
+
+  const locs = text.split('\n').reduce((memo, line, nth) => {
+    for (let i = 0; i < vars.length; i += 1) {
+      if (!memo[vars[i][0]] && vars[i][1].test(line)) {
+        const prefix = line.match(vars[i][1])[1];
+
+        memo[vars[i][0]] = [nth + 1, prefix.length + 1];
+      }
+    }
+    return memo;
+  }, {});
+
   return messages.reduce((memo, it) => memo.concat(it.map(chunk => {
     if (chunk.source) {
       chunk.source = chunk.source.replace(/\/\* \*\//g, 'await');
+    }
+    if (chunk.ruleId == 'no-undef') {
+      const key = chunk.message.match(/(["'])(\w+)\1/)[2];
+
+      if (locs[key]) {
+        chunk.column = locs[key][1];
+        chunk.line = chunk.endLine = locs[key][0];
+        chunk.endColumn = locs[key][1] + key.length;
+      }
     }
     return chunk;
   })), []);

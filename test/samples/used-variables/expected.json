@@ -30,24 +30,24 @@
     "ruleId": "no-undef",
     "severity": 2,
     "message": "'baz' is not defined.",
-    "line": 4,
-    "column": 73,
+    "line": 8,
+    "column": 4,
     "nodeType": "Identifier",
     "messageId": "undef",
-    "endLine": 4,
-    "endColumn": 76,
+    "endLine": 8,
+    "endColumn": 7,
     "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;bar;/* eslint-enable */"
   },
   {
     "ruleId": "no-undef",
     "severity": 2,
     "message": "'undef' is not defined.",
-    "line": 4,
-    "column": 77,
+    "line": 10,
+    "column": 4,
     "nodeType": "Identifier",
     "messageId": "undef",
-    "endLine": 4,
-    "endColumn": 82,
+    "endLine": 10,
+    "endColumn": 9,
     "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;bar;/* eslint-enable */"
   }
 ]
