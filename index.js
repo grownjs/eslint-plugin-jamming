@@ -79,7 +79,7 @@ function preprocess(text, filename) {
     const fixedVars = vars.filter(x => !locals[x]);
     let suffix = '';
     if (fixedVars.length) {
-      suffix = `;${fixedVars.join(', ')}`;
+      suffix = `/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;${fixedVars.join(';')};/* eslint-enable */\n`;
     }
 
     return `<script${attrs}>${prefix}${content}${suffix}</script>`;
