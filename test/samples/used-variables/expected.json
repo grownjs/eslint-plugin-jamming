@@ -6,7 +6,7 @@
     "column": 1,
     "severity": 2,
     "nodeType": null,
-    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;bar;/* eslint-enable */"
+    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;bar;other;/* eslint-enable */"
   },
   {
     "ruleId": null,
@@ -15,7 +15,7 @@
     "column": 1,
     "severity": 2,
     "nodeType": null,
-    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;bar;/* eslint-enable */"
+    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;bar;other;/* eslint-enable */"
   },
   {
     "ruleId": null,
@@ -24,7 +24,7 @@
     "column": 1,
     "severity": 2,
     "nodeType": null,
-    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;bar;/* eslint-enable */"
+    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;bar;other;/* eslint-enable */"
   },
   {
     "ruleId": "no-undef",
@@ -36,7 +36,7 @@
     "messageId": "undef",
     "endLine": 8,
     "endColumn": 7,
-    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;bar;/* eslint-enable */"
+    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;bar;other;/* eslint-enable */"
   },
   {
     "ruleId": "no-undef",
@@ -48,6 +48,18 @@
     "messageId": "undef",
     "endLine": 10,
     "endColumn": 9,
-    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;bar;/* eslint-enable */"
+    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;bar;other;/* eslint-enable */"
+  },
+  {
+    "ruleId": "no-undef",
+    "severity": 2,
+    "message": "'other' is not defined.",
+    "line": 14,
+    "column": 16,
+    "nodeType": "Identifier",
+    "messageId": "undef",
+    "endLine": 14,
+    "endColumn": 21,
+    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;bar;other;/* eslint-enable */"
   }
 ]

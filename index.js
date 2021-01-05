@@ -37,14 +37,14 @@ function variables(template) {
   }
 
   do {
-    matches = template.match(/\{\{([^#{}/^>]+)\}\}/);
+    matches = template.match(/\{\{([^#{}^>]+)\}\}/);
 
     if (matches) {
       template = template.replace(matches[0], '');
 
-      const fixedKey = matches[1].replace(/^[#^]/g, '').split('.')[0].trim();
+      const fixedKey = matches[1].replace(/^[#/^]/g, '').split('.')[0].trim();
 
-      if (!info.input.find(x => x.key === fixedKey)) {
+      if (fixedKey !== 'section' && !info.input.find(x => x.key === fixedKey)) {
         info.input.push({ key: fixedKey });
       }
     }
@@ -90,7 +90,7 @@ function preprocess(text, filename) {
 
 function postprocess(messages, filename) {
   const text = fs.readFileSync(filename).toString();
-  const vars = variables(text).input.map(x => [x.key, new RegExp(`^(.*?\\{\\{[^/>]?\\s*)${x.key}(?:\\.[\\w.]+)?\\s*\\}\\}`)]);
+  const vars = variables(text).input.map(x => [x.key, new RegExp(`^(.*?\\{\\{[^>]?\\s*)${x.key}(?:\\.[\\w.]+)?\\s*\\}\\}`)]);
 
   const locs = text.split('\n').reduce((memo, line, nth) => {
     for (let i = 0; i < vars.length; i += 1) {
