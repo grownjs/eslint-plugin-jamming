@@ -78,7 +78,7 @@ function preprocess(text, filename) {
       prefix = `/* eslint-disable */let ${keys.join(', ')};/* eslint-enable */`;
     }
 
-    const fixedVars = vars.filter(x => !locals[x] && x !== 'default');
+    const fixedVars = vars.filter(x => !locals[x] && x !== 'default' && x !== 'class');
     let suffix = '';
     if (fixedVars.length) {
       suffix = `/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;${fixedVars.join(';')};/* eslint-enable */\n`;
