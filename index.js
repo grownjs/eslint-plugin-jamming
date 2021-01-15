@@ -1,6 +1,6 @@
-const RE_EFFECTS = /\$:\s*(?:\w+[^;]+\s*\{[\s\S]+?\}|\{[\s\S]+?\};|[^;]+?;)\n/g;
-const RE_SCRIPTS = /<script([^<>]*)>([\s\S]*?)<\/script>/g;
-const RE_EXPORT_SYMBOLS = /\bexport\s+(\w+)\s+(\w+)/g;
+const RE_EFFECTS = /(?<!\/\/.*?)\s*\$:\s*((?:do|if|for|while|await|yield|switch)[^{;}]*?\{[^]*?\}(?=\n)|\{[^]*?\}(?=;\n|$)|[^]*?(?=;\n|$))/g;
+const RE_EXPORTS = /\bexport\s+(let|const|function)\s+([\s\w,=]+)/g;
+const RE_SCRIPTS = /<script([^<>]*)>([^]*?)<\/script>/g;
 
 const fs = require('fs');
 
@@ -53,7 +53,7 @@ function variables(template) {
 }
 
 function preprocess(text, filename) {
-  const locals = (text.match(RE_EXPORT_SYMBOLS) || []).reduce((memo, re) => {
+  const locals = (text.match(RE_EXPORTS) || []).reduce((memo, re) => {
     const [, kind, name] = re.split(' ');
     memo[name] = kind;
     return memo;
