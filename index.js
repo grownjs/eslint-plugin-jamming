@@ -1,6 +1,7 @@
 const RE_EFFECTS = /(?<!\/\/.*?)\s*\$:\s*((?:do|if|for|while|await|yield|switch)[^{;}]*?\{[^]*?\}(?=\n)|\{[^]*?\}(?=;\n|$)|[^]*?(?=;\n|$))/g;
 const RE_EXPORTS = /\bexport\s+(let|const|function)\s+([\s\w,=]+)/g;
 const RE_SCRIPTS = /<script([^<>]*)>([^]*?)<\/script>/g;
+const RE_COMMENTS = /(?!:)\s*\/\/.*?(?=\n)|\/\*[^]*?\*\//g;
 
 const fs = require('fs');
 
@@ -53,22 +54,26 @@ function variables(template) {
 }
 
 function preprocess(text, filename) {
-  const locals = (text.match(RE_EXPORTS) || []).reduce((memo, re) => {
-    const [, kind, name] = re.split(' ');
-    memo[name] = kind;
-    return memo;
-  }, {});
-
-  const vars = variables(text).input.map(x => x.key);
+  const vars = variables(text.replace(/<!--[^]*?-->/g, '')).input.map(x => x.key);
+  const shared = {};
 
   return [text.replace(RE_SCRIPTS, (_, attrs, content) => {
+    content = content.replace(RE_COMMENTS, matches => {
+      return matches.split('\n').map(() => '').join('\n');
+    });
+
     content = content.replace(RE_EFFECTS, block => {
       block = block.replace(/\bawait\b/g, '/* */');
       return block;
     });
 
-    const keys = Object.keys(locals).filter(key => {
-      const regex = new RegExp(`\\b${locals[key]}\\s+${key}\\b`);
+    (content.match(RE_EXPORTS) || []).forEach(re => {
+      const [, kind, name] = re.split(' ');
+      shared[name] = kind;
+    });
+
+    const keys = Object.keys(shared).filter(key => {
+      const regex = new RegExp(`\\b${shared[key]}\\s+${key}\\b`);
       if (regex.test(content)) return false;
       return true;
     });
@@ -78,7 +83,7 @@ function preprocess(text, filename) {
       prefix = `/* eslint-disable */let ${keys.join(', ')};/* eslint-enable */`;
     }
 
-    const fixedVars = vars.filter(x => !locals[x] && x !== 'default' && x !== 'class');
+    const fixedVars = vars.filter(x => !shared[x] && x !== 'default' && x !== 'class');
     let suffix = '';
     if (fixedVars.length) {
       suffix = `/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;${fixedVars.join(';')};/* eslint-enable */\n`;
