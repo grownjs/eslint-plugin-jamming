@@ -1,4 +1,5 @@
 <script>
+  import { enabled, nested } from 'test';
   import * as fun from 'test';
   // export const undef = 42;
   export let foo;
@@ -19,6 +20,10 @@
 {{#section bazzinga}}
   {{> not_found}}
 {{/section}}
+
+{{#enabled}}
+  {{nested}}
+{{/enabled}}
 
 <!-- {{im_not_used}} -->
 <pre>

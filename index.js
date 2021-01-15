@@ -1,4 +1,5 @@
 const RE_EFFECTS = /(?<!\/\/.*?)\s*\$:\s*((?:do|if|for|while|await|yield|switch)[^{;}]*?\{[^]*?\}(?=\n)|\{[^]*?\}(?=;\n|$)|[^]*?(?=;\n|$))/g;
+const RE_IMPORTS = /(?:^|[;\s]+)?import\s*(?:\*\s*as)?\s*(\w*?)\s*,?\s*(?:\{([^]*?)\})?\s*from\s*['"]([^'"]+)['"];?/g;
 const RE_EXPORTS = /\bexport\s+(let|const|function)\s+([\s\w,=]+)/g;
 const RE_SCRIPTS = /<script([^<>]*)>([^]*?)<\/script>/g;
 const RE_COMMENTS = /(?!:)\s*\/\/.*?(?=\n)|\/\*[^]*?\*\//g;
@@ -35,12 +36,14 @@ function variables(template) {
           }
           info.input.push(fixedItem);
         }
+
+        info.input.push(...variables(matches[3]).input);
       }
     } while (matches);
   }
 
   do {
-    matches = template.match(/\{\{([^#{}^>]+)\}\}/);
+    matches = template.match(/\{\{([^\s{}^>]+)\}\}/);
 
     if (matches) {
       template = template.replace(matches[0], '');
@@ -74,7 +77,17 @@ function preprocess(text, filename) {
       shared[name] = kind;
     });
 
+    content.replace(RE_IMPORTS, (_, base, req, dep) => {
+      (req || base).trim().split(/\s*,\s*/).forEach(key => {
+        if (key) {
+          const [ref, alias] = key.split(/\s+as\s+/);
+          shared[alias || ref] = 'import';
+        }
+      });
+    });
+
     const keys = Object.keys(shared).filter(key => {
+      if (shared[key] === 'import') return false;
       const regex = new RegExp(`\\b${shared[key]}\\s+${key}\\b`);
       if (regex.test(content)) return false;
       return true;
@@ -85,7 +98,7 @@ function preprocess(text, filename) {
       prefix = `/* eslint-disable */let ${keys.join(', ')};/* eslint-enable */`;
     }
 
-    const fixedVars = vars.filter(x => !shared[x] && x !== 'default' && x !== 'class');
+    const fixedVars = vars.filter(x => (shared[x] ? !['const', 'let'].includes(shared[x]) : !['default', 'class'].includes(x)))
     let suffix = '';
     if (fixedVars.length) {
       suffix = `/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;${fixedVars.join(';')};/* eslint-enable */\n`;
