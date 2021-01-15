@@ -6,7 +6,7 @@
     "column": 1,
     "severity": 2,
     "nodeType": null,
-    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;missing;enabled;nested;fun;bar;open;other;/* eslint-enable */"
+    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;enabled;nested;fun;bar;open;other;/* eslint-enable */"
   },
   {
     "ruleId": null,
@@ -15,7 +15,7 @@
     "column": 1,
     "severity": 2,
     "nodeType": null,
-    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;missing;enabled;nested;fun;bar;open;other;/* eslint-enable */"
+    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;enabled;nested;fun;bar;open;other;/* eslint-enable */"
   },
   {
     "ruleId": null,
@@ -24,7 +24,7 @@
     "column": 1,
     "severity": 2,
     "nodeType": null,
-    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;missing;enabled;nested;fun;bar;open;other;/* eslint-enable */"
+    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;enabled;nested;fun;bar;open;other;/* eslint-enable */"
   },
   {
     "ruleId": "no-undef",
@@ -36,7 +36,7 @@
     "messageId": "undef",
     "endLine": 12,
     "endColumn": 7,
-    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;missing;enabled;nested;fun;bar;open;other;/* eslint-enable */"
+    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;enabled;nested;fun;bar;open;other;/* eslint-enable */"
   },
   {
     "ruleId": "no-undef",
@@ -48,19 +48,7 @@
     "messageId": "undef",
     "endLine": 14,
     "endColumn": 9,
-    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;missing;enabled;nested;fun;bar;open;other;/* eslint-enable */"
-  },
-  {
-    "ruleId": "no-undef",
-    "severity": 2,
-    "message": "'missing' is not defined.",
-    "line": 15,
-    "column": 5,
-    "nodeType": "Identifier",
-    "messageId": "undef",
-    "endLine": 15,
-    "endColumn": 12,
-    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;missing;enabled;nested;fun;bar;open;other;/* eslint-enable */"
+    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;enabled;nested;fun;bar;open;other;/* eslint-enable */"
   },
   {
     "ruleId": "no-undef",
@@ -72,7 +60,7 @@
     "messageId": "undef",
     "endLine": 18,
     "endColumn": 8,
-    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;missing;enabled;nested;fun;bar;open;other;/* eslint-enable */"
+    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;enabled;nested;fun;bar;open;other;/* eslint-enable */"
   },
   {
     "ruleId": "no-undef",
@@ -84,6 +72,6 @@
     "messageId": "undef",
     "endLine": 18,
     "endColumn": 21,
-    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;missing;enabled;nested;fun;bar;open;other;/* eslint-enable */"
+    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;enabled;nested;fun;bar;open;other;/* eslint-enable */"
   }
 ]

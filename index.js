@@ -6,7 +6,7 @@ const RE_COMMENTS = /(?!:)\s*\/\/.*?(?=\n)|\/\*[^]*?\*\//g;
 
 const fs = require('fs');
 
-function variables(template) {
+function variables(template, parent) {
   const info = {
     input: [],
   };
@@ -25,25 +25,28 @@ function variables(template) {
 
       if (matches) {
         const fixedKey = (matches.length === 4 ? matches[2] : matches[3]).split('.')[0].trim();
+        let fixedItem = info.input.find(x => x.key === fixedKey);
 
         template = template.replace(matches[0], '');
 
-        if (!info.input.find(x => x.key === fixedKey)) {
-          const fixedItem = { key: fixedKey };
+        if (!fixedItem) {
+          fixedItem = { key: fixedKey, type: 'leaf' };
 
           if (matches[1].charAt() === '^') {
             fixedItem.unless = true;
           }
+          if (!parent) {
+            fixedItem.root = true;
+          }
           info.input.push(fixedItem);
         }
-
-        info.input.push(...variables(matches[3]).input);
+        info.input.push(...variables(matches[3], fixedItem).input);
       }
     } while (matches);
   }
 
   do {
-    matches = template.match(/\{\{([^\s{}^>]+)\}\}/);
+    matches = template.match(/\{\{\s*([^\s{}^>]+)\s*\}\}/);
 
     if (matches) {
       template = template.replace(matches[0], '');
@@ -51,7 +54,12 @@ function variables(template) {
       const fixedKey = matches[1].replace(/^[#/^]/g, '').split('.')[0].trim();
 
       if (fixedKey !== 'section' && !info.input.find(x => x.key === fixedKey)) {
-        info.input.push({ key: fixedKey });
+        const fixedItem = { key: fixedKey };
+
+        if (parent) {
+          fixedItem.nested = true;
+        }
+        info.input.push(fixedItem);
       }
     }
   } while (matches);
@@ -59,7 +67,7 @@ function variables(template) {
 }
 
 function preprocess(text, filename) {
-  const vars = variables(text).input.map(x => x.key);
+  const vars = variables(text).input;
   const shared = {};
 
   return [text.replace(RE_SCRIPTS, (_, attrs, content) => {
@@ -98,7 +106,12 @@ function preprocess(text, filename) {
       prefix = `/* eslint-disable */let ${keys.join(', ')};/* eslint-enable */`;
     }
 
-    const fixedVars = vars.filter(x => (shared[x] ? !['const', 'let'].includes(shared[x]) : !['default', 'class'].includes(x)))
+    const fixedVars = vars.filter(x => (
+      shared[x.key]
+        ? !['const', 'let'].includes(shared[x.key])
+        : !['default', 'class'].includes(x.key)
+    )).filter(x => !x.nested || shared[x.key] === 'import').map(x => x.key);
+
     let suffix = '';
     if (fixedVars.length) {
       suffix = `/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;${fixedVars.join(';')};/* eslint-enable */\n`;
