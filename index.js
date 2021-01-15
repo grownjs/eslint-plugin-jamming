@@ -10,6 +10,8 @@ function variables(template) {
     input: [],
   };
 
+  template = template.replace(/<!--[^]*?-->/g, '');
+
   if (template.indexOf('{{') === -1
     && template.indexOf('}}') === -1
   ) return info;
@@ -54,7 +56,7 @@ function variables(template) {
 }
 
 function preprocess(text, filename) {
-  const vars = variables(text.replace(/<!--[^]*?-->/g, '')).input.map(x => x.key);
+  const vars = variables(text).input.map(x => x.key);
   const shared = {};
 
   return [text.replace(RE_SCRIPTS, (_, attrs, content) => {
