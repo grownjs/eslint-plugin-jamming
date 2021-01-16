@@ -114,7 +114,7 @@ function preprocess(text, filename) {
 
     let suffix = '';
     if (fixedVars.length) {
-      suffix = `/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;${fixedVars.join(';')};/* eslint-enable */\n`;
+      suffix = `\n/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;${fixedVars.join(';')};/* eslint-enable */\n`;
     }
 
     return `<script${attrs}>${prefix}${content}${suffix}</script>`;
