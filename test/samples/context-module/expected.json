@@ -1,0 +1,65 @@
+[
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
+    "line": 2,
+    "column": 1,
+    "severity": 2,
+    "nodeType": null,
+    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;sendMessage2;local;stuff;/* eslint-enable */"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'no-extra-semi').",
+    "line": 2,
+    "column": 1,
+    "severity": 2,
+    "nodeType": null,
+    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;sendMessage2;local;stuff;/* eslint-enable */"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
+    "line": 2,
+    "column": 1,
+    "severity": 2,
+    "nodeType": null,
+    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;sendMessage2;local;stuff;/* eslint-enable */"
+  },
+  {
+    "ruleId": "no-undef",
+    "severity": 2,
+    "message": "'sendMessage2' is not defined.",
+    "line": 21,
+    "column": 4,
+    "nodeType": "Identifier",
+    "messageId": "undef",
+    "endLine": 21,
+    "endColumn": 16,
+    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;sendMessage2;local;stuff;/* eslint-enable */"
+  },
+  {
+    "ruleId": "no-undef",
+    "severity": 2,
+    "message": "'local' is not defined.",
+    "line": 18,
+    "column": 3,
+    "nodeType": "Identifier",
+    "messageId": "undef",
+    "endLine": 18,
+    "endColumn": 8,
+    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;sendMessage2;local;stuff;/* eslint-enable */"
+  },
+  {
+    "ruleId": "no-undef",
+    "severity": 2,
+    "message": "'stuff' is not defined.",
+    "line": 19,
+    "column": 3,
+    "nodeType": "Identifier",
+    "messageId": "undef",
+    "endLine": 19,
+    "endColumn": 8,
+    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;sendMessage2;local;stuff;/* eslint-enable */"
+  }
+]

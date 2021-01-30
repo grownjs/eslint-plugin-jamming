@@ -1,6 +1,7 @@
+const RE_MODULE = /(?:^|\b)context=(["']?)module\1(?:\b|$)/;
 const RE_EFFECTS = /(?<!\/\/.*?)\s*\$:\s*((?:do|if|for|while|await|yield|switch)[^{;}]*?\{[^]*?\}(?=\n)|\{[^]*?\}(?=;\n|$)|[^]*?(?=;\n|$))/g;
 const RE_IMPORTS = /(?:^|[;\s]+)?import\s*(?:\*\s*as)?\s*(\w*?)\s*,?\s*(?:\{([^]*?)\})?\s*from\s*['"]([^'"]+)['"];?/g;
-const RE_EXPORTS = /\bexport\s+(let|const|function)\s+([\s\w,=]+)/g;
+const RE_EXPORTS = /\bexport\s+(let|const|(?:async\s+)?function(?:\s*\*)?)\s+(\*?[\s\w,=]+)/g;
 const RE_SCRIPTS = /<script([^<>]*)>([^]*?)<\/script>/g;
 const RE_COMMENTS = /(?!:)\s*\/\/.*?(?=\n)|\/\*[^]*?\*\//g;
 
@@ -30,7 +31,7 @@ function variables(template, parent) {
         template = template.replace(matches[0], '');
 
         if (!fixedItem) {
-          fixedItem = { key: fixedKey, type: 'leaf' };
+          fixedItem = { key: fixedKey };
 
           if (matches[1].charAt() === '^') {
             fixedItem.unless = true;
@@ -46,7 +47,7 @@ function variables(template, parent) {
   }
 
   do {
-    matches = template.match(/\{\{\s*([^\s{}^>]+)\s*\}\}/);
+    matches = template.match(/\{\{\s*((?!\.)[^\s{}^>]+)\s*\}\}/);
 
     if (matches) {
       template = template.replace(matches[0], '');
@@ -56,8 +57,8 @@ function variables(template, parent) {
       if (fixedKey !== 'section' && !info.input.find(x => x.key === fixedKey)) {
         const fixedItem = { key: fixedKey };
 
-        if (parent) {
-          fixedItem.nested = true;
+        if (!parent) {
+          fixedItem.root = true;
         }
         info.input.push(fixedItem);
       }
@@ -69,20 +70,21 @@ function variables(template, parent) {
 function preprocess(text, filename) {
   const vars = variables(text).input;
   const shared = {};
+  const end = [];
 
-  return [text.replace(RE_SCRIPTS, (_, attrs, content) => {
-    content = content.replace(RE_COMMENTS, matches => {
-      return matches.split('\n').map(() => '').join('\n');
+  text = text.replace(RE_COMMENTS, matches => {
+    return matches.split('\n').map(() => '').join('\n');
+  });
+
+  const body = text.replace(RE_SCRIPTS, (_, attrs, content) => {
+    (content.match(RE_EXPORTS) || []).forEach(re => {
+      const [, kind, name] = re.replace(/\*|async\s+/g, '').split(/\s+/);
+      shared[name] = kind;
     });
 
     content = content.replace(RE_EFFECTS, block => {
       block = block.replace(/\bawait\b/g, '/* */');
       return block;
-    });
-
-    (content.match(RE_EXPORTS) || []).forEach(re => {
-      const [, kind, name] = re.split(' ');
-      shared[name] = kind;
     });
 
     content.replace(RE_IMPORTS, (_, base, req, dep) => {
@@ -96,29 +98,43 @@ function preprocess(text, filename) {
 
     const keys = Object.keys(shared).filter(key => {
       if (shared[key] === 'import') return false;
-      const regex = new RegExp(`\\b${shared[key]}\\s+${key}\\b`);
+      const regex = new RegExp(`\\b(?:let|const|function(?:\\s*\\*?))\\s+${key.replace('*', '\\*?')}\\b`);
       if (regex.test(content)) return false;
       return true;
     });
 
     let prefix = '';
-    if (keys.length) {
-      prefix = `/* eslint-disable */let ${keys.join(', ')};/* eslint-enable */`;
-    }
-
-    const fixedVars = vars.filter(x => (
-      shared[x.key]
-        ? !['const', 'let'].includes(shared[x.key])
-        : !['default', 'class'].includes(x.key)
-    )).filter(x => !x.nested || shared[x.key] === 'import').map(x => x.key);
-
     let suffix = '';
-    if (fixedVars.length) {
-      suffix = `\n/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;${fixedVars.join(';')};/* eslint-enable */\n`;
+    if (!RE_MODULE.test(attrs)) {
+      if (keys.length) {
+        prefix = `/* eslint-disable */let ${keys.join(', ')};/* eslint-enable */`;
+      }
+
+      const fixedVars = vars.filter(x => (
+        shared[x.key]
+          ? !['const', 'let'].includes(shared[x.key])
+          : !['default', 'class'].includes(x.key)
+      )).filter(x => x.root || shared[x.key] === 'import').map(x => x.key);
+
+      if (fixedVars.length) {
+        suffix = `\n/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;${fixedVars.join(';')};/* eslint-enable */\n`;
+      }
+    } else {
+      vars.forEach(x => {
+        if (!x.root) return;
+        if (!shared[x.key]) end.push(x.key);
+        if (shared[x.key] === 'import') end.push(x.key);
+      });
     }
 
     return `<script${attrs}>${prefix}${content}${suffix}</script>`;
-  })];
+  });
+
+  const finalVars = end.filter(x => !shared[x] || shared[x] === 'import');
+
+  return [body].concat(finalVars.length
+    ? `<script>\n/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;${finalVars.join(';')};/* eslint-enable */\n</script>`
+    : []);
 }
 
 function postprocess(messages, filename) {

@@ -1,0 +1,22 @@
+<script context="module">
+  import stuff from 'util';
+
+  const local = 42;
+
+  export const messages = [];
+  export function* sendMessage1() {
+    yield local;
+  }
+  function *sendMessage2() {
+    yield stuff;
+  }
+  export function * sendMessage3() {
+    yield * sendMessage2;
+  }
+</script>
+{{messages}}
+{{local}}
+{{stuff}}
+{{#sendMessage1}}{{.}}{{/sendMessage1}}
+{{#sendMessage2}}{{.}}{{/sendMessage2}}
+{{#sendMessage3}}{{.}}{{/sendMessage3}}
