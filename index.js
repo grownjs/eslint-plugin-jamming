@@ -70,6 +70,7 @@ function variables(template, parent) {
 function preprocess(text, filename) {
   const vars = variables(text).input;
   const shared = {};
+  const seen = [];
   const end = [];
 
   text = text.replace(RE_COMMENTS, matches => {
@@ -117,6 +118,7 @@ function preprocess(text, filename) {
       )).filter(x => x.root || shared[x.key] === 'import').map(x => x.key);
 
       if (fixedVars.length) {
+        seen.push(...fixedVars);
         suffix = `\n/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;${fixedVars.join(';')};/* eslint-enable */\n`;
       }
     } else {
@@ -130,7 +132,7 @@ function preprocess(text, filename) {
     return `<script${attrs}>${prefix}${content}${suffix}</script>`;
   });
 
-  const finalVars = end.filter(x => !shared[x] || shared[x] === 'import');
+  const finalVars = end.filter(x => !seen.includes(x) && (!shared[x] || shared[x] === 'import'));
 
   return [body].concat(finalVars.length
     ? `<script>\n/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;${finalVars.join(';')};/* eslint-enable */\n</script>`
