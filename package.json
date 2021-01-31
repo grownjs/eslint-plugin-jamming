@@ -1,6 +1,6 @@
 {
 	"name": "eslint-plugin-fruition",
-	"version": "0.0.15",
+	"version": "0.0.16",
 	"description": "An ESLint plugin for fruition.",
 	"keywords": [
 		"eslint",
