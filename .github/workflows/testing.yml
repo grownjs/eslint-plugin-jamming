@@ -6,7 +6,8 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
-      - run: npm install
+      - run: npm ci
+      - run: ln -s $PWD $PWD/node_modules/eslint-plugin-fruition
       - run: npm test
         env:
           CI: true
