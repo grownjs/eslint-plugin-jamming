@@ -22,16 +22,16 @@ function variables(template, parent) {
 
   if (template.indexOf('{{#') !== -1 || template.indexOf('{{^') !== -1) {
     do {
-      matches = template.match(/\{\{([#^]([^#{}/]+))\}\}([\s\S]+?)\{\{\/\2\}\}/);
+      matches = template.match(/\{\{([#^]((?!section)[^#{}/]+)(?:[\w\s-]+?)?)\}\}([^]+?)\{\{\/\2\}\}/);
 
       if (matches) {
-        const fixedKey = (matches.length === 4 ? matches[2] : matches[3]).split('.')[0].trim();
-        let fixedItem = info.input.find(x => x.key === fixedKey);
+        const [, fixedKey, prop] = matches[1].split(/[\s#^]/);
+        let fixedItem = info.input.find(x => x.key === (prop || fixedKey));
 
         template = template.replace(matches[0], '');
 
         if (!fixedItem) {
-          fixedItem = { key: fixedKey };
+          fixedItem = { key: prop || fixedKey };
 
           if (matches[1].charAt() === '^') {
             fixedItem.unless = true;
@@ -47,16 +47,20 @@ function variables(template, parent) {
   }
 
   do {
-    matches = template.match(/\{\{\s*((?!\.)[^\s{}^>]+)\s*\}\}/);
+    matches = template.match(/\{\{\s*((?![.>])[^{}^>]+)\s*\}\}/);
 
     if (matches) {
       template = template.replace(matches[0], '');
 
-      const fixedKey = matches[1].replace(/^[#/^]/g, '').split('.')[0].trim();
+      const [fixedKey] = matches[1].replace(/^[#/^]/g, '').split(/[\s.]/);
+      let fixedItem;
 
-      if (fixedKey !== 'section' && !info.input.find(x => x.key === fixedKey)) {
-        const fixedItem = { key: fixedKey };
+      if (fixedKey.charAt() === ':' || fixedKey === 'section') continue;
+      if (!info.input.find(x => x.key === fixedKey)) {
+        fixedItem = { key: fixedKey };
+      }
 
+      if (fixedItem) {
         if (!parent) {
           fixedItem.root = true;
         }
