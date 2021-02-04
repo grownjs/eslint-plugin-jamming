@@ -78,7 +78,10 @@ function preprocess(text, filename) {
   const end = [];
 
   text = text.replace(RE_COMMENTS, matches => {
-    return matches.split('\n').map(() => '').join('\n');
+    if (!/<\/|(^|\b)(?:eslint|global)\b(?=[\s\w,-]+)/.test(matches)) {
+      return matches.split('\n').map(() => '').join('\n');
+    }
+    return matches;
   });
 
   const body = text.replace(RE_SCRIPTS, (_, attrs, content) => {
