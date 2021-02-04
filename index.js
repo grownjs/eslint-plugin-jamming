@@ -148,14 +148,12 @@ function preprocess(text, filename) {
 
 function postprocess(messages, filename) {
   const text = fs.readFileSync(filename).toString();
-  const vars = variables(text).input.map(x => [x.key, new RegExp(`^(.*?\\{\\{[^>]?\\s*)${x.key}(?:\\.[\\w.]+)?\\s*\\}\\}`)]);
+  const vars = variables(text).input.map(x => [x.key, new RegExp(`^(.*?\\{\\{\\s*(?:#stream\\s+|[^>]?\\s*))${x.key}(?:\\.[\\w.]+|[\\w\\s-]+)?\\s*\\}\\}`)]);
 
   const locs = text.split('\n').reduce((memo, line, nth) => {
     for (let i = 0; i < vars.length; i += 1) {
       if (!memo[vars[i][0]] && vars[i][1].test(line)) {
-        const prefix = line.match(vars[i][1])[1];
-
-        memo[vars[i][0]] = [nth + 1, prefix.length + 1];
+        memo[vars[i][0]] = [nth + 1, line.match(vars[i][1])[1].length + 1];
       }
     }
     return memo;
