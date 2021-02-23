@@ -7,6 +7,22 @@ const RE_COMMENTS = /(?!:)\s*\/\/.*?(?=\n)|\/\*[^]*?\*\//g;
 
 const fs = require('fs');
 
+function extract(template) {
+  const tags = [];
+  const matches = template.replace(/<!--[^]*?-->/g, '').match(/<\w+[^<>]*>/g);
+
+  if (matches) {
+    matches.map(x => {
+      const tag = x.substr(1).split(/[\s/>]/)[0];
+
+      if (!tags.includes(tag)) {
+        tags.push(tag);
+      }
+    });
+  }
+  return tags;
+}
+
 function variables(template, parent) {
   const info = {
     input: [],
@@ -73,6 +89,7 @@ function variables(template, parent) {
 
 function preprocess(text, filename) {
   const vars = variables(text).input;
+  const tags = extract(text);
   const shared = {};
   const seen = [];
   const end = [];
@@ -105,8 +122,13 @@ function preprocess(text, filename) {
     });
 
     const keys = Object.keys(shared).filter(key => {
-      if (shared[key] === 'import') return false;
+      if (shared[key] === 'import') {
+        if (tags.includes(key)) vars.push({ key });
+        return false;
+      }
+
       const regex = new RegExp(`\\b(?:let|const|function(?:\\s*\\*?))\\s+${key.replace('*', '\\*?')}\\b`);
+
       if (regex.test(content)) return false;
       return true;
     });
@@ -135,7 +157,6 @@ function preprocess(text, filename) {
         if (shared[x.key] === 'import') end.push(x.key);
       });
     }
-
     return `<script${attrs}>${prefix}${content}${suffix}</script>`;
   });
 
