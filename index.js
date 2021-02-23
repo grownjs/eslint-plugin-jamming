@@ -185,7 +185,7 @@ module.exports = {
         ecmaVersion: 2019,
         sourceType: 'module',
       },
-      plugins: ['fruition'],
+      plugins: ['jamming'],
       env: {
         es6: true,
         browser: true,

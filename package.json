@@ -1,11 +1,11 @@
 {
-	"name": "eslint-plugin-fruition",
+	"name": "eslint-plugin-jamming",
 	"version": "0.0.16",
-	"description": "An ESLint plugin for fruition.",
+	"description": "An ESLint plugin for jamming.",
 	"keywords": [
 		"eslint",
 		"eslintplugin",
-		"fruition"
+		"jamming"
 	],
 	"files": [
 		"index.js"
@@ -17,7 +17,7 @@
 	"author": "Alvaro Cabrera <pateketrueke@gmail.com> (https://soypache.co)",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/pateketrueke/eslint-plugin-fruition"
+		"url": "https://github.com/pateketrueke/eslint-plugin-jamming"
 	},
 	"license": "MIT",
 	"peerDependencies": {

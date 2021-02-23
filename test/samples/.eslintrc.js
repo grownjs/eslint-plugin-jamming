@@ -7,5 +7,5 @@ module.exports = {
 	env: {
 		es6: true,
 	},
-	plugins: ['fruition'],
+	plugins: ['jamming'],
 };

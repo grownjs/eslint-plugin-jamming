@@ -1,6 +1,6 @@
-# eslint-plugin-fruition
+# eslint-plugin-jamming
 
-An ESLint plugin to preprocess fruition files before actual linting.
+An ESLint plugin to preprocess jamming files before actual linting.
 
 ## Features
 
@@ -16,17 +16,17 @@ An ESLint plugin to preprocess fruition files before actual linting.
 Install the plugin:
 
 ```
-npm install --save-dev eslint-plugin-fruition
+npm install --save-dev eslint-plugin-jamming
 ```
 
-Then add `fruition` to the `plugins` array in your `.eslintrc.*` config file.
+Then add `jamming` to the `plugins` array in your `.eslintrc.*` config file.
 
 For example:
 
 ```json
 {
   "extends": [
-    "plugin:fruition/config"
+    "plugin:jamming/config"
   ]
 }
 ```
