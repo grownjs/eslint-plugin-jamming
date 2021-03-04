@@ -2,6 +2,7 @@ const RE_MODULE = /(?:^|\b)context=(["']?)module\1(?:\b|$)/;
 const RE_EFFECTS = /(?<!\/\/.*?)\s*\$:\s*((?:do|if|for|while|await|yield|switch)[^{;}]*?\{[^]*?\}(?=\n)|\{[^]*?\}(?=;\n|$)|[^]*?(?=;\n|$))/g;
 const RE_IMPORTS = /(?:^|[;\s]+)?import\s*(?:\*\s*as)?\s*(\w*?)\s*,?\s*(?:\{([^]*?)\})?\s*from\s*['"]([^'"]+)['"];?/g;
 const RE_EXPORTS = /\bexport\s+(let|const|(?:async\s+)?function(?:\s*\*)?)\s+(\*?[\s\w,=]+)/g;
+const RE_STYLES = /<style([^<>]*)>([^]*?)<\/style>/g;
 const RE_SCRIPTS = /<script([^<>]*)>([^]*?)<\/script>/g;
 const RE_COMMENTS = /(?!:)\s*\/\/.*?(?=\n)|\/\*[^]*?\*\//g;
 
@@ -28,6 +29,8 @@ function variables(template, parent) {
     input: [],
   };
 
+  template = template.replace(RE_STYLES, '');
+  template = template.replace(RE_SCRIPTS, '');
   template = template.replace(/<!--[^]*?-->/g, '');
 
   if (template.indexOf('{') === -1
@@ -88,7 +91,7 @@ function variables(template, parent) {
 }
 
 function preprocess(text, filename) {
-  const vars = variables(text.replace(RE_SCRIPTS, '')).input;
+  const vars = variables(text).input;
   const tags = extract(text);
   const shared = {};
   const seen = [];
