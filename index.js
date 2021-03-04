@@ -30,8 +30,8 @@ function variables(template, parent) {
 
   template = template.replace(/<!--[^]*?-->/g, '');
 
-  if (template.indexOf('{{') === -1
-    && template.indexOf('}}') === -1
+  if (template.indexOf('{') === -1
+    && template.indexOf('}') === -1
   ) return info;
 
   let matches;
@@ -63,14 +63,14 @@ function variables(template, parent) {
   }
 
   do {
-    matches = template.match(/\{\{\s*((?![.>])[^{}^>]+)\s*\}\}/);
+    matches = template.match(/\{\{\s*((?![.>])[^{}^>]+)\s*\}\}|\{\s*([^{}^>]+)\s*\}/);
 
     if (matches) {
       template = template.replace(matches[0], '');
 
-      const [fixedKey] = matches[1].replace(/^[#/^]/g, '').split(/[\s.]/);
-      let fixedItem;
+      const [fixedKey] = (matches[1] || matches[2]).replace(/^[#/^]/g, '').split(/[\s.]/);
 
+      let fixedItem;
       if (fixedKey.charAt() === ':' || fixedKey === 'section') continue;
       if (!info.input.find(x => x.key === fixedKey)) {
         fixedItem = { key: fixedKey };
@@ -88,7 +88,7 @@ function variables(template, parent) {
 }
 
 function preprocess(text, filename) {
-  const vars = variables(text).input;
+  const vars = variables(text.replace(RE_SCRIPTS, '')).input;
   const tags = extract(text);
   const shared = {};
   const seen = [];
