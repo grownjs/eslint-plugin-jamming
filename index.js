@@ -154,6 +154,21 @@ function preprocess(text, filename) {
         suffix = `\n/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;${fixedVars.join(';')};/* eslint-enable */\n`;
       }
     } else {
+      content.replace(/\([^]*?\)|\{[^]*?\}|\bexport\s+[*\s\w]*/g, ';')
+        .replace(/\b(let|const)\s+([\s\w=,]+)(?=[\n;=])/g, (_, kind, expr) => {
+          const set = expr.split(/\s*,\s*/);
+
+          set.forEach(x => {
+            const key = x.split(/\s*=\s*/)[0].trim();
+
+            if (!shared[key]) {
+              shared[key] = kind;
+              end.push(key);
+            }
+          });
+          return '';
+        });
+
       vars.forEach(x => {
         if (!x.root) return;
         if (!shared[x.key]) end.push(x.key);
