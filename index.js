@@ -91,6 +91,7 @@ function variables(template, parent) {
 }
 
 function preprocess(text, filename) {
+  const special = ['Jamming', 'Fragment'];
   const vars = variables(text).input;
   const tags = extract(text);
   const shared = {};
@@ -124,6 +125,8 @@ function preprocess(text, filename) {
       });
     });
 
+    const isScoped = /\s+scoped(?:="(?:scoped|true)")?/.test(attrs);
+
     const keys = Object.keys(shared).filter(key => {
       if (shared[key] === 'import') {
         if (tags.includes(key)) vars.push({ key });
@@ -148,6 +151,10 @@ function preprocess(text, filename) {
           ? !['const', 'let'].includes(shared[x.key])
           : !['default', 'class'].includes(x.key)
       )).filter(x => x.root || shared[x.key] === 'import').map(x => x.key);
+
+      if (isScoped) {
+        fixedVars.push(...special);
+      }
 
       if (fixedVars.length) {
         seen.push(...fixedVars);
@@ -175,6 +182,11 @@ function preprocess(text, filename) {
         if (shared[x.key] === 'import') end.push(x.key);
       });
     }
+
+    if (isScoped) {
+      prefix = `/* global ${special.join(', ')} */${prefix}`;
+    }
+
     return `<script${attrs}>${prefix}${content}${suffix}</script>`;
   });
 
