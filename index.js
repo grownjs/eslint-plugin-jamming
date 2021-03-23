@@ -103,7 +103,7 @@ function preprocess(text, filename) {
       return matches.split('\n').map(() => '/* */').join('\n');
     }
     return matches;
-  });
+  }).replace(/(?<=[=:]\s*)\bawait\b/g, '/* */');
 
   const body = text.replace(RE_SCRIPTS, (_, attrs, content) => {
     (content.match(RE_EXPORTS) || []).forEach(re => {
