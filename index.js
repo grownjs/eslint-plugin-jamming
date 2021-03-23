@@ -100,7 +100,7 @@ function preprocess(text, filename) {
 
   text = text.replace(RE_COMMENTS, matches => {
     if (!/<\/|(^|\b)(?:eslint|global)\b(?=[\s\w,-]+)/.test(matches)) {
-      return matches.split('\n').map(() => '').join('\n');
+      return matches.split('\n').map(() => '/* */').join('\n');
     }
     return matches;
   });
