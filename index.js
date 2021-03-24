@@ -1,5 +1,4 @@
 const RE_MODULE = /(?:^|\b)context=(["']?)module\1(?:\b|$)/;
-const RE_EFFECTS = /(?<!\/\/.*?)\s*\$:\s*((?:do|if|for|while|await|yield|switch)[^{;}]*?\{[^]*?\}(?=\n)|\{[^]*?\}(?=;\n|$)|[^]*?(?=;\n|$))/g;
 const RE_IMPORTS = /(?:^|[;\s]+)?import\s*(?:\*\s*as)?\s*(\w*?)\s*,?\s*(?:\{([^]*?)\})?\s*from\s*['"]([^'"]+)['"];?/g;
 const RE_EXPORTS = /\bexport\s+(let|const|(?:async\s+)?function(?:\s*\*)?)\s+(\*?[\s\w,=]+)/g;
 const RE_STYLES = /<style([^<>]*)>([^]*?)<\/style>/g;
@@ -109,11 +108,6 @@ function preprocess(text, filename) {
     (content.match(RE_EXPORTS) || []).forEach(re => {
       const [, kind, name] = re.replace(/\*|async\s+/g, '').split(/\s+/);
       shared[name] = kind;
-    });
-
-    content = content.replace(RE_EFFECTS, block => {
-      block = block.replace(/\bawait\b/g, '/* */');
-      return block;
     });
 
     content.replace(RE_IMPORTS, (_, base, req, dep) => {
