@@ -2,28 +2,28 @@
   {
     "ruleId": null,
     "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
-    "line": 5,
+    "line": 4,
     "column": 1,
     "severity": 2,
     "nodeType": null,
-    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;cssClass;/* eslint-enable */"
+    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;cssClass;/* eslint-enable */</script>"
   },
   {
     "ruleId": null,
     "message": "Unused eslint-disable directive (no problems were reported from 'no-extra-semi').",
-    "line": 5,
+    "line": 4,
     "column": 1,
     "severity": 2,
     "nodeType": null,
-    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;cssClass;/* eslint-enable */"
+    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;cssClass;/* eslint-enable */</script>"
   },
   {
     "ruleId": null,
     "message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
-    "line": 5,
+    "line": 4,
     "column": 1,
     "severity": 2,
     "nodeType": null,
-    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;cssClass;/* eslint-enable */"
+    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;cssClass;/* eslint-enable */</script>"
   }
 ]

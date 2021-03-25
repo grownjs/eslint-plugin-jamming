@@ -140,19 +140,15 @@ function preprocess(text, filename) {
         prefix = `/* eslint-disable */let ${keys.join(', ')};/* eslint-enable */`;
       }
 
-      const fixedVars = vars.filter(x => (
+      const fixedVars = isScoped ? special : vars.filter(x => (
         shared[x.key]
           ? !['const', 'let'].includes(shared[x.key])
           : !['default', 'class'].includes(x.key)
       )).filter(x => x.root || shared[x.key] === 'import').map(x => x.key);
 
-      if (isScoped) {
-        fixedVars.push(...special);
-      }
-
       if (fixedVars.length) {
         seen.push(...fixedVars);
-        suffix = `\n/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;${fixedVars.join(';')};/* eslint-enable */\n`;
+        suffix = `/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;${fixedVars.join(';')};/* eslint-enable */`;
       }
     } else {
       content.replace(/\([^]*?\)|\{[^]*?\}|\bexport\s+[*\s\w]*/g, ';')
@@ -187,7 +183,7 @@ function preprocess(text, filename) {
   const finalVars = end.filter(x => !seen.includes(x) && (!shared[x] || shared[x] === 'import'));
 
   return [body].concat(finalVars.length
-    ? `<script>\n/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;${finalVars.join(';')};/* eslint-enable */\n</script>`
+    ? `<script>/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;${finalVars.join(';')};/* eslint-enable */</script>`
     : []);
 }
 
@@ -238,6 +234,7 @@ module.exports = {
       rules: {
         indent: 0,
         camelcase: 0,
+        'eol-last': 0,
         'object-shorthand': 0,
         'function-paren-newline': 0,
         'arrow-body-style': 0,
