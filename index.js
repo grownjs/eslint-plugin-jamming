@@ -259,6 +259,7 @@ module.exports = {
         'prefer-arrow-callback': 0,
         'import/first': 0,
         'import/extensions': 0,
+        'import/newline-after-import': 0,
         'import/no-extraneous-dependencies': 0,
         'import/no-dynamic-require': 0,
         'import/no-unresolved': 0,
