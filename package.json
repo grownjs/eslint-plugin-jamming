@@ -17,7 +17,7 @@
 	"author": "Alvaro Cabrera <pateketrueke@gmail.com> (https://soypache.co)",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/pateketrueke/eslint-plugin-jamming"
+		"url": "https://github.com/grownjs/eslint-plugin-jamming"
 	},
 	"license": "MIT",
 	"peerDependencies": {
