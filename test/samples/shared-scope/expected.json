@@ -1,21 +1,12 @@
 [
   {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported).",
-    "line": 5,
-    "column": 9,
+    "ruleId": "no-undef",
     "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable */let value;/* eslint-enable */"
-  },
-  {
-    "ruleId": "no-unused-vars",
-    "severity": 2,
-    "message": "'value' is assigned a value but never used.",
+    "message": "'value' is not defined.",
     "line": 6,
     "column": 3,
     "nodeType": "Identifier",
-    "messageId": "unusedVar",
+    "messageId": "undef",
     "endLine": 6,
     "endColumn": 8,
     "source": "  value = 42;"

@@ -1,12 +1,48 @@
 [
   {
+    "ruleId": "no-unused-vars",
+    "severity": 2,
+    "message": "'stuff' is defined but never used.",
+    "line": 2,
+    "column": 10,
+    "nodeType": "Identifier",
+    "messageId": "unusedVar",
+    "endLine": 2,
+    "endColumn": 15,
+    "source": "  import stuff from 'util';"
+  },
+  {
+    "ruleId": "no-unused-vars",
+    "severity": 2,
+    "message": "'local' is assigned a value but never used.",
+    "line": 4,
+    "column": 9,
+    "nodeType": "Identifier",
+    "messageId": "unusedVar",
+    "endLine": 4,
+    "endColumn": 14,
+    "source": "  const local = 42;"
+  },
+  {
+    "ruleId": "no-unused-vars",
+    "severity": 2,
+    "message": "'sendMessage2' is defined but never used.",
+    "line": 10,
+    "column": 13,
+    "nodeType": "Identifier",
+    "messageId": "unusedVar",
+    "endLine": 10,
+    "endColumn": 25,
+    "source": "  function *sendMessage2() {"
+  },
+  {
     "ruleId": null,
     "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
     "line": 1,
     "column": 9,
     "severity": 2,
     "nodeType": null,
-    "source": "<script>/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;sendMessage2;undef;stuff;/* eslint-enable */</script>"
+    "source": "<script>/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;sendMessage2;undef;local;/* eslint-enable */</script>"
   },
   {
     "ruleId": null,
@@ -15,7 +51,7 @@
     "column": 9,
     "severity": 2,
     "nodeType": null,
-    "source": "<script>/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;sendMessage2;undef;stuff;/* eslint-enable */</script>"
+    "source": "<script>/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;sendMessage2;undef;local;/* eslint-enable */</script>"
   },
   {
     "ruleId": null,
@@ -24,7 +60,7 @@
     "column": 9,
     "severity": 2,
     "nodeType": null,
-    "source": "<script>/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;sendMessage2;undef;stuff;/* eslint-enable */</script>"
+    "source": "<script>/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;sendMessage2;undef;local;/* eslint-enable */</script>"
   },
   {
     "ruleId": "no-undef",
@@ -36,7 +72,7 @@
     "messageId": "undef",
     "endLine": 22,
     "endColumn": 16,
-    "source": "<script>/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;sendMessage2;undef;stuff;/* eslint-enable */</script>"
+    "source": "<script>/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;sendMessage2;undef;local;/* eslint-enable */</script>"
   },
   {
     "ruleId": "no-undef",
@@ -48,18 +84,18 @@
     "messageId": "undef",
     "endLine": 18,
     "endColumn": 8,
-    "source": "<script>/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;sendMessage2;undef;stuff;/* eslint-enable */</script>"
+    "source": "<script>/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;sendMessage2;undef;local;/* eslint-enable */</script>"
   },
   {
     "ruleId": "no-undef",
     "severity": 2,
-    "message": "'stuff' is not defined.",
-    "line": 20,
+    "message": "'local' is not defined.",
+    "line": 19,
     "column": 3,
     "nodeType": "Identifier",
     "messageId": "undef",
-    "endLine": 20,
+    "endLine": 19,
     "endColumn": 8,
-    "source": "<script>/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;sendMessage2;undef;stuff;/* eslint-enable */</script>"
+    "source": "<script>/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;sendMessage2;undef;local;/* eslint-enable */</script>"
   }
 ]

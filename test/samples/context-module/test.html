@@ -5,13 +5,13 @@
 
   export const messages = [];
   export function* sendMessage1() {
-    yield local;
+    yield -1;
   }
   function *sendMessage2() {
-    yield stuff;
+    yield 0;
   }
   export function * sendMessage3() {
-    yield * sendMessage2;
+    yield * undefined;
   }
 </script>
 {{messages}}

@@ -3,7 +3,6 @@
   import fun from 'test';
   // export const undef = 42;
   export let foo;
-  let bar;
 </script>
 
 {{fun}}
@@ -33,3 +32,13 @@
 {{#stream notdef}}
 ...
 {{/stream}}
+
+<script>
+  function test() {
+    const inner = 42;
+    return inner;
+  }
+</script>
+
+{{test}}
+{{inner}}

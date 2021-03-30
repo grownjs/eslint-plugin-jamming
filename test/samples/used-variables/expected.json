@@ -2,88 +2,166 @@
   {
     "ruleId": null,
     "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
-    "line": 7,
+    "line": 6,
     "column": 1,
     "severity": 2,
     "nodeType": null,
-    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;enabled;nested;notdef;fun;bar;open;other;/* eslint-enable */</script>"
+    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;enabled;nested;fun;/* eslint-enable */</script>"
   },
   {
     "ruleId": null,
     "message": "Unused eslint-disable directive (no problems were reported from 'no-extra-semi').",
-    "line": 7,
+    "line": 6,
     "column": 1,
     "severity": 2,
     "nodeType": null,
-    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;enabled;nested;notdef;fun;bar;open;other;/* eslint-enable */</script>"
+    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;enabled;nested;fun;/* eslint-enable */</script>"
   },
   {
     "ruleId": null,
     "message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
-    "line": 7,
+    "line": 6,
     "column": 1,
     "severity": 2,
     "nodeType": null,
-    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;enabled;nested;notdef;fun;bar;open;other;/* eslint-enable */</script>"
+    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;enabled;nested;fun;/* eslint-enable */</script>"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
+    "line": 41,
+    "column": 1,
+    "severity": 2,
+    "nodeType": null,
+    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;test;/* eslint-enable */</script>"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'no-extra-semi').",
+    "line": 41,
+    "column": 1,
+    "severity": 2,
+    "nodeType": null,
+    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;test;/* eslint-enable */</script>"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
+    "line": 41,
+    "column": 1,
+    "severity": 2,
+    "nodeType": null,
+    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;test;/* eslint-enable */</script>"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
+    "line": 1,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;notdef;bar;open;other;inner;/* eslint-enable */</script>"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'no-extra-semi').",
+    "line": 1,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;notdef;bar;open;other;inner;/* eslint-enable */</script>"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
+    "line": 1,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;notdef;bar;open;other;inner;/* eslint-enable */</script>"
   },
   {
     "ruleId": "no-undef",
     "severity": 2,
     "message": "'baz' is not defined.",
-    "line": 12,
+    "line": 11,
     "column": 4,
     "nodeType": "Identifier",
     "messageId": "undef",
-    "endLine": 12,
+    "endLine": 11,
     "endColumn": 7,
-    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;enabled;nested;notdef;fun;bar;open;other;/* eslint-enable */</script>"
+    "source": "<script>/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;notdef;bar;open;other;inner;/* eslint-enable */</script>"
   },
   {
     "ruleId": "no-undef",
     "severity": 2,
     "message": "'undef' is not defined.",
-    "line": 14,
+    "line": 13,
     "column": 4,
     "nodeType": "Identifier",
     "messageId": "undef",
-    "endLine": 14,
+    "endLine": 13,
     "endColumn": 9,
-    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;enabled;nested;notdef;fun;bar;open;other;/* eslint-enable */</script>"
+    "source": "<script>/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;notdef;bar;open;other;inner;/* eslint-enable */</script>"
   },
   {
     "ruleId": "no-undef",
     "severity": 2,
     "message": "'notdef' is not defined.",
-    "line": 33,
+    "line": 32,
     "column": 11,
     "nodeType": "Identifier",
     "messageId": "undef",
-    "endLine": 33,
+    "endLine": 32,
     "endColumn": 17,
-    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;enabled;nested;notdef;fun;bar;open;other;/* eslint-enable */</script>"
+    "source": "<script>/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;notdef;bar;open;other;inner;/* eslint-enable */</script>"
+  },
+  {
+    "ruleId": "no-undef",
+    "severity": 2,
+    "message": "'bar' is not defined.",
+    "line": 10,
+    "column": 3,
+    "nodeType": "Identifier",
+    "messageId": "undef",
+    "endLine": 10,
+    "endColumn": 6,
+    "source": "<script>/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;notdef;bar;open;other;inner;/* eslint-enable */</script>"
   },
   {
     "ruleId": "no-undef",
     "severity": 2,
     "message": "'open' is not defined.",
-    "line": 18,
+    "line": 17,
     "column": 4,
     "nodeType": "Identifier",
     "messageId": "undef",
-    "endLine": 18,
+    "endLine": 17,
     "endColumn": 8,
-    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;enabled;nested;notdef;fun;bar;open;other;/* eslint-enable */</script>"
+    "source": "<script>/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;notdef;bar;open;other;inner;/* eslint-enable */</script>"
   },
   {
     "ruleId": "no-undef",
     "severity": 2,
     "message": "'other' is not defined.",
-    "line": 18,
+    "line": 17,
     "column": 16,
     "nodeType": "Identifier",
     "messageId": "undef",
-    "endLine": 18,
+    "endLine": 17,
     "endColumn": 21,
-    "source": "/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;enabled;nested;notdef;fun;bar;open;other;/* eslint-enable */</script>"
+    "source": "<script>/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;notdef;bar;open;other;inner;/* eslint-enable */</script>"
+  },
+  {
+    "ruleId": "no-undef",
+    "severity": 2,
+    "message": "'inner' is not defined.",
+    "line": 44,
+    "column": 3,
+    "nodeType": "Identifier",
+    "messageId": "undef",
+    "endLine": 44,
+    "endColumn": 8,
+    "source": "<script>/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;baz;undef;notdef;bar;open;other;inner;/* eslint-enable */</script>"
   }
 ]

@@ -1,9 +1,10 @@
-const RE_MODULE = /(?:^|\b)context=(["']?)module\1(?:\b|$)/;
 const RE_IMPORTS = /(?:^|[;\s]+)?import\s*(?:\*\s*as)?\s*(\w*?)\s*,?\s*(?:\{([^]*?)\})?\s*from\s*['"]([^'"]+)['"];?/g;
-const RE_EXPORTS = /\bexport\s+(let|const|(?:async\s+)?function(?:\s*\*)?)\s+(\*?[\s\w,=]+)/g;
+const RE_EXPORTS = /\bexport\s+(let|const|(?:async\s+)?function(?:\s*\*)?|(?:default\s*)?\{)\s+(\*?[\s\w,=]+)/g;
 const RE_STYLES = /<style([^<>]*)>([^]*?)<\/style>/g;
 const RE_SCRIPTS = /<script([^<>]*)>([^]*?)<\/script>/g;
-const RE_COMMENTS = /(?!:)\s*\/\/.*?(?=\n)|\/\*[^]*?\*\//g;
+const RE_COMMENTS = /(?!:) +\/\/.*?(?=\n)|\/\*[^]*?\*\//g;
+const RE_ALL_BLOCKS = /\([^()]*?\)|\[[^[\]]*?\]|\{[^{}]*?\}/;
+const RE_EXPORT_IMPORT = /\bexport\s+[*\s\w]*|import[^]+?[\n;]/g;
 
 const fs = require('fs');
 
@@ -70,7 +71,7 @@ function variables(template, parent) {
     if (matches) {
       template = template.replace(matches[0], '');
 
-      const [fixedKey] = (matches[1] || matches[2]).replace(/^[#/^]/g, '').split(/[\s.]/);
+      const [fixedKey] = (matches[1] || matches[2]).replace(/^(?:[#/^]|\.{3})/g, '').split(/[\s.]/);
 
       let fixedItem;
       if (fixedKey.charAt() === ':' || fixedKey === 'section') continue;
@@ -93,9 +94,9 @@ function preprocess(text, filename) {
   const special = ['Jamming', 'Fragment'];
   const vars = variables(text).input;
   const tags = extract(text);
+  const aliased = {};
   const shared = {};
   const seen = [];
-  const end = [];
 
   text = text.replace(RE_COMMENTS, matches => {
     if (!/<\/|(^|\b)(?:eslint|global)\b(?=[\s\w,-]+)/.test(matches)) {
@@ -105,9 +106,38 @@ function preprocess(text, filename) {
   }).replace(/(?<=[=:]\s*)\bawait\b/g, '/* */');
 
   const body = text.replace(RE_SCRIPTS, (_, attrs, content) => {
+    const isModule = /(?:^|\b)context=(["']?)module\1(?:\b|$)/.test(attrs);
+    const isScoped = /\s+scoped(?:="(?:scoped|true)")?/.test(attrs);
+
+    let scope = content.replace(RE_EXPORT_IMPORT, ';');
+    do scope = scope.replace(RE_ALL_BLOCKS, ';'); while (RE_ALL_BLOCKS.test(scope));
+
+    const matches = scope.match(/\b(?:let|const|function(?:\s*\*?))\s+(.+?)(?==|[;\n])/g);
+    const locals = matches ? matches.reduce((memo, cur) => {
+      const [kind, ...rest] = cur.replace(/=[^=]*?(?=,|$)/g, '').trim().split(/\s+/);
+      const set = rest.join('').split(/\s*,\s*/);
+
+      set.forEach(x => {
+        const temp = x.replace(/\*|async\s+/g, '').split(/\s*=\s*/);
+        temp.forEach(key => {
+          if (!isModule) shared[key] = kind;
+          memo[key] = kind;
+        });
+      });
+      return memo;
+    }, {}) : [];
+
     (content.match(RE_EXPORTS) || []).forEach(re => {
-      const [, kind, name] = re.replace(/\*|async\s+/g, '').split(/\s+/);
-      shared[name] = kind;
+      if (re.includes(' default')) {
+        seen.push('default');
+      } else if (re.includes('{')) {
+        const [alias, name] = re.replace(/.+?\{\s*/, '').trim().split(/\s+as\s+/)
+        shared[name] = shared[alias];
+        aliased[name] = alias;
+      } else {
+        const [, kind, name] = re.replace(/\*|async\s+/g, '').split(/\s+/);
+        shared[name] = kind;
+      }
     });
 
     content.replace(RE_IMPORTS, (_, base, req, dep) => {
@@ -119,58 +149,31 @@ function preprocess(text, filename) {
       });
     });
 
-    const isScoped = /\s+scoped(?:="(?:scoped|true)")?/.test(attrs);
-
     const keys = Object.keys(shared).filter(key => {
       if (shared[key] === 'import') {
         if (tags.includes(key)) vars.push({ key });
+        if (vars.find(x => x.key === key)) return true;
         return false;
-      }
-
-      const regex = new RegExp(`\\b(?:let|const|function(?:\\s*\\*?))\\s+${key.replace('*', '\\*?')}\\b`);
-
-      if (regex.test(content)) return false;
-      return true;
-    });
+      } else if (shared[key] !== 'noop') seen.push(key);
+      return locals[key];
+    }).concat(isScoped ? special : []);
 
     let prefix = '';
     let suffix = '';
-    if (!RE_MODULE.test(attrs)) {
-      if (keys.length) {
-        prefix = `/* eslint-disable */let ${keys.join(', ')};/* eslint-enable */`;
+    if (!isModule) {
+      const fixed = Object.keys(shared).filter(key => shared[key] === 'module');
+
+      if (fixed.length) {
+        prefix = `/* eslint-disable */let ${fixed.join(', ')};/* eslint-enable */`;
       }
 
-      const fixedVars = isScoped ? special : vars.filter(x => (
-        shared[x.key]
-          ? !['const', 'let'].includes(shared[x.key])
-          : !['default', 'class'].includes(x.key)
-      )).filter(x => x.root || shared[x.key] === 'import').map(x => x.key);
-
-      if (fixedVars.length) {
-        seen.push(...fixedVars);
-        suffix = `/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;${fixedVars.join(';')};/* eslint-enable */`;
+      if (keys.length) {
+        seen.push(...keys);
+        keys.forEach(key => { shared[key] = 'noop'; });
+        suffix = `/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;${keys.join(';')};/* eslint-enable */`;
       }
     } else {
-      content.replace(/\([^]*?\)|\{[^]*?\}|\bexport\s+[*\s\w]*/g, ';')
-        .replace(/\b(let|const)\s+([\s\w=,]+)(?=[\n;=])/g, (_, kind, expr) => {
-          const set = expr.split(/\s*,\s*/);
-
-          set.forEach(x => {
-            const key = x.split(/\s*=\s*/)[0].trim();
-
-            if (!shared[key]) {
-              shared[key] = kind;
-              end.push(key);
-            }
-          });
-          return '';
-        });
-
-      vars.forEach(x => {
-        if (!x.root) return;
-        if (!shared[x.key]) end.push(x.key);
-        if (shared[x.key] === 'import') end.push(x.key);
-      });
+      Object.keys(locals).forEach(key => { shared[key] = 'module'; });
     }
 
     if (isScoped) {
@@ -180,11 +183,12 @@ function preprocess(text, filename) {
     return `<script${attrs}>${prefix}${content}${suffix}</script>`;
   });
 
-  const finalVars = end.filter(x => !seen.includes(x) && (!shared[x] || shared[x] === 'import'));
-
-  return [body].concat(finalVars.length
-    ? `<script>/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;${finalVars.join(';')};/* eslint-enable */</script>`
+  const end = vars.filter(x => x.root && !seen.includes(x.key) && shared[x.key] !== 'import').map(x => x.key);
+  const out = [body].concat(end.length
+    ? `<script>/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;${end.join(';')};/* eslint-enable */</script>`
     : []);
+
+  return out;
 }
 
 function postprocess(messages, filename) {
