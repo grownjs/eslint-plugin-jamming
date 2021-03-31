@@ -1,0 +1,37 @@
+<script>
+  import { enabled, nested } from 'test';
+  import fun from 'test';
+  // export const undef = 42;
+  export let foo;
+</script>
+
+{fun}
+ {foo}
+  {bar}
+{#if baz}BUZZ{/if}
+
+{#if !undef}
+  {missing}
+{/if}
+
+{#if open}...{/if}
+
+{#if enabled}
+  {nested}
+{/if}
+
+<!-- {im_not_used} -->
+<pre>
+  export const undef = 42;
+</pre>
+
+<script>
+  function test() {
+    const inner = 42;
+    return inner;
+  }
+</script>
+
+{test}
+{inner}
+

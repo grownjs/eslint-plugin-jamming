@@ -5,7 +5,9 @@ An ESLint plugin to preprocess jamming files before actual linting.
 ## Features
 
 - Enable the `await` keyword on `$:` labels
-- Inject exported symbols on consecutive blocks
+- Share exported symbols from consecutive scripts
+- Check for syntax errors inside template `{ ... }` blocks
+- Enforce `no-unused-vars/no-undef` on template `{ ... }` blocks
 
 ## Requirements
 

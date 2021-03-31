@@ -6,8 +6,6 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
-      - run: npm ci
-      - run: ln -s $PWD $PWD/node_modules/eslint-plugin-jamming
-      - run: npm test
+      - run: make ci
         env:
           CI: true

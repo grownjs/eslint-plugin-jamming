@@ -1,0 +1,17 @@
+<script context="module">
+  function scoped() {
+  }
+
+  export const truth = 42;
+</script>
+<script scoped>
+  import { Fragment } from 'jamming';
+</script>
+<script>
+  $: await undef;
+</script>
+<script>
+  let cssClass = null;
+  export { cssClass as class };
+</script>
+<div className="{cssClass}"></div>

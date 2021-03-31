@@ -14,10 +14,9 @@
     yield * undefined;
   }
 </script>
-{{messages}}
-{{undef}}
-{{local}}
-{{stuff}}
-{{#sendMessage1}}{{.}}{{/sendMessage1}}
-{{#sendMessage2}}{{.}}{{/sendMessage2}}
-{{#sendMessage3}}{{.}}{{/sendMessage3}}
+{messages} {local} {stuff}
+{#each sendMessage1 as x}{x}{/each}
+{#each sendMessage2 as item}{item}{/each}
+{#each sendMessage3 as it, idx}
+  {idx}. {it}
+{/each}

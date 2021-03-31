@@ -1,220 +1,291 @@
-const RE_IMPORTS = /(?:^|[;\s]+)?import\s*(?:\*\s*as)?\s*(\w*?)\s*,?\s*(?:\{([^]*?)\})?\s*from\s*['"]([^'"]+)['"];?/g;
-const RE_EXPORTS = /\bexport\s+(let|const|(?:async\s+)?function(?:\s*\*)?|(?:default\s*)?\{)\s+(\*?[\s\w,=]+)/g;
-const RE_STYLES = /<style([^<>]*)>([^]*?)<\/style>/g;
-const RE_SCRIPTS = /<script([^<>]*)>([^]*?)<\/script>/g;
-const RE_ALL_BLOCKS = /\([^()]*?\)|\[[^[\]]*?\]|\{[^{}]*?\}/;
-const RE_EXPORT_IMPORT = /\bexport\s+[*\s\w]*|import[^]+?[\n;]/g;
-const RE_BLOCK_COMMENTS = /(?<!["':].*?)\s*\/\/.*?(?=\n)|\/\*[^]*?\*\//g;
-
 const fs = require('fs');
 
-function extract(template) {
-  const tags = [];
-  const matches = template.replace(/<!--[^]*?-->/g, '').match(/<\w+[^<>]*>/g);
+const {
+  RE_COMMENT_BLOCKS,
+  RE_SAFE_SEPARATOR,
+  RE_SAFE_WHITESPACE,
+  RE_CODING_BLOCKS,
+  RE_CONTEXT_MODULE,
+  RE_TYPE_MODULE,
+  RE_MATCH_QUOTED,
+  RE_SPLIT_MARKER,
+  RE_EFFECT_LABEL,
+  RE_AWAIT_BACK,
+  RE_BLOCK_MARK,
+  RE_BLOCK_TAGS,
+  RE_EACH_CLOSE,
+  RE_EACH_TAGS,
+  RE_ALL_SEMI,
+  RE_FIX_SEMI,
+} = require('./const');
 
-  if (matches) {
-    matches.map(x => {
-      const tag = x.substr(1).split(/[\s/>]/)[0];
+const { vars, blocks, disable } = require('./util');
 
-      if (!tags.includes(tag)) {
-        tags.push(tag);
-      }
-    });
-  }
-  return tags;
-}
-
-function variables(template, parent) {
-  const info = {
-    input: [],
-  };
-
-  template = template.replace(RE_STYLES, '');
-  template = template.replace(RE_SCRIPTS, '');
-  template = template.replace(/<!--[^]*?-->/g, '');
-
-  if (template.indexOf('{') === -1
-    && template.indexOf('}') === -1
-  ) return info;
-
-  let matches;
-
-  if (template.indexOf('{{#') !== -1 || template.indexOf('{{^') !== -1) {
-    do {
-      matches = template.match(/\{\{([#^]((?!section)[^#{}/]+)(?:[\w\s-]+?)?)\}\}([^]+?)\{\{\/\2\}\}/);
-
-      if (matches) {
-        const [, fixedKey, prop] = matches[1].split(/[\s#^]/);
-        let fixedItem = info.input.find(x => x.key === (prop || fixedKey));
-
-        template = template.replace(matches[0], '');
-
-        if (!fixedItem) {
-          fixedItem = { key: prop || fixedKey };
-
-          if (matches[1].charAt() === '^') {
-            fixedItem.unless = true;
-          }
-          if (!parent) {
-            fixedItem.root = true;
-          }
-          info.input.push(fixedItem);
-        }
-        info.input.push(...variables(matches[3], fixedItem).input);
-      }
-    } while (matches);
-  }
-
-  do {
-    matches = template.match(/\{\{\s*((?![.>])[^{}^>]+)\s*\}\}|\{\s*([^{}^>]+)\s*\}/);
-
-    if (matches) {
-      template = template.replace(matches[0], '');
-
-      const [fixedKey] = (matches[1] || matches[2]).replace(/^(?:[#/^]|\.{3})/g, '').split(/[\s.]/);
-
-      let fixedItem;
-      if (fixedKey.charAt() === ':' || fixedKey === 'section') continue;
-      if (!info.input.find(x => x.key === fixedKey)) {
-        fixedItem = { key: fixedKey };
-      }
-
-      if (fixedItem) {
-        if (!parent) {
-          fixedItem.root = true;
-        }
-        info.input.push(fixedItem);
-      }
-    }
-  } while (matches);
-  return info;
-}
-
-function preprocess(text, filename) {
-  const special = ['Jamming', 'Fragment'];
-  const vars = variables(text).input;
-  const tags = extract(text);
-  const aliased = {};
-  const shared = {};
-  const seen = [];
-
-  text = text.replace(RE_BLOCK_COMMENTS, matches => {
-    if (!/<\/|(^|\b)(?:eslint|global)\b(?=[\s\w,-]+)/.test(matches)) {
-      return matches.split('\n').map(() => '/* */').join('\n');
-    }
-    return matches;
-  }).replace(/(?<=[=:]\s*)\bawait\b/g, '/* */');
-
-  const body = text.replace(RE_SCRIPTS, (_, attrs, content) => {
-    const isModule = /(?:^|\b)context=(["']?)module\1(?:\b|$)/.test(attrs);
-    const isScoped = /\s+scoped(?:="(?:scoped|true)")?/.test(attrs);
-
-    let scope = content.replace(RE_EXPORT_IMPORT, ';');
-    do scope = scope.replace(RE_ALL_BLOCKS, ';'); while (RE_ALL_BLOCKS.test(scope));
-
-    const matches = scope.match(/\b(?:let|const|function(?:\s*\*?))\s+(.+?)(?==|[;\n])/g);
-    const locals = matches ? matches.reduce((memo, cur) => {
-      const [kind, ...rest] = cur.replace(/=[^=]*?(?=,|$)/g, '').trim().split(/\s+/);
-      const set = rest.join('').split(/\s*,\s*/);
-
-      set.forEach(x => {
-        const temp = x.replace(/\*|async\s+/g, '').split(/\s*=\s*/);
-        temp.forEach(key => {
-          if (!isModule) shared[key] = kind;
-          memo[key] = kind;
-        });
-      });
-      return memo;
-    }, {}) : [];
-
-    (content.match(RE_EXPORTS) || []).forEach(re => {
-      if (re.includes(' default')) {
-        seen.push('default');
-      } else if (re.includes('{')) {
-        const [alias, name] = re.replace(/.+?\{\s*/, '').trim().split(/\s+as\s+/)
-        shared[name] = shared[alias];
-        aliased[name] = alias;
-      } else {
-        const [, kind, name] = re.replace(/\*|async\s+/g, '').split(/\s+/);
-        shared[name] = kind;
-      }
-    });
-
-    content.replace(RE_IMPORTS, (_, base, req, dep) => {
-      (req || base).trim().split(/\s*,\s*/).forEach(key => {
-        if (key) {
-          const [ref, alias] = key.split(/\s+as\s+/);
-          shared[alias || ref] = 'import';
-        }
-      });
-    });
-
-    const keys = Object.keys(shared).filter(key => {
-      if (shared[key] === 'import') {
-        if (tags.includes(key)) vars.push({ key });
-        if (vars.find(x => x.key === key)) return true;
-        return false;
-      } else if (shared[key] !== 'noop') seen.push(key);
-      return locals[key];
-    }).concat(isScoped ? special : []);
-
-    let prefix = '';
-    let suffix = '';
-    if (!isModule) {
-      const fixed = Object.keys(shared).filter(key => shared[key] === 'module');
-
-      if (fixed.length) {
-        prefix = `/* eslint-disable */let ${fixed.join(', ')};/* eslint-enable */`;
-      }
-
-      if (keys.length) {
-        seen.push(...keys);
-        keys.forEach(key => { shared[key] = 'noop'; });
-        suffix = `/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing, semi-style */;${keys.join(';')};/* eslint-enable */`;
-      }
-    } else {
-      Object.keys(locals).forEach(key => { shared[key] = 'module'; });
-    }
-
-    if (isScoped) {
-      prefix = `/* global ${special.join(', ')} */${prefix}`;
-    }
-
-    return `<script${attrs}>${prefix}${content}${suffix}</script>`;
+function preprocess(text) {
+  text = text.replace(RE_CODING_BLOCKS, (_, kind) => {
+    if (kind === 'script') _ = _.replace(RE_EFFECT_LABEL, '/* */');
+    return _;
   });
 
-  const end = vars.filter(x => x.root && !seen.includes(x.key) && shared[x.key] !== 'import').map(x => x.key);
-  const out = [body].concat(end.length
-    ? `<script>/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing, semi-style */;${end.join(';')};/* eslint-enable */</script>`
-    : []);
+  let tpl = text.replace(RE_COMMENT_BLOCKS, _ => _.replace(RE_SAFE_WHITESPACE, ' '));
 
-  return out;
+  const { locations, components } = blocks(tpl.replace(RE_CODING_BLOCKS, _ => _.replace(RE_SAFE_WHITESPACE, ' ')));
+  const shared = {};
+  const chunks = [];
+  const names = [];
+  const deps = [];
+
+  let buffer = '';
+  let offset = 0;
+  locations.forEach((local, i) => {
+    const chunk = tpl.substr(offset, local.offset - offset).replace(RE_ALL_SEMI, _ => _.replace(RE_SAFE_WHITESPACE, ' '));
+    const key = `00000${i}`.substr(-5);
+
+    local.locals.forEach(temp => {
+      /* istanbul ignore else */
+      if (!names.some(x => x.name === temp.name)) names.push(temp);
+    });
+
+    buffer += chunk.replace(RE_EACH_CLOSE, '      ;;').replace(RE_SAFE_SEPARATOR, ' ');
+    buffer += `;_${key}:${local.block
+      .replace(RE_BLOCK_TAGS, _ => _.replace(RE_SAFE_WHITESPACE, ' '))
+      .replace(RE_EACH_TAGS, (_, locals) => `{      ${locals.replace(' as', ';let')}`)}`;
+    offset = local.offset + local.block.length;
+  });
+
+  buffer += tpl.substr(offset).replace(RE_EACH_CLOSE, '      ;;').replace(RE_SAFE_SEPARATOR, ' ');
+  buffer = buffer.replace(RE_FIX_SEMI, '}');
+
+  tpl = tpl.replace(RE_CODING_BLOCKS, (_, kind, attr, body) => {
+    /* istanbul ignore else */
+    if (kind === 'script' && !attr.includes(' src')) {
+      const scoped = attr.includes(' scoped');
+      const isModule = RE_TYPE_MODULE.test(attr);
+      const isContext = RE_CONTEXT_MODULE.test(attr);
+
+      /* istanbul ignore else */
+      if (!isModule && !scoped) {
+        const info = vars(` ${kind.replace(RE_SAFE_WHITESPACE, ' ')}${attr.replace(RE_SAFE_WHITESPACE, ' ')} ${body}`);
+        const set = info.keys.filter(x => info.locals[x] === 'import');
+        const idx = text.indexOf(_);
+        const use = [];
+
+        let prefix = '';
+        let suffix = '';
+        if (isContext) {
+          Object.assign(shared, info.locals);
+          deps.push(...new Set(info.keys.concat(info.deps)));
+          chunks.push({
+            offset: [idx, _.length],
+            names: names.filter(x => info.deps.includes(x.name) || set.includes(x.name)),
+          });
+        } else {
+          const fixedDeps = [...new Set(info.keys.concat(info.deps))].filter(x => names.some(y => y.name === x));
+          const consts = fixedDeps.filter(x => info.locals[x] === 'import' || info.locals[x] === 'function');
+          const lets = fixedDeps.filter(x => info.locals[x] === 'var');
+
+          /* istanbul ignore else */
+          if (info.hasVars) {
+            Object.assign(shared, info.locals);
+            deps.push(...fixedDeps);
+
+            components.forEach(x => {
+              /* istanbul ignore else */
+              if (set.includes(x.name) && !consts.includes(x.name)) consts.push(x.name);
+            });
+
+            chunks.push({
+              offset: [idx, _.length],
+              names: names.filter(x => info.keys.includes(x.name))
+                .concat(components.filter(x => info.keys.includes(x.name))),
+            });
+
+            const fixed = deps.filter(x => !fixedDeps.includes(x));
+
+            consts.push(...fixed);
+            use.push(...fixed);
+          } else {
+            use.push(...deps);
+          }
+
+          /* istanbul ignore else */
+          if (consts.length) {
+            suffix = `${disable(consts.join(';'), [
+              'semi-spacing',
+              'no-unused-expressions',
+            ])};</script>`;
+          }
+          /* istanbul ignore else */
+          if (lets.length) {
+            suffix = `${disable(consts.concat(lets).join(';'), [
+              'semi-spacing',
+              'no-unused-expressions',
+            ])};</script>`;
+          }
+          /* istanbul ignore else */
+          if (use.length) {
+            prefix += `let ${use.join(', ')};`;
+          }
+        }
+
+        /* istanbul ignore else */
+        if (use.length) {
+          suffix = suffix || `${disable(use.join(';'), [
+            'semi-spacing',
+            'no-unused-expressions',
+          ])};</script>`;
+        }
+
+        /* istanbul ignore else */
+        if (suffix) {
+          text = text.substr(0, idx)
+            + text.substr(idx, _.length).replace('</script>', suffix)
+            + text.substr(idx + _.length);
+        }
+
+        /* istanbul ignore else */
+        if (prefix) {
+          const diff = idx + kind.length + attr.length + 2;
+
+          text = `${text.substr(0, diff)}${disable(prefix, [
+            'one-var',
+            'no-void',
+            'semi-spacing',
+            'one-var-declaration-per-line',
+          ])}${text.substr(diff)}`;
+        }
+      }
+    }
+    return _.replace(RE_SAFE_WHITESPACE, ' ');
+  });
+
+  const used = chunks.reduce((memo, cur) => {
+    memo.push(...cur.names.map(x => x.name));
+    return memo;
+  }, []);
+
+  const missed = components.filter(x => !used.includes(x.name));
+
+  /* istanbul ignore else */
+  if (missed.length) {
+    chunks.push({
+      code: `<script>${disable(`${missed.map(x => `/*!#${x.offset}*/${x.name};`).join('')}`, [
+        'max-len',
+        'semi-spacing',
+        'spaced-comment',
+        'no-unused-expressions',
+      ])}</script>`,
+    });
+  }
+
+  /* istanbul ignore else */
+  if (locations.length) {
+    const fixed = names.filter(x => deps.includes(x.name));
+    const prefix = fixed.length ? `let ${fixed.map(x => x.name).join(', ')};` : '';
+
+    chunks.push({
+      code: `<script>${disable(prefix, [
+        'semi',
+        'semi-style',
+        'semi-spacing',
+        'one-var',
+        'max-len',
+        'no-empty',
+        'brace-style',
+        'one-var-declaration-per-line',
+        'no-multiple-empty-lines',
+        'no-multi-spaces',
+        'no-trailing-spaces',
+        'no-extra-semi',
+        'block-spacing',
+        'space-before-blocks',
+        'no-unused-expressions',
+      ], true)}\n${buffer}</script>`,
+    });
+  }
+
+  chunks.forEach(chunk => {
+    /* istanbul ignore else */
+    if (chunk.names && chunk.names.length) {
+      const suffix = `${chunk.names.map(x => `/*!#${x.offset}*/${x.name};`).join('')}`;
+      const [index, length] = chunk.offset;
+
+      text = text.substr(0, index)
+        + text.substr(...chunk.offset).replace('</script>', `${disable(suffix, [
+          'max-len',
+          'semi-spacing',
+          'block-spacing',
+          'spaced-comment',
+          'no-unused-expressions',
+        ], true)}</script>`)
+        + text.substr(index + length);
+    }
+  });
+
+  return [text, ...chunks.filter(x => !x.names).map(x => x.code)];
 }
 
 function postprocess(messages, filename) {
-  const text = fs.readFileSync(filename).toString();
-  const vars = variables(text).input.map(x => [x.key, new RegExp(`^(.*?\\{\\{\\s*(?:#stream\\s+|[^>]?\\s*))${x.key}(?:\\.[\\w.]+|[\\w\\s-]+)?\\s*\\}\\}`)]);
-
-  const locs = text.split('\n').reduce((memo, line, nth) => {
-    for (let i = 0; i < vars.length; i += 1) {
-      if (!memo[vars[i][0]] && vars[i][1].test(line)) {
-        memo[vars[i][0]] = [nth + 1, line.match(vars[i][1])[1].length + 1];
-      }
-    }
-    return memo;
-  }, {});
-
   return messages.reduce((memo, it) => memo.concat(it.map(chunk => {
-    if (chunk.source) {
-      chunk.source = chunk.source.replace(/\/\* \*\//g, 'await');
-    }
-    if (chunk.ruleId == 'no-undef') {
-      const key = chunk.message.match(/(["'])(.+?)\1/)[2];
+    /* istanbul ignore else */
+    if (chunk.source) chunk.source = chunk.source.replace(RE_AWAIT_BACK, 'await');
 
-      if (locs[key]) {
-        chunk.column = locs[key][1];
-        chunk.line = chunk.endLine = locs[key][0];
-        chunk.endColumn = locs[key][1] + key.length;
+    /* istanbul ignore else */
+    if ((chunk.ruleId === null && !chunk.message.includes('eslint-disable'))
+      || chunk.ruleId === 'no-undef'
+      || chunk.ruleId === 'no-unused-vars'
+    ) {
+      /* istanbul ignore else */
+      if (RE_BLOCK_MARK.test(chunk.source)) {
+        const left = chunk.source.substr(0, chunk.column);
+        const diff = (left.split(RE_BLOCK_MARK).length - 1) * 8;
+        const local = chunk.ruleId === 'no-unused-vars' && left.includes(';let ') ? 1 : 0;
+
+        if (chunk.fatal) {
+          chunk.column -= diff + local;
+          chunk.line -= 1;
+          chunk.endColumn = chunk.column;
+          chunk.endLine = chunk.line;
+        } else {
+          chunk.endColumn -= diff + local;
+          chunk.endLine -= 1;
+          chunk.column -= diff + local;
+          chunk.line -= 1;
+        }
+      }
+
+      /* istanbul ignore else */
+      if (chunk.source.includes('</script>')) {
+        const matches = chunk.source.substr(1).split(';');
+        const name = chunk.message.match(RE_MATCH_QUOTED)[2];
+
+        for (const test of matches) {
+          const [, offset, length, local] = test.match(RE_SPLIT_MARKER) || [];
+
+          /* istanbul ignore else */
+          if (local === name) {
+            const tpl = fs.readFileSync(filename).toString();
+
+            let line = 1;
+            let col = 0;
+            for (let i = 0; i < tpl.length; i += 1) {
+              /* istanbul ignore else */
+              if (i === +offset) break;
+              if (tpl[i] === '\n') {
+                line += 1;
+                col = 0;
+              } else {
+                col += 1;
+              }
+            }
+
+            chunk.endColumn = col + +length + 1;
+            chunk.endLine = line;
+            chunk.column = col + 1;
+            chunk.line = line;
+            break;
+          }
+        }
       }
     }
     return chunk;

@@ -1,0 +1,182 @@
+[
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'max-len').",
+    "line": 16,
+    "column": 1,
+    "severity": 2,
+    "nodeType": null,
+    "source": "/* eslint-disable max-len, semi-spacing, block-spacing, spaced-comment, no-unused-expressions *//*!#292,5*/local;/*!#300,5*/stuff;/*!#350,12*/sendMessage2;</script>"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
+    "line": 16,
+    "column": 1,
+    "severity": 2,
+    "nodeType": null,
+    "source": "/* eslint-disable max-len, semi-spacing, block-spacing, spaced-comment, no-unused-expressions *//*!#292,5*/local;/*!#300,5*/stuff;/*!#350,12*/sendMessage2;</script>"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'block-spacing').",
+    "line": 16,
+    "column": 1,
+    "severity": 2,
+    "nodeType": null,
+    "source": "/* eslint-disable max-len, semi-spacing, block-spacing, spaced-comment, no-unused-expressions *//*!#292,5*/local;/*!#300,5*/stuff;/*!#350,12*/sendMessage2;</script>"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'spaced-comment').",
+    "line": 16,
+    "column": 1,
+    "severity": 2,
+    "nodeType": null,
+    "source": "/* eslint-disable max-len, semi-spacing, block-spacing, spaced-comment, no-unused-expressions *//*!#292,5*/local;/*!#300,5*/stuff;/*!#350,12*/sendMessage2;</script>"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
+    "line": 16,
+    "column": 1,
+    "severity": 2,
+    "nodeType": null,
+    "source": "/* eslint-disable max-len, semi-spacing, block-spacing, spaced-comment, no-unused-expressions *//*!#292,5*/local;/*!#300,5*/stuff;/*!#350,12*/sendMessage2;</script>"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'semi').",
+    "line": 1,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, one-var, max-len, no-empty, brace-style, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let messages, local, stuff, sendMessage1, sendMessage2, sendMessage3;"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'semi-style').",
+    "line": 1,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, one-var, max-len, no-empty, brace-style, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let messages, local, stuff, sendMessage1, sendMessage2, sendMessage3;"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
+    "line": 1,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, one-var, max-len, no-empty, brace-style, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let messages, local, stuff, sendMessage1, sendMessage2, sendMessage3;"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'one-var').",
+    "line": 1,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, one-var, max-len, no-empty, brace-style, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let messages, local, stuff, sendMessage1, sendMessage2, sendMessage3;"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'max-len').",
+    "line": 1,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, one-var, max-len, no-empty, brace-style, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let messages, local, stuff, sendMessage1, sendMessage2, sendMessage3;"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'no-empty').",
+    "line": 1,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, one-var, max-len, no-empty, brace-style, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let messages, local, stuff, sendMessage1, sendMessage2, sendMessage3;"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'brace-style').",
+    "line": 1,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, one-var, max-len, no-empty, brace-style, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let messages, local, stuff, sendMessage1, sendMessage2, sendMessage3;"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'one-var-declaration-per-line').",
+    "line": 1,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, one-var, max-len, no-empty, brace-style, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let messages, local, stuff, sendMessage1, sendMessage2, sendMessage3;"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'no-multiple-empty-lines').",
+    "line": 1,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, one-var, max-len, no-empty, brace-style, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let messages, local, stuff, sendMessage1, sendMessage2, sendMessage3;"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'no-multi-spaces').",
+    "line": 1,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, one-var, max-len, no-empty, brace-style, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let messages, local, stuff, sendMessage1, sendMessage2, sendMessage3;"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'no-trailing-spaces').",
+    "line": 1,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, one-var, max-len, no-empty, brace-style, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let messages, local, stuff, sendMessage1, sendMessage2, sendMessage3;"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'no-extra-semi').",
+    "line": 1,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, one-var, max-len, no-empty, brace-style, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let messages, local, stuff, sendMessage1, sendMessage2, sendMessage3;"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'block-spacing').",
+    "line": 1,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, one-var, max-len, no-empty, brace-style, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let messages, local, stuff, sendMessage1, sendMessage2, sendMessage3;"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'space-before-blocks').",
+    "line": 1,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, one-var, max-len, no-empty, brace-style, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let messages, local, stuff, sendMessage1, sendMessage2, sendMessage3;"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
+    "line": 1,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, one-var, max-len, no-empty, brace-style, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let messages, local, stuff, sendMessage1, sendMessage2, sendMessage3;"
+  }
+]
