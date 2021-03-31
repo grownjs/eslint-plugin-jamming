@@ -2,9 +2,9 @@ const RE_IMPORTS = /(?:^|[;\s]+)?import\s*(?:\*\s*as)?\s*(\w*?)\s*,?\s*(?:\{([^]
 const RE_EXPORTS = /\bexport\s+(let|const|(?:async\s+)?function(?:\s*\*)?|(?:default\s*)?\{)\s+(\*?[\s\w,=]+)/g;
 const RE_STYLES = /<style([^<>]*)>([^]*?)<\/style>/g;
 const RE_SCRIPTS = /<script([^<>]*)>([^]*?)<\/script>/g;
-const RE_COMMENTS = /(?!:) +\/\/.*?(?=\n)|\/\*[^]*?\*\//g;
 const RE_ALL_BLOCKS = /\([^()]*?\)|\[[^[\]]*?\]|\{[^{}]*?\}/;
 const RE_EXPORT_IMPORT = /\bexport\s+[*\s\w]*|import[^]+?[\n;]/g;
+const RE_BLOCK_COMMENTS = /(?<!["':].*?)\s*\/\/.*?(?=\n)|\/\*[^]*?\*\//g;
 
 const fs = require('fs');
 
@@ -98,7 +98,7 @@ function preprocess(text, filename) {
   const shared = {};
   const seen = [];
 
-  text = text.replace(RE_COMMENTS, matches => {
+  text = text.replace(RE_BLOCK_COMMENTS, matches => {
     if (!/<\/|(^|\b)(?:eslint|global)\b(?=[\s\w,-]+)/.test(matches)) {
       return matches.split('\n').map(() => '/* */').join('\n');
     }
@@ -170,7 +170,7 @@ function preprocess(text, filename) {
       if (keys.length) {
         seen.push(...keys);
         keys.forEach(key => { shared[key] = 'noop'; });
-        suffix = `/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;${keys.join(';')};/* eslint-enable */`;
+        suffix = `/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing, semi-style */;${keys.join(';')};/* eslint-enable */`;
       }
     } else {
       Object.keys(locals).forEach(key => { shared[key] = 'module'; });
@@ -185,7 +185,7 @@ function preprocess(text, filename) {
 
   const end = vars.filter(x => x.root && !seen.includes(x.key) && shared[x.key] !== 'import').map(x => x.key);
   const out = [body].concat(end.length
-    ? `<script>/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing */;${end.join(';')};/* eslint-enable */</script>`
+    ? `<script>/* eslint-disable no-unused-expressions, no-extra-semi, semi-spacing, semi-style */;${end.join(';')};/* eslint-enable */</script>`
     : []);
 
   return out;
@@ -209,7 +209,7 @@ function postprocess(messages, filename) {
       chunk.source = chunk.source.replace(/\/\* \*\//g, 'await');
     }
     if (chunk.ruleId == 'no-undef') {
-      const key = chunk.message.match(/(["'])(\w+)\1/)[2];
+      const key = chunk.message.match(/(["'])(.+?)\1/)[2];
 
       if (locs[key]) {
         chunk.column = locs[key][1];
