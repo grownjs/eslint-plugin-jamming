@@ -8,7 +8,7 @@
 		"jamming"
 	],
 	"files": [
-		"index.js"
+		"*.js"
 	],
 	"main": "index.js",
 	"engines": {
