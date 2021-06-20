@@ -183,25 +183,29 @@ function preprocess(text) {
     const fixed = names.filter(x => deps.includes(x.name));
     const prefix = fixed.length ? `let ${fixed.map(x => x.name).join(', ')};` : '';
 
-    chunks.push({
-      code: `<script>${disable(prefix, [
-        'semi',
-        'semi-style',
-        'semi-spacing',
-        'one-var',
-        'max-len',
-        'no-empty',
-        'brace-style',
-        'one-var-declaration-per-line',
-        'no-multiple-empty-lines',
-        'no-multi-spaces',
-        'no-trailing-spaces',
-        'no-extra-semi',
-        'block-spacing',
-        'space-before-blocks',
-        'no-unused-expressions',
-      ], true)}\n${buffer}</script>`,
-    });
+    /* istanbul ignore else */
+    if (fixed.length) {
+      chunks.push({
+        code: `<script>${disable(prefix, [
+          'semi',
+          'semi-style',
+          'semi-spacing',
+          'one-var',
+          'max-len',
+          'no-empty',
+          'brace-style',
+          'padded-blocks',
+          'one-var-declaration-per-line',
+          'no-multiple-empty-lines',
+          'no-multi-spaces',
+          'no-trailing-spaces',
+          'no-extra-semi',
+          'block-spacing',
+          'space-before-blocks',
+          'no-unused-expressions',
+        ], true)}\n${buffer}</script>`,
+      });
+    }
   }
 
   chunks.forEach(chunk => {
