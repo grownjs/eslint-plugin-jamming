@@ -8,7 +8,7 @@ const RE_TYPE_MODULE = / type=(["'])?module\1/;
 const RE_SPLIT_MARKER = /\/\*!#(\d+),(\d+)\*\/(\w+)/;
 const RE_ACCESED_SYMBOLS = /(?:(?:(?<=[=([]\s*)[_$a-zA-Z]\w*|(?<![.#]\w*)[_$a-zA-Z]\w*)(?= *[.,;\n[})\]|&])|(?<![.#]\w*)[_$a-zA-Z]\w*(?= *[(?:!<=>/*+-]{1,3}| *(?:in|as) *))/; // eslint-disable-line
 const RE_COMMENT_INLINE = /(?!:) *\/\/ +.*?(?=\n)|\/\*[^]*?\*\//g;
-const RE_COMMENT_SAFE = /<\/|!#\d+|(^|\b)(?:eslint|global)\b(?=[ \w,-]+)/;
+const RE_COMMENT_SAFE = /<\/|!#\d+|(?<=\/[*/] *)(?:eslint|global)\b(?=[ \w,-]+)/;
 const RE_EXPORT_IMPORT = /\bexport +|import[^]+?[\n;]/g;
 const RE_FIX_SEMI = /;;/g;
 const RE_ALL_SEMI = /;+/g;
