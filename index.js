@@ -89,6 +89,8 @@ function preprocess(text) {
             Object.assign(shared, info.locals);
             deps.push(...fixedDeps);
 
+            prefix = '/* global $$props */$$props;';
+
             components.forEach(x => {
               /* istanbul ignore else */
               if (set.includes(x.name) && !consts.includes(x.name)) consts.push(x.name);
@@ -148,9 +150,11 @@ function preprocess(text) {
           const diff = idx + kind.length + attr.length + 2;
 
           text = `${text.substr(0, diff)}${disable(prefix, [
+            'max-len',
             'one-var',
             'no-void',
             'semi-spacing',
+            'no-unused-expressions',
             'one-var-declaration-per-line',
           ])}${text.substr(diff)}`;
         }
