@@ -321,6 +321,7 @@ module.exports = {
         'eol-last': 0,
         'object-shorthand': 0,
         'function-paren-newline': 0,
+        'max-classes-per-file': 0,
         'arrow-body-style': 0,
         'consistent-return': 0,
         'global-require': 0,
