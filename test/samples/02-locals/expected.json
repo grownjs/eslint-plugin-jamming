@@ -192,7 +192,7 @@
     "column": 9,
     "severity": 2,
     "nodeType": null,
-    "source": "<script>/* eslint-disable semi, max-len, semi-spacing, spaced-comment, no-unused-expressions *//*!#146,9*/Undef;</script>"
+    "source": "<script>/* eslint-disable semi, max-len, semi-spacing, no-unused-expressions */_146_9:Undef</script>"
   },
   {
     "ruleId": null,
@@ -201,7 +201,7 @@
     "column": 9,
     "severity": 2,
     "nodeType": null,
-    "source": "<script>/* eslint-disable semi, max-len, semi-spacing, spaced-comment, no-unused-expressions *//*!#146,9*/Undef;</script>"
+    "source": "<script>/* eslint-disable semi, max-len, semi-spacing, no-unused-expressions */_146_9:Undef</script>"
   },
   {
     "ruleId": null,
@@ -210,16 +210,7 @@
     "column": 9,
     "severity": 2,
     "nodeType": null,
-    "source": "<script>/* eslint-disable semi, max-len, semi-spacing, spaced-comment, no-unused-expressions *//*!#146,9*/Undef;</script>"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'spaced-comment').",
-    "line": 1,
-    "column": 9,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable semi, max-len, semi-spacing, spaced-comment, no-unused-expressions *//*!#146,9*/Undef;</script>"
+    "source": "<script>/* eslint-disable semi, max-len, semi-spacing, no-unused-expressions */_146_9:Undef</script>"
   },
   {
     "ruleId": null,
@@ -228,7 +219,7 @@
     "column": 9,
     "severity": 2,
     "nodeType": null,
-    "source": "<script>/* eslint-disable semi, max-len, semi-spacing, spaced-comment, no-unused-expressions *//*!#146,9*/Undef;</script>"
+    "source": "<script>/* eslint-disable semi, max-len, semi-spacing, no-unused-expressions */_146_9:Undef</script>"
   },
   {
     "ruleId": "no-undef",
@@ -240,7 +231,7 @@
     "messageId": "undef",
     "endLine": 9,
     "endColumn": 10,
-    "source": "<script>/* eslint-disable semi, max-len, semi-spacing, spaced-comment, no-unused-expressions *//*!#146,9*/Undef;</script>"
+    "source": "<script>/* eslint-disable semi, max-len, semi-spacing, no-unused-expressions */_146_9:Undef</script>"
   },
   {
     "ruleId": null,
