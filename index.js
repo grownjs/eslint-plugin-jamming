@@ -30,6 +30,7 @@ function preprocess(text) {
   let tpl = text.replace(RE_COMMENT_BLOCKS, _ => _.replace(RE_SAFE_WHITESPACE, ' '));
 
   const { locations, components } = blocks(tpl.replace(RE_CODING_BLOCKS, _ => _.replace(RE_SAFE_WHITESPACE, ' ')));
+  const symbols = [];
   const shared = {};
   const chunks = [];
   const names = [];
@@ -59,19 +60,20 @@ function preprocess(text) {
   tpl = tpl.replace(RE_CODING_BLOCKS, (_, kind, attr, body) => {
     /* istanbul ignore else */
     if (kind === 'script' && !attr.includes(' src')) {
+      let prefix = '';
+      let suffix = '';
+
+      const used = [];
+      const idx = text.indexOf(_);
       const scoped = attr.includes(' scoped');
       const isModule = RE_TYPE_MODULE.test(attr);
       const isContext = RE_CONTEXT_MODULE.test(attr);
+      const info = vars(` ${kind.replace(RE_SAFE_WHITESPACE, ' ')}${attr.replace(RE_SAFE_WHITESPACE, ' ')} ${body}`);
 
       /* istanbul ignore else */
       if (!isModule && !scoped) {
-        const info = vars(` ${kind.replace(RE_SAFE_WHITESPACE, ' ')}${attr.replace(RE_SAFE_WHITESPACE, ' ')} ${body}`);
         const set = info.keys.filter(x => info.locals[x] === 'import');
-        const idx = text.indexOf(_);
-        const use = [];
 
-        let prefix = '';
-        let suffix = '';
         if (isContext) {
           Object.assign(shared, info.locals);
           deps.push(...new Set(info.keys.concat(info.deps)));
@@ -105,9 +107,9 @@ function preprocess(text) {
             const fixed = deps.filter(x => !fixedDeps.includes(x));
 
             consts.push(...fixed);
-            use.push(...fixed);
+            used.push(...fixed);
           } else {
-            use.push(...deps);
+            used.push(...deps);
           }
 
           /* istanbul ignore else */
@@ -125,39 +127,52 @@ function preprocess(text) {
             ])};</script>`;
           }
           /* istanbul ignore else */
-          if (use.length) {
-            prefix += `let ${use.join(', ')};`;
+          if (used.length) {
+            prefix += `let ${used.join(', ')};`;
           }
         }
-
+      } else {
         /* istanbul ignore else */
-        if (use.length) {
-          suffix = suffix || `${disable(use.join(';'), [
-            'semi-spacing',
-            'no-unused-expressions',
-          ])};</script>`;
+        if (symbols.length) {
+          prefix += `let ${symbols.join(', ')};`;
+          used.push(...symbols);
         }
-
         /* istanbul ignore else */
-        if (suffix) {
-          text = text.substr(0, idx)
-            + text.substr(idx, _.length).replace('</script>', suffix)
-            + text.substr(idx + _.length);
-        }
+        if (info.hasVars) {
+          const fixed = new Set(info.keys.concat(info.deps));
 
-        /* istanbul ignore else */
-        if (prefix) {
-          const diff = idx + kind.length + attr.length + 2;
-
-          text = `${text.substr(0, diff)}${disable(prefix, [
-            'max-len',
-            'one-var',
-            'no-void',
-            'semi-spacing',
-            'no-unused-expressions',
-            'one-var-declaration-per-line',
-          ])}${text.substr(diff)}`;
+          symbols.push(...fixed);
+          used.push(...fixed);
         }
+      }
+
+      /* istanbul ignore else */
+      if (used.length) {
+        suffix = suffix || `${disable(used.join(';'), [
+          'semi-spacing',
+          'no-unused-expressions',
+        ])};</script>`;
+      }
+
+      /* istanbul ignore else */
+      if (suffix) {
+        text = text.substr(0, idx)
+          + text.substr(idx, _.length).replace('</script>', suffix)
+          + text.substr(idx + _.length);
+      }
+
+      /* istanbul ignore else */
+      if (prefix) {
+        const diff = idx + kind.length + attr.length + 2;
+
+        text = `${text.substr(0, diff)}${disable(prefix, [
+          'max-len',
+          'one-var',
+          'no-void',
+          'semi-spacing',
+          'no-unused-expressions',
+          'one-var-declaration-per-line',
+        ])}${text.substr(diff)}`;
       }
     }
     return _.replace(RE_SAFE_WHITESPACE, ' ');
