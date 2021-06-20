@@ -81,7 +81,7 @@ function preprocess(text) {
           });
         } else {
           const fixedDeps = [...new Set(info.keys.concat(info.deps))].filter(x => names.some(y => y.name === x));
-          const consts = fixedDeps.filter(x => info.locals[x] === 'import' || info.locals[x] === 'function');
+          const consts = fixedDeps.filter(x => info.locals[x] !== 'var' && info.locals[x] !== 'let');
           const lets = fixedDeps.filter(x => info.locals[x] === 'var');
 
           /* istanbul ignore else */
@@ -304,6 +304,7 @@ module.exports = {
       plugins: ['jamming'],
       env: {
         es6: true,
+        node: true,
         browser: true,
       },
       rules: {
