@@ -24,7 +24,7 @@ const RE_BLOCK_TAGS = /#if|:else(?: +if)?/g;
 const RE_EACH_TAGS = /\{#each ([^{}\n]+?)\}/g;
 const RE_EACH_CLOSE = /\{\/each\}/g;
 const RE_EACH_LOCALS = / as [ \w,]+\}/g;
-const RE_EFFECT_LABEL = /(?<=[=:] *)\bawait\b/g;
+const RE_EFFECT_LABEL = /(?<=(?:^|[=:]) *)await\b/gm;
 const RE_MATCH_TAGNAME = /<([A-Z]\w*)[^<>]*?\/?>/;
 const RE_CLEAN_FUNCTION = /async|\*/g;
 const RE_CAPTURE_VARIABLES = /\{(#if|#each|:else)(?: +([^{}\n]+?))\}|\{((?![/:])[^{}\n]*?)\}/;
