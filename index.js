@@ -228,21 +228,25 @@ function preprocess(text) {
     }
   }
 
+  offset = 0;
   chunks.forEach(chunk => {
     /* istanbul ignore else */
     if (chunk.names && chunk.names.length) {
-      const suffix = `${chunk.names.map(x => `/*!#${x.offset}*/${x.name};`).join('')}`;
-      const [index, length] = chunk.offset;
+      /* istanbul ignore else */
+      if (offset) chunk.offset[0] += offset;
 
-      text = text.substr(0, index)
-        + text.substr(...chunk.offset).replace('</script>', `${disable(suffix, [
-          'max-len',
-          'semi-spacing',
-          'block-spacing',
-          'spaced-comment',
-          'no-unused-expressions',
-        ], true)}</script>`)
-        + text.substr(index + length);
+      const [index, length] = chunk.offset;
+      const suffix = `${chunk.names.map(x => `/*!#${x.offset}*/${x.name};`).join('')}`;
+      const sample = text.substr(index, length).replace('</script>', `${disable(suffix, [
+        'max-len',
+        'semi-spacing',
+        'block-spacing',
+        'spaced-comment',
+        'no-unused-expressions',
+      ], true)}</script>`);
+
+      offset = index + sample.length - (index + length);
+      text = text.substr(0, index) + sample + text.substr(index + length);
     }
   });
 
