@@ -115,16 +115,18 @@ function preprocess(text) {
           /* istanbul ignore else */
           if (consts.length) {
             suffix = `${disable(consts.join(';'), [
+              'semi',
               'semi-spacing',
               'no-unused-expressions',
-            ])};</script>`;
+            ], true)}</script>`;
           }
           /* istanbul ignore else */
           if (lets.length) {
             suffix = `${disable(consts.concat(lets).join(';'), [
+              'semi',
               'semi-spacing',
               'no-unused-expressions',
-            ])};</script>`;
+            ], true)}</script>`;
           }
           /* istanbul ignore else */
           if (used.length) {
@@ -149,9 +151,10 @@ function preprocess(text) {
       /* istanbul ignore else */
       if (used.length) {
         suffix = suffix || `${disable(used.join(';'), [
+          'semi',
           'semi-spacing',
           'no-unused-expressions',
-        ])};</script>`;
+        ], true)}</script>`;
       }
 
       /* istanbul ignore else */
@@ -189,11 +192,12 @@ function preprocess(text) {
   if (missed.length) {
     chunks.push({
       code: `<script>${disable(`${missed.map(x => `/*!#${x.offset}*/${x.name};`).join('')}`, [
+        'semi',
         'max-len',
         'semi-spacing',
         'spaced-comment',
         'no-unused-expressions',
-      ])}</script>`,
+      ], true)}</script>`,
     });
   }
 
@@ -238,6 +242,7 @@ function preprocess(text) {
       const [index, length] = chunk.offset;
       const suffix = `${chunk.names.map(x => `/*!#${x.offset}*/${x.name};`).join('')}`;
       const sample = text.substr(index, length).replace('</script>', `${disable(suffix, [
+        'semi',
         'max-len',
         'semi-spacing',
         'block-spacing',

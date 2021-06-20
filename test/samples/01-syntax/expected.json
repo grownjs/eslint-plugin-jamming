@@ -13,12 +13,21 @@
   },
   {
     "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'semi').",
+    "line": 9,
+    "column": 1,
+    "severity": 2,
+    "nodeType": null,
+    "source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */Fragment</script>"
+  },
+  {
+    "ruleId": null,
     "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
     "line": 9,
     "column": 1,
     "severity": 2,
     "nodeType": null,
-    "source": "/* eslint-disable semi-spacing, no-unused-expressions */Fragment/* eslint-enable */;</script>"
+    "source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */Fragment</script>"
   },
   {
     "ruleId": null,
@@ -27,16 +36,7 @@
     "column": 1,
     "severity": 2,
     "nodeType": null,
-    "source": "/* eslint-disable semi-spacing, no-unused-expressions */Fragment/* eslint-enable */;</script>"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'max-len').",
-    "line": 10,
-    "column": 9,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-expressions, one-var-declaration-per-line */let truth, scoped;/* eslint-enable */"
+    "source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */Fragment</script>"
   },
   {
     "ruleId": null,
@@ -49,7 +49,7 @@
   },
   {
     "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'no-void').",
+    "message": "Unused eslint-disable directive (no problems were reported from 'max-len').",
     "line": 10,
     "column": 9,
     "severity": 2,
@@ -77,6 +77,15 @@
   {
     "ruleId": null,
     "message": "Unused eslint-disable directive (no problems were reported from 'one-var-declaration-per-line').",
+    "line": 10,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-expressions, one-var-declaration-per-line */let truth, scoped;/* eslint-enable */"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'no-void').",
     "line": 10,
     "column": 9,
     "severity": 2,
@@ -97,12 +106,21 @@
   },
   {
     "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'semi').",
+    "line": 12,
+    "column": 1,
+    "severity": 2,
+    "nodeType": null,
+    "source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */truth;scoped</script>"
+  },
+  {
+    "ruleId": null,
     "message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
     "line": 12,
     "column": 1,
     "severity": 2,
     "nodeType": null,
-    "source": "/* eslint-disable semi-spacing, no-unused-expressions */truth;scoped/* eslint-enable */;</script>"
+    "source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */truth;scoped</script>"
   },
   {
     "ruleId": null,
@@ -111,7 +129,7 @@
     "column": 1,
     "severity": 2,
     "nodeType": null,
-    "source": "/* eslint-disable semi-spacing, no-unused-expressions */truth;scoped/* eslint-enable */;</script>"
+    "source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */truth;scoped</script>"
   },
   {
     "ruleId": null,
@@ -169,12 +187,21 @@
   },
   {
     "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'semi').",
+    "line": 16,
+    "column": 1,
+    "severity": 2,
+    "nodeType": null,
+    "source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */truth;scoped;cssClass</script>"
+  },
+  {
+    "ruleId": null,
     "message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
     "line": 16,
     "column": 1,
     "severity": 2,
     "nodeType": null,
-    "source": "/* eslint-disable semi-spacing, no-unused-expressions */truth;scoped;cssClass/* eslint-enable */;</script>"
+    "source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */truth;scoped;cssClass</script>"
   },
   {
     "ruleId": null,
@@ -183,7 +210,7 @@
     "column": 1,
     "severity": 2,
     "nodeType": null,
-    "source": "/* eslint-disable semi-spacing, no-unused-expressions */truth;scoped;cssClass/* eslint-enable */;</script>"
+    "source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */truth;scoped;cssClass</script>"
   },
   {
     "ruleId": null,
