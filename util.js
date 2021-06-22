@@ -197,7 +197,7 @@ function blocks(chunk) {
       offset += local.index + local[0].length;
     } while (RE_ACCESED_SYMBOLS.test(tmp));
 
-    locations.push({ block: matches[0], offset: matches.index, locals });
+    locations.push({ block: matches[0], offset: [matches.index, matches[0].length], locals });
     chunk = chunk.replace(matches[0], matches[0].replace(RE_SAFE_WHITESPACE, ' '));
   } while (true); // eslint-disable-line
 

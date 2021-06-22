@@ -39,7 +39,7 @@ function preprocess(text) {
   let buffer = '';
   let offset = 0;
   locations.forEach((local, i) => {
-    const chunk = tpl.substr(offset, local.offset - offset).replace(RE_ALL_SEMI, _ => _.replace(RE_SAFE_WHITESPACE, ' '));
+    const chunk = tpl.substr(offset, local.offset[0] - offset).replace(RE_ALL_SEMI, _ => _.replace(RE_SAFE_WHITESPACE, ' '));
     const key = `00000${i}`.substr(-5);
 
     local.locals.forEach(temp => {
@@ -51,7 +51,7 @@ function preprocess(text) {
     buffer += `;_${key}:${local.block
       .replace(RE_BLOCK_TAGS, _ => _.replace(RE_SAFE_WHITESPACE, ' '))
       .replace(RE_EACH_TAGS, (_, locals) => `{      ${locals.replace(' as', ';let')}`)}`;
-    offset = local.offset + local.block.length;
+    offset = local.offset[0] + local.offset[1];
   });
 
   buffer += tpl.substr(offset).replace(RE_EACH_CLOSE, '      ;;').replace(RE_SAFE_SEPARATOR, ' ');
