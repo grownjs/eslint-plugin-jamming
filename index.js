@@ -286,7 +286,7 @@ function postprocess(messages, filename) {
       }
 
       /* istanbul ignore else */
-      if (chunk.source.includes('</script>')) {
+      if (RE_MATCH_QUOTED.test(chunk.message)) {
         const matches = chunk.source.substr(1).split(';');
         const name = chunk.message.match(RE_MATCH_QUOTED)[2];
 
