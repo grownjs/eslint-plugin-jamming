@@ -65,7 +65,7 @@ const WELL_KNOWN_SYMBOLS = [
   'ArrayBuffer',
 ];
 
-function vars(code) {
+function vars(code, replace) {
   code = code.replace(RE_COMMENT_INLINE, matches => {
     /* istanbul ignore else */
     if (!RE_COMMENT_SAFE.test(matches)) {
@@ -127,7 +127,7 @@ function vars(code) {
     out = out.replace(_, _.replace(RE_SAFE_WHITESPACE, ' '));
 
     /* istanbul ignore else */
-    if (kind === 'let') {
+    if (replace && kind === 'let') {
       code = code.replace(_, _.replace('let ', '/**/'), matches.index);
     }
 
