@@ -6,6 +6,7 @@ const {
   RE_SAFE_WHITESPACE,
   RE_CODING_BLOCKS,
   RE_CONTEXT_MODULE,
+  RE_DIRECTIVE_TAGS,
   RE_TYPE_MODULE,
   RE_MATCH_QUOTED,
   RE_SPLIT_MARKER,
@@ -253,7 +254,7 @@ function preprocess(text) {
     }
   });
 
-  return [text, ...chunks.filter(x => !x.names).map(x => x.code)];
+  return [text, ...chunks.filter(x => !x.names).map(x => x.code.replace(RE_DIRECTIVE_TAGS, '{$1: '))];
 }
 
 function postprocess(messages, filename) {

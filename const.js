@@ -2,6 +2,7 @@ const RE_SAFE_WHITESPACE = /\S/g;
 const RE_SAFE_SEPARATOR = /[^\s;]/g;
 const RE_COMMENT_BLOCKS = /<!--[^]*?-->/g;
 const RE_CODING_BLOCKS = /<(script|style)([^<>]*?)>([^]*?)<\/\1>/g;
+const RE_DIRECTIVE_TAGS = /\{@(html|debug) /g;
 const RE_MATCH_QUOTED = /(["'])(\w+)\1/;
 const RE_CONTEXT_MODULE = /\scontext=(["'])?module\1/;
 const RE_TYPE_MODULE = / type=(["'])?module\1/;
@@ -37,6 +38,7 @@ module.exports = {
   RE_COMMENT_BLOCKS,
   RE_CODING_BLOCKS,
   RE_MATCH_QUOTED,
+  RE_DIRECTIVE_TAGS,
   RE_CONTEXT_MODULE,
   RE_TYPE_MODULE,
   RE_SPLIT_MARKER,
