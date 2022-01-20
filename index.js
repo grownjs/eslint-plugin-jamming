@@ -326,6 +326,12 @@ function postprocess(messages, filename) {
 
 require('eslint-plugin-html');
 
+const jamrockProcessor = {
+  preprocess,
+  postprocess,
+  supportsAutofix: true,
+};
+
 module.exports = {
   configs: {
     config: {
@@ -379,10 +385,9 @@ module.exports = {
     },
   },
   processors: {
-    '.html': {
-      preprocess,
-      postprocess,
-      supportsAutofix: true,
-    },
+    '.jam': jamrockProcessor,
+    '.rock': jamrockProcessor,
+    '.html': jamrockProcessor,
+    '.htmlx': jamrockProcessor,
   },
 };
