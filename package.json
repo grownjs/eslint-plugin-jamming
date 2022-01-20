@@ -1,11 +1,11 @@
 {
-	"name": "eslint-plugin-jamming",
+	"name": "eslint-plugin-jamrock",
 	"version": "0.0.16",
-	"description": "An ESLint plugin for jamming.",
+	"description": "An ESLint plugin for jamrock.",
 	"keywords": [
 		"eslint",
 		"eslintplugin",
-		"jamming"
+		"jamrock"
 	],
 	"files": [
 		"*.js"
@@ -17,7 +17,7 @@
 	"author": "Alvaro Cabrera <pateketrueke@gmail.com> (https://soypache.co)",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/grownjs/eslint-plugin-jamming"
+		"url": "https://github.com/grownjs/eslint-plugin-jamrock"
 	},
 	"license": "MIT",
 	"peerDependencies": {

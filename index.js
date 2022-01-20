@@ -333,7 +333,7 @@ module.exports = {
         ecmaVersion: 2019,
         sourceType: 'module',
       },
-      plugins: ['jamming'],
+      plugins: ['jamrock'],
       env: {
         es6: true,
         node: true,

@@ -1,8 +1,8 @@
 PWD=$(shell pwd)
 
 ci: deps
-	@unlink $(PWD)/node_modules/eslint-plugin-jamming || true
-	@ln -s $(PWD) $(PWD)/node_modules/eslint-plugin-jamming
+	@unlink $(PWD)/node_modules/eslint-plugin-jamrock || true
+	@ln -s $(PWD) $(PWD)/node_modules/eslint-plugin-jamrock
 	@npm test
 
 add\:%:

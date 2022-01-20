@@ -1,6 +1,6 @@
-# eslint-plugin-jamming
+# eslint-plugin-jamrock
 
-An ESLint plugin to preprocess jamming files before actual linting.
+An ESLint plugin to preprocess jamrock files before actual linting.
 
 ## Features
 
@@ -18,17 +18,17 @@ An ESLint plugin to preprocess jamming files before actual linting.
 Install the plugin:
 
 ```
-npm install --save-dev eslint-plugin-jamming
+npm install --save-dev eslint-plugin-jamrock
 ```
 
-Then add `jamming` to the `plugins` array in your `.eslintrc.*` config file.
+Then add `jamrock` to the `plugins` array in your `.eslintrc.*` config file.
 
 For example:
 
 ```json
 {
   "extends": [
-    "plugin:jamming/config"
+    "plugin:jamrock/config"
   ]
 }
 ```
