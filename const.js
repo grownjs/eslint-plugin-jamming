@@ -11,6 +11,7 @@ const RE_ACCESED_SYMBOLS = /(?:(?:(?<=[=([]\s*)[_$a-zA-Z]\w*|(?<![.#]\w*)[_$a-zA
 const RE_COMMENT_INLINE = /(?!:) *\/\/ +.*?(?=\n)|\/\*[^]*?\*\//g;
 const RE_COMMENT_SAFE = /<\/|(?<=\/[*/] *)(?:eslint|global)\b(?=[ \w,-]+)/;
 const RE_EXPORT_IMPORT = /\bexport +|import[^]+?[\n;]/g;
+const RE_FIX_SPREAD = /:\{\.\.\./g;
 const RE_FIX_SEMI = /;;/g;
 const RE_ALL_SEMI = /;+/g;
 const RE_ALL_BLOCKS = /\([^()]*?\)|\[[^[\]]*?\]|\{[^{}]*?\}/;
@@ -46,6 +47,7 @@ module.exports = {
   RE_COMMENT_INLINE,
   RE_COMMENT_SAFE,
   RE_EXPORT_IMPORT,
+  RE_FIX_SPREAD,
   RE_FIX_SEMI,
   RE_ALL_SEMI,
   RE_ALL_BLOCKS,

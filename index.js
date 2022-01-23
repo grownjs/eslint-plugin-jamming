@@ -18,6 +18,7 @@ const {
   RE_EACH_TAGS,
   RE_ALL_SEMI,
   RE_FIX_SEMI,
+  RE_FIX_SPREAD,
 } = require('./const');
 
 const { vars, blocks, disable } = require('./util');
@@ -56,7 +57,8 @@ function preprocess(text) {
   });
 
   buffer += tpl.substr(offset).replace(RE_EACH_CLOSE, '      ;;').replace(RE_SAFE_SEPARATOR, ' ');
-  buffer = buffer.replace(RE_FIX_SEMI, '}');
+  buffer = buffer.replace(RE_FIX_SEMI, '}').replace(RE_DIRECTIVE_TAGS, '{$1: ');
+  buffer = buffer.replace(RE_FIX_SPREAD, ':{   ');
 
   tpl = tpl.replace(RE_CODING_BLOCKS, (_, kind, attr, body) => {
     /* istanbul ignore else */
@@ -254,7 +256,7 @@ function preprocess(text) {
     }
   });
 
-  return [text, ...chunks.filter(x => !x.names).map(x => x.code.replace(RE_DIRECTIVE_TAGS, '{$1: '))];
+  return [text, ...chunks.filter(x => !x.names).map(x => x.code)];
 }
 
 function postprocess(messages, filename) {
