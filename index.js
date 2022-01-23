@@ -207,7 +207,7 @@ function preprocess(text) {
     const prefix = fixed.length ? `let ${fixed.map(x => x.name).join(', ')};` : '';
 
     /* istanbul ignore else */
-    if (fixed.length) {
+    if (names.length) {
       chunks.push({
         code: `<script>${disable(prefix, [
           'semi',
