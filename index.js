@@ -19,6 +19,7 @@ const {
   RE_ALL_SEMI,
   RE_FIX_SEMI,
   RE_FIX_SPREAD,
+  RE_STYLE_ATTRS,
 } = require('./const');
 
 const { vars, blocks, disable } = require('./util');
@@ -30,6 +31,7 @@ function preprocess(text) {
   });
 
   let tpl = text.replace(RE_COMMENT_BLOCKS, _ => _.replace(RE_SAFE_WHITESPACE, ' '));
+  tpl = tpl.replace(RE_STYLE_ATTRS, 'style:$1={css:$1}');
 
   const { locations, components } = blocks(tpl.replace(RE_CODING_BLOCKS, _ => _.replace(RE_SAFE_WHITESPACE, ' ')));
   const symbols = [];
@@ -260,6 +262,8 @@ function preprocess(text) {
 }
 
 function postprocess(messages, filename) {
+  const tpl = fs.readFileSync(filename).toString();
+
   return messages.reduce((memo, it) => memo.concat(it.map(chunk => {
     /* istanbul ignore else */
     if (chunk.source) chunk.source = chunk.source.replace(RE_AWAIT_BACK, 'await');
@@ -269,9 +273,10 @@ function postprocess(messages, filename) {
       || chunk.ruleId === 'no-undef'
       || chunk.ruleId === 'no-unused-vars'
     ) {
+      const left = chunk.source.substr(0, chunk.column - 1);
+
       /* istanbul ignore else */
       if (RE_BLOCK_MARK.test(chunk.source)) {
-        const left = chunk.source.substr(0, chunk.column);
         const diff = (left.split(RE_BLOCK_MARK).length - 1) * 8;
         const local = chunk.ruleId === 'no-unused-vars' && left.includes(';let ') ? 1 : 0;
 
@@ -298,8 +303,6 @@ function postprocess(messages, filename) {
 
           /* istanbul ignore else */
           if (local === name) {
-            const tpl = fs.readFileSync(filename).toString();
-
             let line = 1;
             let col = 0;
             for (let i = 0; i < tpl.length; i += 1) {
@@ -320,6 +323,21 @@ function postprocess(messages, filename) {
             break;
           }
         }
+      }
+
+      /* istanbul ignore else */
+      if (chunk.source && chunk.source.includes(':{css:')) {
+        const key = chunk.message.match(/'(\w+?)'/)[1];
+        const parts = left.match(/\{css:\w+\}/g) || [];
+        const css = left.substr(-4) === 'css:';
+
+        let diff = parts.length * 7;
+        /* istanbul ignore else */
+        if (css) diff += key.length + 6;
+        diff += parts.reduce((sum, x) => sum + (x.length - 6), 0);
+
+        chunk.column -= diff;
+        chunk.endColumn -= diff;
       }
     }
     return chunk;

@@ -4,6 +4,7 @@ const RE_COMMENT_BLOCKS = /<!--[^]*?-->/g;
 const RE_CODING_BLOCKS = /<(script|style)([^<>]*?)>([^]*?)<\/\1>/g;
 const RE_DIRECTIVE_TAGS = /\{@(html|debug) /g;
 const RE_MATCH_QUOTED = /(["'])(\w+)\1/;
+const RE_STYLE_ATTRS = /(?<=<\w[^<>]*?\s)style:(\w+)(?=\s|>)/g;
 const RE_CONTEXT_MODULE = /\scontext=(["'])?module\1/;
 const RE_TYPE_MODULE = / type=(["'])?module\1/;
 const RE_SPLIT_MARKER = /_(\d+)_(\d+):(\w+)/;
@@ -42,6 +43,7 @@ module.exports = {
   RE_DIRECTIVE_TAGS,
   RE_CONTEXT_MODULE,
   RE_TYPE_MODULE,
+  RE_STYLE_ATTRS,
   RE_SPLIT_MARKER,
   RE_ACCESED_SYMBOLS,
   RE_COMMENT_INLINE,

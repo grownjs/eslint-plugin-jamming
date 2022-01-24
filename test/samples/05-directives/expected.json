@@ -10,15 +10,6 @@
   },
   {
     "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'one-var').",
-    "line": 1,
-    "column": 9,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-expressions, one-var-declaration-per-line *//* global $$props */$$props;/* eslint-enable */"
-  },
-  {
-    "ruleId": null,
     "message": "Unused eslint-disable directive (no problems were reported from 'no-void').",
     "line": 1,
     "column": 9,
@@ -55,6 +46,15 @@
   },
   {
     "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'one-var').",
+    "line": 1,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-expressions, one-var-declaration-per-line *//* global $$props */$$props;/* eslint-enable */"
+  },
+  {
+    "ruleId": null,
     "message": "Unused eslint-disable directive (no problems were reported from 'semi').",
     "line": 4,
     "column": 1,
@@ -82,7 +82,100 @@
   },
   {
     "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'padded-blocks').",
+    "message": "Unused eslint-disable directive (no problems were reported from 'max-len').",
+    "line": 8,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-expressions, one-var-declaration-per-line *//* global $$props */$$props;let external, local;/* eslint-enable */"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'one-var').",
+    "line": 8,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-expressions, one-var-declaration-per-line *//* global $$props */$$props;let external, local;/* eslint-enable */"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'no-void').",
+    "line": 8,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-expressions, one-var-declaration-per-line *//* global $$props */$$props;let external, local;/* eslint-enable */"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
+    "line": 8,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-expressions, one-var-declaration-per-line *//* global $$props */$$props;let external, local;/* eslint-enable */"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
+    "line": 8,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-expressions, one-var-declaration-per-line *//* global $$props */$$props;let external, local;/* eslint-enable */"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'one-var-declaration-per-line').",
+    "line": 8,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-expressions, one-var-declaration-per-line *//* global $$props */$$props;let external, local;/* eslint-enable */"
+  },
+  {
+    "ruleId": "no-unused-vars",
+    "severity": 2,
+    "message": "'color' is assigned a value but never used.",
+    "line": 9,
+    "column": 9,
+    "nodeType": "Identifier",
+    "messageId": "unusedVar",
+    "endLine": 9,
+    "endColumn": 14,
+    "source": "  const color = 'red';"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'semi').",
+    "line": 10,
+    "column": 1,
+    "severity": 2,
+    "nodeType": null,
+    "source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */external;local</script>"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
+    "line": 10,
+    "column": 1,
+    "severity": 2,
+    "nodeType": null,
+    "source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */external;local</script>"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
+    "line": 10,
+    "column": 1,
+    "severity": 2,
+    "nodeType": null,
+    "source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */external;local</script>"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'no-trailing-spaces').",
     "line": 1,
     "column": 9,
     "severity": 2,
@@ -91,7 +184,43 @@
   },
   {
     "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'semi-style').",
+    "message": "Unused eslint-disable directive (no problems were reported from 'no-empty').",
+    "line": 1,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let external, local;"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'space-before-blocks').",
+    "line": 1,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let external, local;"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'block-spacing').",
+    "line": 1,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let external, local;"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'no-extra-semi').",
+    "line": 1,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let external, local;"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'padded-blocks').",
     "line": 1,
     "column": 9,
     "severity": 2,
@@ -145,7 +274,7 @@
   },
   {
     "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'no-empty').",
+    "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
     "line": 1,
     "column": 9,
     "severity": 2,
@@ -163,7 +292,7 @@
   },
   {
     "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
+    "message": "Unused eslint-disable directive (no problems were reported from 'semi-style').",
     "line": 1,
     "column": 9,
     "severity": 2,
@@ -198,42 +327,6 @@
     "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let external, local;"
   },
   {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'no-trailing-spaces').",
-    "line": 1,
-    "column": 9,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let external, local;"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'no-extra-semi').",
-    "line": 1,
-    "column": 9,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let external, local;"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'block-spacing').",
-    "line": 1,
-    "column": 9,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let external, local;"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'space-before-blocks').",
-    "line": 1,
-    "column": 9,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let external, local;"
-  },
-  {
     "ruleId": "no-undef",
     "severity": 2,
     "message": "'undef' is not defined.",
@@ -244,5 +337,53 @@
     "endLine": 5,
     "endColumn": 14,
     "source": ";_00000:{debug: undef, external}"
+  },
+  {
+    "ruleId": "no-undef",
+    "severity": 2,
+    "message": "'noope' is not defined.",
+    "line": 11,
+    "column": 6,
+    "nodeType": "Identifier",
+    "messageId": "undef",
+    "endLine": 11,
+    "endColumn": 11,
+    "source": "    ;_00002:{noope}         ;_00003:{css:x}              ;_00004:{css:colorx}         ;_00005:{bg}          "
+  },
+  {
+    "ruleId": "no-undef",
+    "severity": 2,
+    "message": "'x' is not defined.",
+    "line": 11,
+    "column": 19,
+    "nodeType": "Identifier",
+    "messageId": "undef",
+    "endLine": 11,
+    "endColumn": 20,
+    "source": "    ;_00002:{noope}         ;_00003:{css:x}              ;_00004:{css:colorx}         ;_00005:{bg}          "
+  },
+  {
+    "ruleId": "no-undef",
+    "severity": 2,
+    "message": "'colorx' is not defined.",
+    "line": 11,
+    "column": 27,
+    "nodeType": "Identifier",
+    "messageId": "undef",
+    "endLine": 11,
+    "endColumn": 33,
+    "source": "    ;_00002:{noope}         ;_00003:{css:x}              ;_00004:{css:colorx}         ;_00005:{bg}          "
+  },
+  {
+    "ruleId": "no-undef",
+    "severity": 2,
+    "message": "'bg' is not defined.",
+    "line": 11,
+    "column": 43,
+    "nodeType": "Identifier",
+    "messageId": "undef",
+    "endLine": 11,
+    "endColumn": 45,
+    "source": "    ;_00002:{noope}         ;_00003:{css:x}              ;_00004:{css:colorx}         ;_00005:{bg}          "
   }
 ]
