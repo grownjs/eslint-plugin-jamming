@@ -20,6 +20,7 @@ const {
   RE_FIX_SEMI,
   RE_FIX_SPREAD,
   RE_STYLE_ATTRS,
+  RE_BIND_ATTRS,
 } = require('./const');
 
 const { vars, blocks, disable } = require('./util');
@@ -31,7 +32,7 @@ function preprocess(text) {
   });
 
   let tpl = text.replace(RE_COMMENT_BLOCKS, _ => _.replace(RE_SAFE_WHITESPACE, ' '));
-  tpl = tpl.replace(RE_STYLE_ATTRS, 'style:$1={css:$1}');
+  tpl = tpl.replace(RE_STYLE_ATTRS, 'style:$1={expr:$1}').replace(RE_BIND_ATTRS, 'bind:$1={expr:$1}');
 
   const { locations, components } = blocks(tpl.replace(RE_CODING_BLOCKS, _ => _.replace(RE_SAFE_WHITESPACE, ' ')));
   const symbols = [];
@@ -326,15 +327,15 @@ function postprocess(messages, filename) {
       }
 
       /* istanbul ignore else */
-      if (chunk.source && chunk.source.includes(':{css:')) {
+      if (chunk.source && chunk.source.includes(':{expr:')) {
         const key = chunk.message.match(/'(\w+?)'/)[1];
-        const parts = left.match(/\{css:\w+\}/g) || [];
-        const css = left.substr(-4) === 'css:';
+        const parts = left.match(/\{expr:\w+\}/g) || [];
+        const expr = left.substr(-5) === 'expr:';
 
-        let diff = parts.length * 7;
+        let diff = parts.length * 8;
         /* istanbul ignore else */
-        if (css) diff += key.length + 6;
-        diff += parts.reduce((sum, x) => sum + (x.length - 6), 0);
+        if (expr) diff += key.length + 7;
+        diff += parts.reduce((sum, x) => sum + (x.length - 7), 0);
 
         chunk.column -= diff;
         chunk.endColumn -= diff;

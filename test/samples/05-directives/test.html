@@ -1,6 +1,9 @@
 <script>
   export let external;
   const local = '';
+
+  let value = 'world';
+  let count = 0;
 </script>
 {@debug undef, external}
 {@html local}
@@ -9,3 +12,6 @@
   const color = 'red';
 </script>
 <h1 {noope} style:x style:colorx style:x={bg}>OSOM</h1>
+
+<input type="text" bind:value />
+<input type="number" bind:value={count} />

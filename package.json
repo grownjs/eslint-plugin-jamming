@@ -1,7 +1,7 @@
 {
 	"name": "eslint-plugin-jamrock",
 	"version": "0.0.16",
-	"description": "An ESLint plugin for jamrock.",
+	"description": "ESLint plugin for Jamrock",
 	"keywords": [
 		"eslint",
 		"eslintplugin",
