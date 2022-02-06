@@ -20,6 +20,7 @@ const {
   RE_FIX_SEMI,
   RE_FIX_SPREAD,
   RE_STYLE_ATTRS,
+  RE_CLASS_ATTRS,
   RE_BIND_ATTRS,
 } = require('./const');
 
@@ -31,8 +32,10 @@ function preprocess(text) {
     return _;
   });
 
-  let tpl = text.replace(RE_COMMENT_BLOCKS, _ => _.replace(RE_SAFE_WHITESPACE, ' '));
-  tpl = tpl.replace(RE_STYLE_ATTRS, 'style:$1={expr:$1}').replace(RE_BIND_ATTRS, 'bind:$1={expr:$1}');
+  let tpl = text.replace(RE_COMMENT_BLOCKS, _ => _.replace(RE_SAFE_WHITESPACE, ' '))
+    .replace(RE_CLASS_ATTRS, 'class:$1={expr:$1}')
+    .replace(RE_STYLE_ATTRS, 'style:$1={expr:$1}')
+    .replace(RE_BIND_ATTRS, 'bind:$1={expr:$1}');
 
   const { locations, components } = blocks(tpl.replace(RE_CODING_BLOCKS, _ => _.replace(RE_SAFE_WHITESPACE, ' ')));
   const symbols = [];

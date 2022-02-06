@@ -5,6 +5,7 @@ const RE_CODING_BLOCKS = /<(script|style)([^<>]*?)>([^]*?)<\/\1>/g;
 const RE_DIRECTIVE_TAGS = /\{@(html|debug) /g;
 const RE_MATCH_QUOTED = /(["'])(\w+)\1/;
 const RE_STYLE_ATTRS = /(?<=<\w[^<>]*?\s)style:(\w+)(?=[\s>])/g;
+const RE_CLASS_ATTRS = /(?<=<\w[^<>]*?\s)class:(\w+)(?=[\s>])/g;
 const RE_BIND_ATTRS = /(?<=<\w[^<>]*?\s)bind:(\w+)(?=[\s>])/g;
 const RE_CONTEXT_MODULE = /\scontext=(["'])?module\1/;
 const RE_TYPE_MODULE = / type=(["'])?module\1/;
@@ -44,6 +45,7 @@ module.exports = {
   RE_DIRECTIVE_TAGS,
   RE_CONTEXT_MODULE,
   RE_TYPE_MODULE,
+  RE_CLASS_ATTRS,
   RE_STYLE_ATTRS,
   RE_BIND_ATTRS,
   RE_SPLIT_MARKER,
