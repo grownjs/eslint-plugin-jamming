@@ -15,10 +15,11 @@ const RE_COMMENT_INLINE = /(?!:) *\/\/ +.*?(?=\n)|\/\*[^]*?\*\//g;
 const RE_COMMENT_SAFE = /<\/|(?<=\/[*/] *)(?:eslint|global)\b(?=[ \w,-]+)/;
 const RE_EXPORT_IMPORT = /\bexport +|import[^]+?[\n;]/g;
 const RE_FIX_SPREAD = /:\{\.\.\./g;
+const RE_FIX_VARS = /[[\]]/g;
 const RE_FIX_SEMI = /;;/g;
 const RE_ALL_SEMI = /;+/g;
-const RE_ALL_BLOCKS = /\([^()]*?\)|\[[^[\]]*?\]|\{[^{}]*?\}/;
-const RE_MATCH_LOCAL = /(?<=^|\n) *(let|const|(?:async +)?function(?: *\* *)?) +\*?([ \w=,]+)(?=[\n;=])/;
+const RE_ALL_BLOCKS = /\([^()]*?\)|\{[^{}]*?\}/;
+const RE_MATCH_LOCAL = /(?<=^|\n) *(let|const|(?:async +)?function(?: *\* *)?) +\*?([[\] \w=,]+)(?=[\n;=])/;
 const RE_SPLIT_WHITESPACE = /\s+/;
 const RE_SPLIT_COMMA = / *, */;
 const RE_SPLIT_EQUAL = / *= */;
@@ -56,6 +57,7 @@ module.exports = {
   RE_FIX_SPREAD,
   RE_FIX_SEMI,
   RE_ALL_SEMI,
+  RE_FIX_VARS,
   RE_ALL_BLOCKS,
   RE_MATCH_LOCAL,
   RE_SPLIT_WHITESPACE,

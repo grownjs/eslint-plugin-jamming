@@ -7,6 +7,7 @@ const {
   RE_SPLIT_COMMA,
   RE_SPLIT_EQUAL,
   RE_SPLIT_AS,
+  RE_FIX_VARS,
   RE_IMPORTED_SYMBOLS,
   RE_EXPORT_IMPORT,
   RE_ALL_BLOCKS,
@@ -131,7 +132,7 @@ function vars(code, replace) {
       code = code.replace(_, _.replace('let ', '/**/'), matches.index);
     }
 
-    expr.split(RE_SPLIT_COMMA).forEach(x => { // eslint-disable-line
+    expr.replace(RE_FIX_VARS, ' ').split(RE_SPLIT_COMMA).forEach(x => { // eslint-disable-line
       const key = x.split(RE_SPLIT_EQUAL)[0].trim();
 
       /* istanbul ignore else */
