@@ -79,6 +79,7 @@ function vars(code, replace) {
   const keys = [];
   const deps = [];
   const locals = {};
+  const imports = {};
   const children = [];
 
   /* istanbul ignore else */
@@ -99,16 +100,22 @@ function vars(code, replace) {
   /* istanbul ignore else */
   if (RE_IMPORTED_SYMBOLS.test(code)) {
     code.replace(RE_IMPORTED_SYMBOLS, (_, base, req, dep) => {
-      /* istanbul ignore else */
-      if (!children.includes(dep)) children.push(dep);
+      const input = [];
+
       (req || base || '').trim().split(RE_SPLIT_COMMA).forEach(key => {
         /* istanbul ignore else */
         if (key) {
           const [ref, alias] = key.split(RE_SPLIT_AS);
           locals[alias || ref] = 'import';
           keys.push(alias || ref);
+          input.push(alias || ref);
         }
       });
+      /* istanbul ignore else */
+      if (!children.includes(dep)) {
+        imports[dep] = input;
+        children.push(dep);
+      }
       hasVars = true;
       return _;
     });
@@ -150,7 +157,7 @@ function vars(code, replace) {
   } while (true); // eslint-disable-line
 
   return {
-    hasVars, children, locals, keys, deps, code,
+    hasVars, children, imports, locals, keys, deps, code,
   };
 }
 
