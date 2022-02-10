@@ -58,7 +58,7 @@ function preprocess(text) {
     buffer += chunk.replace(RE_EACH_CLOSE, '      ;;').replace(RE_SAFE_SEPARATOR, ' ');
     buffer += `;_${key}:${local.block
       .replace(RE_BLOCK_TAGS, _ => _.replace(RE_SAFE_WHITESPACE, ' '))
-      .replace(RE_EACH_TAGS, (_, locals) => `{      ${locals.replace(' as', ';let')}`)}`;
+      .replace(RE_EACH_TAGS, (_, locals) => `{each: ${locals.replace(' as ', ';let ')} `)}`;
     offset = local.offset[0] + local.offset[1];
   });
 
@@ -269,6 +269,9 @@ function postprocess(messages, filename) {
   const tpl = fs.readFileSync(filename).toString();
 
   return messages.reduce((memo, it) => memo.concat(it.map(chunk => {
+    const left = chunk.source.substr(0, chunk.column - 1);
+    const matches = chunk.message.match(/'(\w+?)'/);
+
     /* istanbul ignore else */
     if (chunk.source) chunk.source = chunk.source.replace(RE_AWAIT_BACK, 'await');
 
@@ -277,32 +280,30 @@ function postprocess(messages, filename) {
       || chunk.ruleId === 'no-undef'
       || chunk.ruleId === 'no-unused-vars'
     ) {
-      const left = chunk.source.substr(0, chunk.column - 1);
-
       /* istanbul ignore else */
       if (RE_BLOCK_MARK.test(chunk.source)) {
         const diff = (left.split(RE_BLOCK_MARK).length - 1) * 8;
-        const local = chunk.ruleId === 'no-unused-vars' && left.includes(';let ') ? 1 : 0;
+        const temp = chunk.ruleId === 'no-unused-vars' && left.includes(';let ') ? 1 : 0;
 
         if (chunk.fatal) {
-          chunk.column -= diff + local;
+          chunk.column -= diff + temp;
           chunk.line -= 1;
           chunk.endColumn = chunk.column;
           chunk.endLine = chunk.line;
         } else {
-          chunk.endColumn -= diff + local;
+          chunk.endColumn -= diff + temp;
           chunk.endLine -= 1;
-          chunk.column -= diff + local;
+          chunk.column -= diff + temp;
           chunk.line -= 1;
         }
       }
 
       /* istanbul ignore else */
       if (RE_MATCH_QUOTED.test(chunk.message)) {
-        const matches = (chunk.source || '').substr(1).split(';');
+        const list = (chunk.source || '').substr(1).split(';');
         const name = chunk.message.match(RE_MATCH_QUOTED)[2];
 
-        for (const test of matches) {
+        for (const test of list) {
           const [, offset, length, local] = test.match(RE_SPLIT_MARKER) || [];
 
           /* istanbul ignore else */
@@ -328,22 +329,31 @@ function postprocess(messages, filename) {
           }
         }
       }
-
-      /* istanbul ignore else */
-      if (chunk.source && chunk.source.includes(':{expr:')) {
-        const key = chunk.message.match(/'(\w+?)'/)[1];
-        const parts = left.match(/\{expr:\w+\}/g) || [];
-        const expr = left.substr(-5) === 'expr:';
-
-        let diff = parts.length * 8;
-        /* istanbul ignore else */
-        if (expr) diff += key.length + 7;
-        diff += parts.reduce((sum, x) => sum + (x.length - 7), 0);
-
-        chunk.column -= diff;
-        chunk.endColumn -= diff;
-      }
     }
+
+    /* istanbul ignore else */
+    if (matches && chunk.source && chunk.source.includes(':{expr:')) {
+      const parts = left.match(/\{expr:\w+\}/g) || [];
+      const expr = left.substr(-5) === 'expr:';
+      const key = matches[1];
+
+      let diff = parts.length * 8;
+      /* istanbul ignore else */
+      if (expr) diff += key.length + 7;
+      diff += parts.reduce((sum, x) => sum + (x.length - 7), 0);
+
+      chunk.column -= diff;
+      chunk.endColumn -= diff;
+    }
+
+    /* istanbul ignore else */
+    if (chunk.source && chunk.source.includes(':{each:')) {
+      const fix = +(left.includes(';let ') && left.substr(-1) === '{');
+
+      chunk.column -= fix;
+      chunk.endColumn -= fix;
+    }
+
     return chunk;
   })), []);
 }
