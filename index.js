@@ -379,6 +379,7 @@ module.exports = {
         'arrow-body-style': 0,
         'consistent-return': 0,
         'global-require': 0,
+        'no-alert': 0,
         'no-labels': 0,
         'no-console': 0,
         'no-bitwise': 0,
