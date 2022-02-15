@@ -2,7 +2,7 @@ const RE_SAFE_WHITESPACE = /\S/g;
 const RE_SAFE_SEPARATOR = /[^\s;]/g;
 const RE_COMMENT_BLOCKS = /<!--[^]*?-->/g;
 const RE_CODING_BLOCKS = /<(script|style)([^<>]*?)>([^]*?)<\/\1>/g;
-const RE_DIRECTIVE_TAGS = /\{@(html|debug) /g;
+const RE_DIRECTIVE_TAGS = /\{@(raw|html|debug) /g;
 const RE_MATCH_QUOTED = /(["'])(\w+)\1/;
 const RE_STYLE_ATTRS = /(?<=<\w[^<>]*?\s)style:(\w+)(?=[\s>])/g;
 const RE_CLASS_ATTRS = /(?<=<\w[^<>]*?\s)class:(\w+)(?=[\s>])/g;
