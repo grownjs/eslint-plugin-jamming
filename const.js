@@ -7,6 +7,7 @@ const RE_MATCH_QUOTED = /(["'])(\w+)\1/;
 const RE_STYLE_ATTRS = /(?<=<\w[^<>]*?\s)style:(\w+)(?=[\s>])/g;
 const RE_CLASS_ATTRS = /(?<=<\w[^<>]*?\s)class:(\w+)(?=[\s>])/g;
 const RE_BIND_ATTRS = /(?<=<\w[^<>]*?\s)bind:(\w+)(?=[\s>])/g;
+const RE_USE_ATTRS = /(?<=<\w[^<>]*?\s)use:(\w+)(?=[\s>])/g;
 const RE_CONTEXT_MODULE = /\scontext=(["'])?module\1/;
 const RE_TYPE_MODULE = / type=(["'])?module\1/;
 const RE_SPLIT_MARKER = /_(\d+)_(\d+):(\w+)/;
@@ -49,6 +50,7 @@ module.exports = {
   RE_CLASS_ATTRS,
   RE_STYLE_ATTRS,
   RE_BIND_ATTRS,
+  RE_USE_ATTRS,
   RE_SPLIT_MARKER,
   RE_ACCESED_SYMBOLS,
   RE_COMMENT_INLINE,
