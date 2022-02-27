@@ -19,7 +19,8 @@ const RE_FIX_SPREAD = /:\{\.\.\./g;
 const RE_FIX_VARS = /[[{\s}\]]/g;
 const RE_FIX_SEMI = /;;/g;
 const RE_ALL_SEMI = /;+/g;
-const RE_ALL_BLOCKS = /\([^()]*?\)|(?<!(let|const)\s*)\{[^{}]*?\}/;
+const RE_ALL_BLOCKS = /\([^()]*?\)|\{[^{}]*?\}/;
+const RE_SAFE_LOCALS = /(?:let|const)(?:[^=]*?)=/g;
 const RE_MATCH_LOCAL = /(?<=^|\n) *(let|const|(?:async +)?function(?: *\* *)?) +\*?([[{}\] \w=,]+)(?=[\n;=])/;
 const RE_SPLIT_WHITESPACE = /\s+/;
 const RE_SPLIT_COMMA = / *, */;
@@ -32,6 +33,7 @@ const RE_EACH_TAGS = /\{#each ([^{}\n]+?)\}/g;
 const RE_EACH_CLOSE = /\{\/each\}/g;
 const RE_EACH_LOCALS = / as [ \w,]+\}/g;
 const RE_EFFECT_LABEL = /(?<=(?:^|[=:]) *)await\b/gm;
+const RE_EFFECT_LOCALS = /\$:\s*([$\w]+)\s*=/g;
 const RE_MATCH_TAGNAME = /<([A-Z]\w*)[^<>]*?\/?>/;
 const RE_CLEAN_FUNCTION = /async |\*/g;
 const RE_CAPTURE_VARIABLES = /\{(#if|#each|:else)(?: +([^{}\n]+?))?\}|\{((?![/:])[^{}\n]*?)\}/;
@@ -62,6 +64,7 @@ module.exports = {
   RE_FIX_VARS,
   RE_ALL_BLOCKS,
   RE_MATCH_LOCAL,
+  RE_SAFE_LOCALS,
   RE_SPLIT_WHITESPACE,
   RE_SPLIT_COMMA,
   RE_SPLIT_EQUAL,
@@ -73,6 +76,7 @@ module.exports = {
   RE_EACH_CLOSE,
   RE_EACH_LOCALS,
   RE_EFFECT_LABEL,
+  RE_EFFECT_LOCALS,
   RE_MATCH_TAGNAME,
   RE_CLEAN_FUNCTION,
   RE_CAPTURE_VARIABLES,

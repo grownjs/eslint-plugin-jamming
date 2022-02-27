@@ -49,7 +49,7 @@
   },
   {
     "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'max-len').",
+    "message": "Unused eslint-disable directive (no problems were reported from 'no-void').",
     "line": 10,
     "column": 9,
     "severity": 2,
@@ -67,7 +67,7 @@
   },
   {
     "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
+    "message": "Unused eslint-disable directive (no problems were reported from 'max-len').",
     "line": 10,
     "column": 9,
     "severity": 2,
@@ -85,7 +85,7 @@
   },
   {
     "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'no-void').",
+    "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
     "line": 10,
     "column": 9,
     "severity": 2,
@@ -196,6 +196,15 @@
   },
   {
     "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
+    "line": 16,
+    "column": 1,
+    "severity": 2,
+    "nodeType": null,
+    "source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */truth;scoped;cssClass</script>"
+  },
+  {
+    "ruleId": null,
     "message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
     "line": 16,
     "column": 1,
@@ -205,12 +214,84 @@
   },
   {
     "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'max-len').",
+    "line": 18,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-expressions, one-var-declaration-per-line */let truth, scoped, cssClass, fx;/* eslint-enable */"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'one-var').",
+    "line": 18,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-expressions, one-var-declaration-per-line */let truth, scoped, cssClass, fx;/* eslint-enable */"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'no-void').",
+    "line": 18,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-expressions, one-var-declaration-per-line */let truth, scoped, cssClass, fx;/* eslint-enable */"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
+    "line": 18,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-expressions, one-var-declaration-per-line */let truth, scoped, cssClass, fx;/* eslint-enable */"
+  },
+  {
+    "ruleId": null,
     "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
-    "line": 16,
+    "line": 18,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-expressions, one-var-declaration-per-line */let truth, scoped, cssClass, fx;/* eslint-enable */"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'one-var-declaration-per-line').",
+    "line": 18,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-expressions, one-var-declaration-per-line */let truth, scoped, cssClass, fx;/* eslint-enable */"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'semi').",
+    "line": 20,
     "column": 1,
     "severity": 2,
     "nodeType": null,
-    "source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */truth;scoped;cssClass</script>"
+    "source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */truth;scoped;cssClass;fx</script>"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
+    "line": 20,
+    "column": 1,
+    "severity": 2,
+    "nodeType": null,
+    "source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */truth;scoped;cssClass;fx</script>"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
+    "line": 20,
+    "column": 1,
+    "severity": 2,
+    "nodeType": null,
+    "source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */truth;scoped;cssClass;fx</script>"
   },
   {
     "ruleId": null,
@@ -219,7 +300,7 @@
     "column": 9,
     "severity": 2,
     "nodeType": null,
-    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass;"
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass, fx;"
   },
   {
     "ruleId": null,
@@ -228,7 +309,7 @@
     "column": 9,
     "severity": 2,
     "nodeType": null,
-    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass;"
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass, fx;"
   },
   {
     "ruleId": null,
@@ -237,7 +318,7 @@
     "column": 9,
     "severity": 2,
     "nodeType": null,
-    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass;"
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass, fx;"
   },
   {
     "ruleId": null,
@@ -246,7 +327,7 @@
     "column": 9,
     "severity": 2,
     "nodeType": null,
-    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass;"
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass, fx;"
   },
   {
     "ruleId": null,
@@ -255,7 +336,7 @@
     "column": 9,
     "severity": 2,
     "nodeType": null,
-    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass;"
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass, fx;"
   },
   {
     "ruleId": null,
@@ -264,7 +345,7 @@
     "column": 9,
     "severity": 2,
     "nodeType": null,
-    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass;"
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass, fx;"
   },
   {
     "ruleId": null,
@@ -273,7 +354,7 @@
     "column": 9,
     "severity": 2,
     "nodeType": null,
-    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass;"
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass, fx;"
   },
   {
     "ruleId": null,
@@ -282,7 +363,7 @@
     "column": 9,
     "severity": 2,
     "nodeType": null,
-    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass;"
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass, fx;"
   },
   {
     "ruleId": null,
@@ -291,7 +372,7 @@
     "column": 9,
     "severity": 2,
     "nodeType": null,
-    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass;"
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass, fx;"
   },
   {
     "ruleId": null,
@@ -300,7 +381,7 @@
     "column": 9,
     "severity": 2,
     "nodeType": null,
-    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass;"
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass, fx;"
   },
   {
     "ruleId": null,
@@ -309,7 +390,7 @@
     "column": 9,
     "severity": 2,
     "nodeType": null,
-    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass;"
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass, fx;"
   },
   {
     "ruleId": null,
@@ -318,7 +399,7 @@
     "column": 9,
     "severity": 2,
     "nodeType": null,
-    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass;"
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass, fx;"
   },
   {
     "ruleId": null,
@@ -327,7 +408,7 @@
     "column": 9,
     "severity": 2,
     "nodeType": null,
-    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass;"
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass, fx;"
   },
   {
     "ruleId": null,
@@ -336,7 +417,7 @@
     "column": 9,
     "severity": 2,
     "nodeType": null,
-    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass;"
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass, fx;"
   },
   {
     "ruleId": null,
@@ -345,7 +426,7 @@
     "column": 9,
     "severity": 2,
     "nodeType": null,
-    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass;"
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass, fx;"
   },
   {
     "ruleId": null,
@@ -354,7 +435,7 @@
     "column": 9,
     "severity": 2,
     "nodeType": null,
-    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass;"
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass, fx;"
   },
   {
     "ruleId": null,
@@ -363,6 +444,6 @@
     "column": 9,
     "severity": 2,
     "nodeType": null,
-    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass;"
+    "source": "<script>/* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, block-spacing, space-before-blocks, no-unused-expressions */let cssClass, fx;"
   }
 ]

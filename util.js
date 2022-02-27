@@ -16,6 +16,8 @@ const {
   RE_CAPTURE_VARIABLES,
   RE_ACCESED_SYMBOLS,
   RE_CLEAN_FUNCTION,
+  RE_EFFECT_LOCALS,
+  RE_SAFE_LOCALS,
 } = require('./const');
 
 const WELL_KNOWN_SYMBOLS = [
@@ -78,6 +80,7 @@ function vars(code, replace) {
   let hasVars = false;
   const keys = [];
   const deps = [];
+  const temps = {};
   const locals = {};
   const imports = {};
   const children = [];
@@ -122,7 +125,14 @@ function vars(code, replace) {
   }
 
   let out = code.replace(RE_EXPORT_IMPORT, _ => _.replace(RE_SAFE_WHITESPACE, ' '));
+
+  out = out.replace(RE_SAFE_LOCALS, (_, i) => {
+    temps[`@@var${i}`] = _;
+    return `@@var${i}`;
+  });
+
   do out = out.replace(RE_ALL_BLOCKS, _ => _.replace(RE_SAFE_WHITESPACE, ' ')); while (RE_ALL_BLOCKS.test(out));
+  out = out.replace(/@@var\d+/g, _ => temps[_]);
 
   do {
     const matches = out.match(RE_MATCH_LOCAL);
@@ -156,8 +166,12 @@ function vars(code, replace) {
     });
   } while (true); // eslint-disable-line
 
+  const variables = (code.match(RE_EFFECT_LOCALS) || [])
+    .map(x => x.split(/[:=]/)[1].trim())
+    .filter(local => !locals[local]);
+
   return {
-    hasVars, children, imports, locals, keys, deps, code,
+    hasVars, variables, children, imports, locals, keys, deps, code,
   };
 }
 

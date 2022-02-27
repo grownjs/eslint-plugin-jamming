@@ -97,6 +97,8 @@ function preprocess(text) {
           const consts = fixedDeps.filter(x => info.locals[x] !== 'var' && info.locals[x] !== 'let');
           const lets = fixedDeps.filter(x => info.locals[x] === 'var');
 
+          deps.push(...info.variables);
+
           /* istanbul ignore else */
           if (info.hasVars) {
             Object.assign(shared, info.locals);
