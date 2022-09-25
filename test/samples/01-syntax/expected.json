@@ -22,6 +22,15 @@
   },
   {
     "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
+    "line": 9,
+    "column": 1,
+    "severity": 2,
+    "nodeType": null,
+    "source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */Fragment</script>"
+  },
+  {
+    "ruleId": null,
     "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
     "line": 9,
     "column": 1,
@@ -31,12 +40,12 @@
   },
   {
     "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
-    "line": 9,
-    "column": 1,
+    "message": "Unused eslint-disable directive (no problems were reported from 'max-len').",
+    "line": 10,
+    "column": 9,
     "severity": 2,
     "nodeType": null,
-    "source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */Fragment</script>"
+    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-expressions, one-var-declaration-per-line */let truth, scoped;/* eslint-enable */"
   },
   {
     "ruleId": null,
@@ -67,7 +76,7 @@
   },
   {
     "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'max-len').",
+    "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
     "line": 10,
     "column": 9,
     "severity": 2,
@@ -77,15 +86,6 @@
   {
     "ruleId": null,
     "message": "Unused eslint-disable directive (no problems were reported from 'one-var-declaration-per-line').",
-    "line": 10,
-    "column": 9,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-expressions, one-var-declaration-per-line */let truth, scoped;/* eslint-enable */"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
     "line": 10,
     "column": 9,
     "severity": 2,
@@ -196,7 +196,7 @@
   },
   {
     "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
+    "message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
     "line": 16,
     "column": 1,
     "severity": 2,
@@ -205,7 +205,7 @@
   },
   {
     "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
+    "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
     "line": 16,
     "column": 1,
     "severity": 2,
