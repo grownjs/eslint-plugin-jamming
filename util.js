@@ -175,23 +175,25 @@ function vars(code, replace) {
   };
 }
 
-function blocks(chunk) {
+function blocks(chunk, notags) {
   const components = [];
   const locations = [];
 
-  do {
-    const matches = chunk.match(RE_MATCH_TAGNAME);
+  if (notags !== false) {
+    do {
+      const matches = chunk.match(RE_MATCH_TAGNAME);
 
-    /* istanbul ignore else */
-    if (!matches) break;
+      /* istanbul ignore else */
+      if (!matches) break;
 
-    components.push({
-      name: matches[1],
-      offset: [matches.index, matches[0].length],
-    });
+      components.push({
+        name: matches[1],
+        offset: [matches.index, matches[0].length],
+      });
 
-    chunk = chunk.replace(`<${matches[1]}`, ` ${matches[1].replace(RE_SAFE_WHITESPACE, ' ')}`);
-  } while (true); // eslint-disable-line
+      chunk = chunk.replace(`<${matches[1]}`, ` ${matches[1].replace(RE_SAFE_WHITESPACE, ' ')}`);
+    } while (true); // eslint-disable-line
+  }
 
   do {
     const matches = chunk.match(RE_CAPTURE_VARIABLES);
