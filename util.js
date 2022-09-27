@@ -178,6 +178,19 @@ function vars(code, replace) {
 function blocks(chunk, notags) {
   const components = [];
   const locations = [];
+  const offsets = [];
+
+  let line = 1;
+  let col = 0;
+  for (let i = 0; i < chunk.length; i += 1) {
+    if (chunk[i] === '\n') {
+      line += 1;
+      col = 0;
+    } else {
+      col += 1;
+    }
+    offsets[i] = { line, col };
+  }
 
   if (notags !== false) {
     do {
@@ -189,6 +202,7 @@ function blocks(chunk, notags) {
       components.push({
         name: matches[1],
         offset: [matches.index, matches[0].length],
+        position: offsets[matches.index],
       });
 
       chunk = chunk.replace(`<${matches[1]}`, ` ${matches[1].replace(RE_SAFE_WHITESPACE, ' ')}`);
@@ -200,7 +214,9 @@ function blocks(chunk, notags) {
     /* istanbul ignore else */
     if (!matches) break;
 
+    const position = offsets[matches.index];
     const locals = [];
+
     let tmp = matches[0];
     let offset = matches.index;
     do {
@@ -215,13 +231,14 @@ function blocks(chunk, notags) {
         locals.push({
           name: local[0],
           offset: [local.index + offset, local[0].length],
+          position: offsets[local.index],
         });
       }
 
       offset += local.index + local[0].length;
     } while (RE_ACCESED_SYMBOLS.test(tmp));
 
-    locations.push({ block: matches[0], offset: [matches.index, matches[0].length], locals });
+    locations.push({ block: matches[0], offset: [matches.index, matches[0].length], locals, position });
     chunk = chunk.replace(matches[0], matches[0].replace(RE_SAFE_WHITESPACE, ' '));
   } while (true); // eslint-disable-line
 
