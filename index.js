@@ -25,7 +25,7 @@ const {
   RE_USE_ATTRS,
 } = require('./const');
 
-const { vars, blocks, disable } = require('./util');
+const { vars, blocks, disable, location } = require('./util');
 
 function preprocess(text) {
   text = text.replace(RE_CODING_BLOCKS, (_, kind) => {
@@ -312,18 +312,7 @@ function postprocess(messages, filename) {
 
           /* istanbul ignore else */
           if (local === name) {
-            let line = 1;
-            let col = 0;
-            for (let i = 0; i < tpl.length; i += 1) {
-              /* istanbul ignore else */
-              if (i === +offset) break;
-              if (tpl[i] === '\n') {
-                line += 1;
-                col = 0;
-              } else {
-                col += 1;
-              }
-            }
+            const { line, col } = location(tpl, offset);
 
             chunk.endColumn = col + +length + 1;
             chunk.endLine = line;

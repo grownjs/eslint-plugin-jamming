@@ -232,8 +232,25 @@ function disable(code, rules, ending) {
   return `/* eslint-disable ${rules ? `${rules.join(', ')} ` : ''}*/${code}${!ending ? '/* eslint-enable */' : ''}`;
 }
 
+function location(code, offset) {
+  let line = 1;
+  let col = 0;
+  for (let i = 0; i < code.length; i += 1) {
+    /* istanbul ignore else */
+    if (i === +offset) break;
+    if (code[i] === '\n') {
+      line += 1;
+      col = 0;
+    } else {
+      col += 1;
+    }
+  }
+  return { line, col };
+}
+
 module.exports = {
   vars,
   blocks,
   disable,
+  location,
 };
