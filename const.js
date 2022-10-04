@@ -19,7 +19,7 @@ const RE_FIX_SPREAD = /:\{\.\.\./g;
 const RE_FIX_VARS = /[[{\s}\]]/g;
 const RE_FIX_SEMI = /;;/g;
 const RE_ALL_SEMI = /;+/g;
-const RE_ALL_BLOCKS = /\([^()]*?\)|\{[^{}]*?\}/;
+const RE_ALL_BLOCKS = /\([^()]*?\)|\{[^{}]*?\}|(?<=)\[[^[\]]*?\]/;
 const RE_SAFE_LOCALS = /(?:let|const)(?:[^=]*?)[;=]/g;
 const RE_MATCH_LOCAL = /(?<=^|\n) *(let|const|(?:async +)?function(?: *\* *)?) +\*?([[{}\] $\w=,]+)(?=[\n;=])/;
 const RE_SPLIT_WHITESPACE = /\s+/;
