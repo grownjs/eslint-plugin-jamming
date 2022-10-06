@@ -25,11 +25,22 @@ const {
   RE_USE_ATTRS,
 } = require('./const');
 
-const { vars, blocks, disable, location } = require('./util');
+const {
+  vars, blocks, disable, location,
+} = require('./util');
 
 function preprocess(text) {
-  text = text.replace(RE_CODING_BLOCKS, (_, kind) => {
-    if (kind === 'script') _ = _.replace(RE_EFFECT_LABEL, '/* */');
+  const scripts = [];
+
+  text = text.replace(RE_CODING_BLOCKS, (_, kind, attr, body) => {
+    if (kind === 'script' && !attr.includes(' src')) {
+      const info = vars(` ${kind.replace(RE_SAFE_WHITESPACE, ' ')}${attr.replace(RE_SAFE_WHITESPACE, ' ')} ${body}`);
+
+      scripts.push(info);
+
+      _ = _.replace(RE_EFFECT_LABEL, '/* */');
+      _ = _.replace(/(?<!\$|(?:let|const)\s+)\$(\w+)/g, ($0, name) => (name in info.locals ? `${name}\t` : $0));
+    }
     return _;
   });
 
@@ -68,7 +79,7 @@ function preprocess(text) {
   buffer = buffer.replace(RE_FIX_SEMI, '}').replace(RE_DIRECTIVE_TAGS, '{$1: ');
   buffer = buffer.replace(RE_FIX_SPREAD, ':{   ');
 
-  tpl = tpl.replace(RE_CODING_BLOCKS, (_, kind, attr, body) => {
+  tpl = tpl.replace(RE_CODING_BLOCKS, (_, kind, attr) => {
     /* istanbul ignore else */
     if (kind === 'script' && !attr.includes(' src')) {
       let prefix = '';
@@ -76,10 +87,10 @@ function preprocess(text) {
 
       const used = [];
       const idx = text.indexOf(_);
+      const info = scripts.shift();
       const scoped = attr.includes(' scoped');
       const isModule = RE_TYPE_MODULE.test(attr);
       const isContext = RE_CONTEXT_MODULE.test(attr);
-      const info = vars(` ${kind.replace(RE_SAFE_WHITESPACE, ' ')}${attr.replace(RE_SAFE_WHITESPACE, ' ')} ${body}`);
 
       /* istanbul ignore else */
       if (!isModule && !scoped) {
@@ -274,10 +285,18 @@ function postprocess(messages, filename) {
 
   return messages.reduce((memo, it) => memo.concat(it.map(chunk => {
     const left = chunk.source.substr(0, chunk.column - 1);
-    const matches = chunk.message.match(/'(\w+?)'/);
+    const matches = chunk.message.match(/'([$\w]+?)'/);
 
     /* istanbul ignore else */
-    if (chunk.source) chunk.source = chunk.source.replace(RE_AWAIT_BACK, 'await');
+    if (['no-tabs', 'key-spacing', 'comma-spacing', 'space-in-parens', 'array-bracket-spacing'].includes(chunk.ruleId)) {
+      if (chunk.source.charAt(chunk.column - 1) === '\t') return null;
+      if (chunk.source.charAt(chunk.column - 2) === '\t') return null;
+    }
+
+    /* istanbul ignore else */
+    if (chunk.source) {
+      chunk.source = chunk.source.replace(RE_AWAIT_BACK, 'await');
+    }
 
     /* istanbul ignore else */
     if ((chunk.ruleId === null && !chunk.message.includes('eslint-disable'))
@@ -348,7 +367,7 @@ function postprocess(messages, filename) {
     }
 
     return chunk;
-  })), []);
+  }).filter(Boolean)), []);
 }
 
 require('eslint-plugin-html');
