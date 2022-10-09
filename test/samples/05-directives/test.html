@@ -23,3 +23,9 @@
 <form
   @trigger="a >> b"
   use:reply />
+
+<script>
+  export default {
+    ['PATCH /:id'] as namedRoute: () => null,
+  };
+</script>

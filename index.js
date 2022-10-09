@@ -9,6 +9,7 @@ const {
   RE_DIRECTIVE_TAGS,
   RE_TYPE_MODULE,
   RE_MATCH_QUOTED,
+  RE_MATCH_ROUTES,
   RE_SPLIT_MARKER,
   RE_EFFECT_LABEL,
   RE_AWAIT_BACK,
@@ -39,6 +40,12 @@ function preprocess(text) {
       scripts.push(info);
 
       _ = _.replace(RE_EFFECT_LABEL, '/* */');
+
+      // eslint-disable-next-line arrow-body-style
+      _ = _.replace(RE_MATCH_ROUTES, ($0, qt, verb, path, name) => {
+        return name ? $0.replace(name, `/*${name.split(' as ').pop().trim()}*/`) : $0;
+      });
+
       _ = _.replace(/(?<!\$|(?:let|const)\s+)\$(\w+)/g, ($0, name) => (name in info.locals ? `${name}\t` : $0));
     }
     return _;

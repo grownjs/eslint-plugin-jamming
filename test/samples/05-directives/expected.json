@@ -175,6 +175,87 @@
   },
   {
     "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'max-len').",
+    "line": 27,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-expressions, one-var-declaration-per-line */let external, value, count, local;/* eslint-enable */"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'one-var').",
+    "line": 27,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-expressions, one-var-declaration-per-line */let external, value, count, local;/* eslint-enable */"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'no-void').",
+    "line": 27,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-expressions, one-var-declaration-per-line */let external, value, count, local;/* eslint-enable */"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
+    "line": 27,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-expressions, one-var-declaration-per-line */let external, value, count, local;/* eslint-enable */"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
+    "line": 27,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-expressions, one-var-declaration-per-line */let external, value, count, local;/* eslint-enable */"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'one-var-declaration-per-line').",
+    "line": 27,
+    "column": 9,
+    "severity": 2,
+    "nodeType": null,
+    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-expressions, one-var-declaration-per-line */let external, value, count, local;/* eslint-enable */"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'semi').",
+    "line": 31,
+    "column": 1,
+    "severity": 2,
+    "nodeType": null,
+    "source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */external;value;count;local</script>"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
+    "line": 31,
+    "column": 1,
+    "severity": 2,
+    "nodeType": null,
+    "source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */external;value;count;local</script>"
+  },
+  {
+    "ruleId": null,
+    "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
+    "line": 31,
+    "column": 1,
+    "severity": 2,
+    "nodeType": null,
+    "source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */external;value;count;local</script>"
+  },
+  {
+    "ruleId": null,
     "message": "Unused eslint-disable directive (no problems were reported from 'semi').",
     "line": 1,
     "column": 9,
