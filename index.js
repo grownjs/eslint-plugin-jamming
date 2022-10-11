@@ -399,6 +399,7 @@ module.exports = {
         browser: true,
       },
       rules: {
+        strict: 0,
         camelcase: 0,
         'eol-last': 0,
         'object-shorthand': 0,
@@ -408,6 +409,7 @@ module.exports = {
         'arrow-body-style': 0,
         'consistent-return': 0,
         'global-require': 0,
+        'no-new': 0,
         'no-alert': 0,
         'no-labels': 0,
         'no-console': 0,
@@ -421,6 +423,7 @@ module.exports = {
         'no-underscore-dangle': 0,
         'no-param-reassign': 0,
         'no-useless-computed-key': 0,
+        'object-curly-newline': 0,
         'prefer-destructuring': 0,
         'prefer-spread': 0,
         'prefer-const': 0,
