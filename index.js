@@ -23,6 +23,7 @@ const {
   RE_STYLE_ATTRS,
   RE_CLASS_ATTRS,
   RE_BIND_ATTRS,
+  RE_CSS_ATTRS,
   RE_USE_ATTRS,
 } = require('./const');
 
@@ -55,6 +56,7 @@ function preprocess(text) {
     .replace(RE_CLASS_ATTRS, 'class:$1={expr:$1}')
     .replace(RE_STYLE_ATTRS, 'style:$1={expr:$1}')
     .replace(RE_BIND_ATTRS, 'bind:$1={expr:$1}')
+    .replace(RE_CSS_ATTRS, 'css:$1={expr:$1}')
     .replace(RE_USE_ATTRS, 'use:$1={expr:$1}');
 
   const { locations, components } = blocks(tpl.replace(RE_CODING_BLOCKS, _ => _.replace(RE_SAFE_WHITESPACE, ' ')));
