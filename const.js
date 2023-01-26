@@ -12,7 +12,7 @@ const RE_USE_ATTRS = /(?<=<\w[^]*\s)use:(\w+)(?=[\s>])/g;
 const RE_CONTEXT_MODULE = /\scontext=(["'])?module\1/;
 const RE_TYPE_MODULE = / type=(["'])?module\1/;
 const RE_SPLIT_MARKER = /_(\d+)_(\d+):(\w+)/;
-const RE_MATCH_ROUTES = /\[(['"])(GET|POST|PUT|PATCH|DELETE)(\s\/[^'"]*?)?\1\]\s*(\s+as\s+\w+|\/\*\w+\*\/)?(?=:)/g;
+const RE_MATCH_ROUTES = /(?<=\s)(?:\[?["'])?(GET|POST|PATCH|PUT|DELETE)(?:\s(\/[^\s"']*))?(?:["']\]?)?(\s+as\s+\w+)?(?=\s*[(:])/g;
 const RE_ACCESED_SYMBOLS = /(?:(?:(?<=[=([]\s*|\.\.\.)[_$a-zA-Z]\w*|(?<![.#]\w*)[_$a-zA-Z]\w*)(?= *[.,;\n[})\]|&])|(?<![.#]\w*)[_$a-zA-Z]\w*(?= *[(?:!<=>/*+-]{1,3}| *(?:in|as) *))/; // eslint-disable-line
 const RE_COMMENT_INLINE = /(?!:) *\/\/ +.*?(?=\n)|\/\*[^]*?\*\//g;
 const RE_COMMENT_SAFE = /<\/|(?<=\/[*/] *)(?:eslint|global)\b(?=[ \w,-]+)/;
