@@ -83,6 +83,7 @@ function vars(code, replace) {
   const temps = {};
   const locals = {};
   const imports = {};
+  const effects = [];
   const children = [];
 
   /* istanbul ignore else */
@@ -154,6 +155,11 @@ function vars(code, replace) {
 
       /* istanbul ignore else */
       if (!locals[key]) {
+        if (kind === '$:') {
+          effects.push(key);
+          return true;
+        }
+
         if (kind === 'let') {
           locals[key] = 'var';
           keys.push(key);
@@ -171,7 +177,7 @@ function vars(code, replace) {
     .filter(local => !locals[local]);
 
   return {
-    hasVars, variables, children, imports, locals, keys, deps, code,
+    hasVars, variables, children, imports, effects, locals, keys, deps, code,
   };
 }
 
