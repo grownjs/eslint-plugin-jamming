@@ -1,6 +1,7 @@
 const {
   RE_COMMENT_INLINE,
   RE_COMMENT_SAFE,
+  RE_EXPORTED_ALIASES,
   RE_EXPORTED_SYMBOLS,
   RE_SAFE_WHITESPACE,
   RE_SPLIT_WHITESPACE,
@@ -83,10 +84,10 @@ function vars(code, replace) {
   const temps = {};
   const locals = {};
   const imports = {};
+  const aliases = {};
   const effects = [];
   const children = [];
 
-  /* istanbul ignore else */
   if (RE_EXPORTED_SYMBOLS.test(code)) {
     code.match(RE_EXPORTED_SYMBOLS).forEach(re => {
       const [, kind, name] = re.replace(RE_CLEAN_FUNCTION, '').trim().split(RE_SPLIT_WHITESPACE);
@@ -110,6 +111,7 @@ function vars(code, replace) {
         /* istanbul ignore else */
         if (key) {
           const [ref, alias] = key.split(RE_SPLIT_AS);
+          if (alias) aliases[ref] = alias;
           locals[alias || ref] = 'import';
           keys.push(alias || ref);
           input.push(alias || ref);
@@ -172,12 +174,23 @@ function vars(code, replace) {
     });
   } while (true); // eslint-disable-line
 
+  /* istanbul ignore else */
+  if (RE_EXPORTED_ALIASES.test(code)) {
+    code.match(RE_EXPORTED_ALIASES).forEach(re => {
+      re.split(',').forEach(sub => {
+        const [ref, alias] = sub.replace('{', '').replace('}', '').trim().split(' as ');
+        if (alias) aliases[ref] = alias;
+        if (!locals[ref]) locals[ref] = 'export';
+      });
+    });
+  }
+
   const variables = (code.match(RE_EFFECT_LOCALS) || [])
     .map(x => x.split(/[:=]/)[1].trim())
     .filter(local => !locals[local]);
 
   return {
-    hasVars, variables, children, imports, effects, locals, keys, deps, code,
+    hasVars, variables, children, imports, aliases, effects, locals, keys, deps, code,
   };
 }
 

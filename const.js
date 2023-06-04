@@ -39,6 +39,7 @@ const RE_EFFECT_LOCALS = /\$:\s*([$\w]+)\s*=/g;
 const RE_MATCH_TAGNAME = /<([A-Z]\w*)[^<>]*?\/?>/;
 const RE_CLEAN_FUNCTION = /async |\*/g;
 const RE_CAPTURE_VARIABLES = /\{(#if|#each|:else)(?: +([^{}\n]+?))?\}|\{((?![/:])[^{}\n]*?)\}/;
+const RE_EXPORTED_ALIASES = /(?<=\bexport\s*)\{([^{}]+)\}/g;
 const RE_EXPORTED_SYMBOLS = /\bexport +(let|const|(?:async +)?function(?: *\* *)?) +\*?([ \w,=]+)/g;
 const RE_IMPORTED_SYMBOLS = /(?:^|[; ]+)?import(?: *(?:\* *as)? *(\w*?) *,? *(?:\{([^]*?)\})? *from)? *['"]([^'"]+)['"];?/g;
 
@@ -84,6 +85,7 @@ module.exports = {
   RE_MATCH_TAGNAME,
   RE_CLEAN_FUNCTION,
   RE_CAPTURE_VARIABLES,
+  RE_EXPORTED_ALIASES,
   RE_EXPORTED_SYMBOLS,
   RE_IMPORTED_SYMBOLS,
 };
