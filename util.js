@@ -93,10 +93,12 @@ function vars(code, replace) {
       const [, kind, name] = re.replace(RE_CLEAN_FUNCTION, '').trim().split(RE_SPLIT_WHITESPACE);
 
       name.split(RE_SPLIT_COMMA).forEach(k => {
-        const v = k.split(RE_SPLIT_EQUAL)[0];
+        const v = k.split(RE_SPLIT_EQUAL)[0].trim();
 
-        locals[v] = kind;
-        keys.push(v);
+        if (v) {
+          locals[v] = kind;
+          keys.push(v);
+        }
       });
       hasVars = true;
     });
@@ -156,7 +158,7 @@ function vars(code, replace) {
       const key = x.split(RE_SPLIT_EQUAL)[0].trim();
 
       /* istanbul ignore else */
-      if (!locals[key]) {
+      if (key && !locals[key]) {
         if (kind === '$:') {
           effects.push(key);
           return true;
@@ -257,7 +259,9 @@ function blocks(chunk, notags) {
       offset += local.index + local[0].length;
     } while (RE_ACCESED_SYMBOLS.test(tmp));
 
-    locations.push({ block: matches[0], offset: [matches.index, matches[0].length], locals, position });
+    locations.push({
+      block: matches[0], offset: [matches.index, matches[0].length], locals, position,
+    });
     chunk = chunk.replace(matches[0], matches[0].replace(RE_SAFE_WHITESPACE, ' '));
   } while (true); // eslint-disable-line
 
