@@ -38,6 +38,7 @@ const RE_EFFECT_LABEL = /(?<=(?:^|[=:]) *)await\b/gm;
 const RE_EFFECT_LOCALS = /\$:\s*([$\w]+)\s*=/g;
 const RE_MATCH_TAGNAME = /<([A-Z]\w*)[^<>]*?\/?>/;
 const RE_CLEAN_FUNCTION = /async |\*/g;
+const RE_KEYWORD_NAMES = /^(?:if|try|for|while|switch)\b/;
 const RE_CAPTURE_VARIABLES = /\{(#if|#each|:else)(?: +([^{}\n]+?))?\}|\{((?![/:])[^{}\n]*?)\}/;
 const RE_EXPORTED_ALIASES = /(?<=\bexport\s*)\{([^{}]+)\}/g;
 const RE_EXPORTED_SYMBOLS = /\bexport +(let|const|(?:async +)?function(?: *\* *)?) +\*?([ \w,=]+)/g;
@@ -49,6 +50,7 @@ module.exports = {
   RE_COMMENT_BLOCKS,
   RE_CODING_BLOCKS,
   RE_MATCH_QUOTED,
+  RE_KEYWORD_NAMES,
   RE_DIRECTIVE_TAGS,
   RE_CONTEXT_MODULE,
   RE_MATCH_ROUTES,

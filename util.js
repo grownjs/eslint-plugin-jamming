@@ -9,6 +9,7 @@ const {
   RE_SPLIT_EQUAL,
   RE_SPLIT_AS,
   RE_FIX_VARS,
+  RE_KEYWORD_NAMES,
   RE_IMPORTED_SYMBOLS,
   RE_EXPORT_IMPORT,
   RE_ALL_BLOCKS,
@@ -148,6 +149,9 @@ function vars(code, replace) {
     const [_, kind, expr] = matches;
 
     out = out.replace(_, _.replace(RE_SAFE_WHITESPACE, ' '));
+
+    /* istanbul ignore else */
+    if (expr.charAt() === '{' || RE_KEYWORD_NAMES.test(expr)) continue; // eslint-disable-line
 
     /* istanbul ignore else */
     if (replace && kind === 'let') {
