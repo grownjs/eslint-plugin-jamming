@@ -11,7 +11,8 @@ const {
   RE_FIX_VARS,
   RE_KEYWORD_NAMES,
   RE_IMPORTED_SYMBOLS,
-  RE_EXPORT_IMPORT,
+  RE_EXPORT_MATCH,
+  RE_IMPORT_MATCH,
   RE_ALL_BLOCKS,
   RE_MATCH_LOCAL,
   RE_MATCH_TAGNAME,
@@ -89,6 +90,7 @@ function vars(code, replace) {
   const effects = [];
   const children = [];
 
+  /* istanbul ignore else */
   if (RE_EXPORTED_SYMBOLS.test(code)) {
     code.match(RE_EXPORTED_SYMBOLS).forEach(re => {
       const [, kind, name] = re.replace(RE_CLEAN_FUNCTION, '').trim().split(RE_SPLIT_WHITESPACE);
@@ -96,6 +98,7 @@ function vars(code, replace) {
       name.split(RE_SPLIT_COMMA).forEach(k => {
         const v = k.split(RE_SPLIT_EQUAL)[0].trim();
 
+        /* istanbul ignore else */
         if (v) {
           locals[v] = kind;
           keys.push(v);
@@ -114,7 +117,10 @@ function vars(code, replace) {
         /* istanbul ignore else */
         if (key) {
           const [ref, alias] = key.split(RE_SPLIT_AS);
+
+          /* istanbul ignore else */
           if (alias) aliases[ref] = alias;
+
           locals[alias || ref] = 'import';
           keys.push(alias || ref);
           input.push(alias || ref);
@@ -130,7 +136,7 @@ function vars(code, replace) {
     });
   }
 
-  let out = code.replace(RE_EXPORT_IMPORT, _ => _.replace(RE_SAFE_WHITESPACE, ' '));
+  let out = code.replace(RE_IMPORT_MATCH, _ => _.replace(RE_SAFE_WHITESPACE, ' '));
 
   out = out.replace(RE_SAFE_LOCALS, (_, i) => {
     temps[`@@var${i}`] = _;
@@ -140,6 +146,18 @@ function vars(code, replace) {
   do out = out.replace(RE_ALL_BLOCKS, _ => _.replace(RE_SAFE_WHITESPACE, ' ')); while (RE_ALL_BLOCKS.test(out));
   out = out.replace(/@@var\d+/g, _ => temps[_]);
 
+  /* istanbul ignore else */
+  if (RE_EXPORTED_ALIASES.test(code)) {
+    code.match(RE_EXPORTED_ALIASES).forEach(re => {
+      re.split(',').forEach(sub => {
+        const [ref, alias] = sub.replace('{', '').replace('}', '').trim().split(' as ');
+
+        /* istanbul ignore else */
+        if (alias) aliases[ref] = alias;
+      });
+    });
+  }
+
   do {
     const matches = out.match(RE_MATCH_LOCAL);
 
@@ -147,8 +165,10 @@ function vars(code, replace) {
     if (!matches) break;
 
     const [_, kind, expr] = matches;
+    const exported = RE_EXPORT_MATCH.test(_);
 
     out = out.replace(_, _.replace(RE_SAFE_WHITESPACE, ' '));
+    out = out.replace(RE_EXPORT_MATCH, x => x.replace(RE_SAFE_WHITESPACE, ' '));
 
     /* istanbul ignore else */
     if (expr.charAt() === '{' || RE_KEYWORD_NAMES.test(expr)) continue; // eslint-disable-line
@@ -163,33 +183,27 @@ function vars(code, replace) {
 
       /* istanbul ignore else */
       if (key && !locals[key]) {
+        /* istanbul ignore else */
         if (kind === '$:') {
           effects.push(key);
           return true;
         }
 
         if (kind === 'let') {
-          locals[key] = 'var';
-          keys.push(key);
+          locals[key] = aliases[key] ? 'export' : 'var';
         } else {
           locals[key] = kind.replace(RE_CLEAN_FUNCTION, '').trim();
         }
-        deps.push(key);
+
+        if (exported || aliases[key]) {
+          keys.push(key);
+        } else {
+          deps.push(key);
+        }
         hasVars = true;
       }
     });
   } while (true); // eslint-disable-line
-
-  /* istanbul ignore else */
-  if (RE_EXPORTED_ALIASES.test(code)) {
-    code.match(RE_EXPORTED_ALIASES).forEach(re => {
-      re.split(',').forEach(sub => {
-        const [ref, alias] = sub.replace('{', '').replace('}', '').trim().split(' as ');
-        if (alias) aliases[ref] = alias;
-        if (!locals[ref]) locals[ref] = 'export';
-      });
-    });
-  }
 
   const variables = (code.match(RE_EFFECT_LOCALS) || [])
     .map(x => x.split(/[:=]/)[1].trim())

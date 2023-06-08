@@ -16,14 +16,15 @@ const RE_MATCH_ROUTES = /(?<=\s)(?:\[?["'])?(GET|POST|PATCH|PUT|DELETE)(?:\s(\/[
 const RE_ACCESED_SYMBOLS = /(?:(?:(?<=[=([]\s*|\.\.\.)[_$a-zA-Z]\w*|(?<![.#]\w*)[_$a-zA-Z]\w*)(?= *[.,;\n[})\]|&])|(?<![.#]\w*)[_$a-zA-Z]\w*(?= *[(?:!<=>/*+-]{1,3}| *(?:in|as) *))/; // eslint-disable-line
 const RE_COMMENT_INLINE = /(?!:) *\/\/ +.*?(?=\n)|\/\*[^]*?\*\//g;
 const RE_COMMENT_SAFE = /<\/|(?<=\/[*/] *)(?:eslint|global)\b(?=[ \w,-]+)/;
-const RE_EXPORT_IMPORT = /\bexport +|import[^]+?[\n;]/g;
+const RE_IMPORT_MATCH = /\bimport[^]+?[\n;]/g;
+const RE_EXPORT_MATCH = /\bexport +/g;
 const RE_FIX_SPREAD = /:\{\.\.\./g;
 const RE_FIX_VARS = /[[{\s}\]]/g;
 const RE_FIX_SEMI = /;;/g;
 const RE_ALL_SEMI = /;+/g;
 const RE_ALL_BLOCKS = /\([^()]*?\)|\{[^{}]*?\}|(?<=)\[[^[\]]*?\]/;
 const RE_SAFE_LOCALS = /(?:\$:|let|const)(?:[^=]*?)[;=]/g;
-const RE_MATCH_LOCAL = /(?<=^|\n) *(\$:|let|const|(?:async +)?function(?: *\* *)?) +\*?([[{}\] $\w=,]+)(?=[\n;=])/;
+const RE_MATCH_LOCAL = /(?<=^|\n) *(\$:|(?:(?:export\s+)?let|const|(?:async +)?function(?: *\* *)?)) +\*?([[{}\] $\w=,]+)(?=[\n;=])/;
 const RE_SPLIT_WHITESPACE = /\s+/;
 const RE_SPLIT_COMMA = / *, */;
 const RE_SPLIT_EQUAL = / *= */;
@@ -64,7 +65,8 @@ module.exports = {
   RE_ACCESED_SYMBOLS,
   RE_COMMENT_INLINE,
   RE_COMMENT_SAFE,
-  RE_EXPORT_IMPORT,
+  RE_IMPORT_MATCH,
+  RE_EXPORT_MATCH,
   RE_FIX_SPREAD,
   RE_FIX_SEMI,
   RE_ALL_SEMI,
