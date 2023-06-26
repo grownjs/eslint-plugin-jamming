@@ -21,6 +21,7 @@ const {
   RE_CLEAN_FUNCTION,
   RE_EFFECT_LOCALS,
   RE_SAFE_LOCALS,
+  RE_CODING_BLOCKS,
 } = require('./const');
 
 const WELL_KNOWN_SYMBOLS = [
@@ -230,6 +231,8 @@ function blocks(chunk, notags) {
     }
     offsets[i] = { line, col };
   }
+
+  chunk = chunk.replace(RE_CODING_BLOCKS, _ => _.replace(RE_SAFE_WHITESPACE, ' '));
 
   if (notags !== false) {
     do {
