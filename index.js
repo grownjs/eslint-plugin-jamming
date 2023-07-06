@@ -85,7 +85,7 @@ function preprocess(text) {
   });
 
   buffer += tpl.substr(offset).replace(RE_EACH_CLOSE, '      ;;').replace(RE_SAFE_SEPARATOR, ' ');
-  buffer = buffer.replace(RE_FIX_SEMI, '}').replace(RE_DIRECTIVE_TAGS, '{$1: ');
+  buffer = buffer.replace(RE_FIX_SEMI, '}').replace(RE_DIRECTIVE_TAGS, '{$1_:');
   buffer = buffer.replace(RE_FIX_SPREAD, ':{   ');
 
   const globals = disable('let $$slots, $$props;', [

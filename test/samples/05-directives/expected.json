@@ -462,7 +462,7 @@
     "messageId": "undef",
     "endLine": 8,
     "endColumn": 14,
-    "source": ";_00000:{debug: undef, external}"
+    "source": ";_00000:{debug_:undef, external}"
   },
   {
     "ruleId": "no-undef",
