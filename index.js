@@ -88,10 +88,18 @@ function preprocess(text) {
   buffer = buffer.replace(RE_FIX_SEMI, '}').replace(RE_DIRECTIVE_TAGS, '{$1: ');
   buffer = buffer.replace(RE_FIX_SPREAD, ':{   ');
 
+  const globals = disable('let $$slots, $$props;', [
+    'one-var-declaration-per-line',
+    'no-unused-vars',
+    'semi-spacing',
+    'max-len',
+    'one-var',
+  ]);
+
   tpl = tpl.replace(RE_CODING_BLOCKS, (_, kind, attr) => {
     /* istanbul ignore else */
     if (kind === 'script' && !attr.includes(' src')) {
-      let prefix = '';
+      let prefix = 'let $$slots, $$props;';
       let suffix = '';
 
       const used = [];
@@ -123,8 +131,6 @@ function preprocess(text) {
           if (info.hasVars) {
             Object.assign(shared, info.locals);
             deps.push(...fixedDeps);
-
-            prefix = '/* global $$props */$$props;';
 
             components.forEach(x => {
               /* istanbul ignore else */
@@ -193,23 +199,21 @@ function preprocess(text) {
       /* istanbul ignore else */
       if (suffix) {
         text = text.substr(0, idx)
-          + text.substr(idx, _.length).replace('</script>', suffix)
+          + text.substr(idx, _.length).replace('</script>', () => suffix)
           + text.substr(idx + _.length);
       }
 
-      /* istanbul ignore else */
-      if (prefix) {
-        const diff = idx + kind.length + attr.length + 2;
+      const diff = idx + kind.length + attr.length + 2;
 
-        text = `${text.substr(0, diff)}${disable(prefix, [
-          'max-len',
-          'one-var',
-          'no-void',
-          'semi-spacing',
-          'no-unused-expressions',
-          'one-var-declaration-per-line',
-        ])}${text.substr(diff)}`;
-      }
+      text = `${text.substr(0, diff)}${disable(prefix, [
+        'max-len',
+        'one-var',
+        'no-void',
+        'semi-spacing',
+        'no-unused-vars',
+        'no-unused-expressions',
+        'one-var-declaration-per-line',
+      ])}${text.substr(diff)}`;
     }
     return _.replace(RE_SAFE_WHITESPACE, ' ');
   });
@@ -256,6 +260,7 @@ function preprocess(text) {
           'no-multi-spaces',
           'no-trailing-spaces',
           'no-extra-semi',
+          'no-sequences',
           'block-spacing',
           'space-before-blocks',
           'no-unused-expressions',
@@ -286,7 +291,7 @@ function preprocess(text) {
     }
   });
 
-  return [text, ...chunks.filter(x => !x.names).map(x => x.code)];
+  return [text, ...chunks.filter(x => !x.names).map(x => x.code.replace('<script>', () => `<script>${globals}`))];
 }
 
 function postprocess(messages, filename) {
