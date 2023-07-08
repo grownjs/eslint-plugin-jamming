@@ -6,7 +6,7 @@
   let count = 0;
 </script>
 {@debug undef, external}
-{@raw local}
+{@html ''}
 
 <script>
   const color = 'red';
@@ -30,3 +30,8 @@
     POST as namedRoute () { /* noop */ },
   };
 </script>
+
+<span>
+  {@const foo = 42}
+  Got: {foo}
+</span>
