@@ -72,7 +72,7 @@ const WELL_KNOWN_SYMBOLS = [
   'ArrayBuffer',
 ];
 
-function vars(code, replace) {
+function vars(code) {
   code = code.replace(RE_COMMENT_INLINE, matches => {
     /* istanbul ignore else */
     if (!RE_COMMENT_SAFE.test(matches)) {
@@ -173,11 +173,6 @@ function vars(code, replace) {
 
     /* istanbul ignore else */
     if (expr.charAt() === '{' || RE_KEYWORD_NAMES.test(expr)) continue; // eslint-disable-line
-
-    /* istanbul ignore else */
-    if (replace && kind === 'let') {
-      code = code.replace(_, _.replace('let ', '/**/'), matches.index);
-    }
 
     expr.replace(RE_FIX_VARS, ' ').split(RE_SPLIT_COMMA).forEach(x => { // eslint-disable-line
       const key = x.split(RE_SPLIT_EQUAL)[0].trim();
