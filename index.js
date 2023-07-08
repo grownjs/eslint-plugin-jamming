@@ -316,6 +316,7 @@ function postprocess(messages, filename) {
     if ((chunk.ruleId === null && !chunk.message.includes('eslint-disable'))
       || chunk.ruleId === 'no-undef'
       || chunk.ruleId === 'no-unused-vars'
+      || chunk.ruleId === 'comma-spacing'
     ) {
       /* istanbul ignore else */
       if (RE_BLOCK_MARK.test(chunk.source)) {
