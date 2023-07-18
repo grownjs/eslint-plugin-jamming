@@ -44,7 +44,7 @@ function preprocess(text) {
 
       // eslint-disable-next-line arrow-body-style
       _ = _.replace(RE_MATCH_ROUTES, ($0, verb, path, alias) => {
-        return alias ? $0.replace(alias, `/*${alias.split(' as ').pop().trim()}*/`) : $0;
+        return alias ? $0.replace(alias, `/* ${alias.split(' as ').pop().trim()} */`) : $0;
       });
 
       _ = _.replace(/(?<!\$|(?:let|const)\s+)\$(\w+)/g, ($0, name) => (name in info.locals ? `${name}\t` : $0));
