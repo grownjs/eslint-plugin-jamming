@@ -1,0 +1,19 @@
+<script>
+  export let truth = 42;
+
+  export default {
+    GET() {
+      return sum(1, 2);
+    },
+  };
+</script>
+
+{#snippet sum(a, b)}
+  <p>{a} + {b} = {a + b} ({truth})</p>
+{/snippet}
+
+{#snippet undef()}
+  OSOM
+{/snippet}
+
+{@render undefn(42)}

@@ -17,6 +17,8 @@ const {
   RE_BLOCK_TAGS,
   RE_EACH_CLOSE,
   RE_EACH_TAGS,
+  RE_SNIPPET_TAGS,
+  RE_SNIPPET_CLOSE,
   RE_ALL_SEMI,
   RE_FIX_SEMI,
   RE_FIX_SPREAD,
@@ -65,6 +67,7 @@ function preprocess(text) {
   const chunks = [];
   const names = [];
   const deps = [];
+  const fns = [];
 
   let buffer = '';
   let offset = 0;
@@ -77,14 +80,25 @@ function preprocess(text) {
       if (!names.some(x => x.name === temp.name)) names.push(temp);
     });
 
-    buffer += chunk.replace(RE_EACH_CLOSE, '      ;;').replace(RE_SAFE_SEPARATOR, ' ');
+    buffer += chunk
+      .replace(RE_SNIPPET_CLOSE, '          ;;')
+      .replace(RE_EACH_CLOSE, '      ;;')
+      .replace(RE_SAFE_SEPARATOR, ' ');
+
     buffer += `;_${key}:${local.block
+      .replace(RE_SNIPPET_TAGS, (_, fn, args) => {
+        fns.push(fn.trim());
+        return `var ${fn} = (${args}) => {`;
+      })
       .replace(RE_BLOCK_TAGS, _ => _.replace(RE_SAFE_WHITESPACE, ' '))
       .replace(RE_EACH_TAGS, (_, locals) => `{each: ${locals.replace(' as ', ';let ')} `)}`;
     offset = local.offset[0] + local.offset[1];
   });
 
-  buffer += tpl.substr(offset).replace(RE_EACH_CLOSE, '      ;;').replace(RE_SAFE_SEPARATOR, ' ');
+  buffer += tpl.substr(offset)
+    .replace(RE_SNIPPET_CLOSE, '          ;;')
+    .replace(RE_EACH_CLOSE, '      ;;')
+    .replace(RE_SAFE_SEPARATOR, ' ');
   buffer = buffer.replace(RE_FIX_SEMI, '}').replace(RE_DIRECTIVE_TAGS, '{$1_:');
   buffer = buffer.replace(RE_FIX_SPREAD, ':{   ');
 
@@ -187,6 +201,10 @@ function preprocess(text) {
         }
       }
 
+      if (fns.length > 0) {
+        prefix += `let ${fns.join(',')};`;
+      }
+
       /* istanbul ignore else */
       if (used.length) {
         suffix = suffix || `${disable(used.join(';'), [
@@ -240,7 +258,10 @@ function preprocess(text) {
   /* istanbul ignore else */
   if (locations.length) {
     const fixed = names.filter(x => deps.includes(x.name));
-    const prefix = fixed.length ? `let ${fixed.map(x => x.name).join(', ')};` : '';
+
+    const prefix = fixed.length
+      ? `let ${fixed.map(x => x.name).join(', ')};`
+      : '';
 
     /* istanbul ignore else */
     if (names.length) {
@@ -264,7 +285,10 @@ function preprocess(text) {
           'block-spacing',
           'space-before-blocks',
           'no-unused-expressions',
-        ], true)}\n${buffer}</script>`,
+        ].concat(fns.length ? [
+          'vars-on-top',
+          'no-var',
+        ] : []), true)}\n${buffer}</script>`,
       });
     }
   }
@@ -355,6 +379,16 @@ function postprocess(messages, filename) {
             break;
           }
         }
+      }
+
+      /* istanbul ignore else */
+      if (chunk.source.includes(':var ')) {
+        const diff = chunk.ruleId === 'comma-spacing' ? 5 : 3;
+
+        chunk.endColumn -= diff;
+        chunk.column -= diff;
+        chunk.endLine -= 1;
+        chunk.line -= 1;
       }
     }
 
