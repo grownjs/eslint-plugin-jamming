@@ -1,3 +1,4 @@
+/* eslint-disable */
 process.chdir(__dirname);
 
 const { CLIEngine } = require('eslint');
