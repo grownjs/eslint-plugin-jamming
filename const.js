@@ -2,7 +2,8 @@ const RE_SAFE_WHITESPACE = /\S/g;
 const RE_SAFE_SEPARATOR = /[^\s;]/g;
 const RE_COMMENT_BLOCKS = /<!--[^]*?-->/g;
 const RE_CODING_BLOCKS = /<(script|style)([^<>]*?)>([^]*?)<\/\1>/g;
-const RE_DIRECTIVE_TAGS = /\{@(html|const|debug|render) /g;
+const RE_DIRECTIVE_TAGS = /\{@(raw|html|debug|render) /g;
+const RE_DIRECTIVE_CONST = /\{@const /g;
 const RE_MATCH_QUOTED = /(["'])(\w+)\1/;
 const RE_STYLE_ATTRS = /(?<=<\w[^]*\s)style:(\w+)(?=[\s>])/g;
 const RE_CLASS_ATTRS = /(?<=<\w[^]*\s)class:(\w+)(?=[\s>])/g;
@@ -29,7 +30,6 @@ const RE_SPLIT_WHITESPACE = /\s+/;
 const RE_SPLIT_COMMA = / *, */;
 const RE_SPLIT_EQUAL = / *= */;
 const RE_SPLIT_AS = /\s+as\s+/;
-const RE_AWAIT_BACK = /\/\* \*\//g;
 const RE_BLOCK_MARK = /;_\d+:\{/;
 const RE_BLOCK_TAGS = /#if|:else(?: +if)?/g;
 const RE_EACH_TAGS = /\{#each ([^{}\n]+?)\}/g;
@@ -37,8 +37,6 @@ const RE_EACH_CLOSE = /\{\/each\}/g;
 const RE_SNIPPET_TAGS = /\{#snippet(\s+\w+\s*)\(([\w\s,]*)\)\}/g;
 const RE_SNIPPET_CLOSE = /\{\/snippet\}/g;
 const RE_EACH_LOCALS = / as [ \w,]+\}/g;
-const RE_EFFECT_LABEL = /(?<=(?:^|[=:]) *)await\b/gm;
-const RE_EFFECT_LOCALS = /\$:\s*([$\w]+)\s*=/g;
 const RE_MATCH_TAGNAME = /<([A-Z]\w*)[^<>]*?\/?>/;
 const RE_CLEAN_FUNCTION = /async |\*/g;
 const RE_KEYWORD_NAMES = /^(?:if|try|for|while|switch)\b/;
@@ -55,6 +53,7 @@ module.exports = {
   RE_MATCH_QUOTED,
   RE_KEYWORD_NAMES,
   RE_DIRECTIVE_TAGS,
+  RE_DIRECTIVE_CONST,
   RE_CONTEXT_MODULE,
   RE_MATCH_ROUTES,
   RE_TYPE_MODULE,
@@ -80,7 +79,6 @@ module.exports = {
   RE_SPLIT_COMMA,
   RE_SPLIT_EQUAL,
   RE_SPLIT_AS,
-  RE_AWAIT_BACK,
   RE_BLOCK_MARK,
   RE_BLOCK_TAGS,
   RE_EACH_TAGS,
@@ -88,8 +86,6 @@ module.exports = {
   RE_EACH_LOCALS,
   RE_SNIPPET_TAGS,
   RE_SNIPPET_CLOSE,
-  RE_EFFECT_LABEL,
-  RE_EFFECT_LOCALS,
   RE_MATCH_TAGNAME,
   RE_CLEAN_FUNCTION,
   RE_CAPTURE_VARIABLES,

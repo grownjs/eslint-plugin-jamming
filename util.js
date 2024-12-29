@@ -19,7 +19,6 @@ const {
   RE_CAPTURE_VARIABLES,
   RE_ACCESED_SYMBOLS,
   RE_CLEAN_FUNCTION,
-  RE_EFFECT_LOCALS,
   RE_SAFE_LOCALS,
   RE_CODING_BLOCKS,
 } = require('./const');
@@ -86,9 +85,9 @@ function vars(code) {
   const deps = [];
   const temps = {};
   const locals = {};
+  const awaits = [];
   const imports = {};
   const aliases = {};
-  const effects = [];
   const children = [];
 
   /* istanbul ignore else */
@@ -146,6 +145,10 @@ function vars(code) {
 
   do out = out.replace(RE_ALL_BLOCKS, _ => _.replace(RE_SAFE_WHITESPACE, ' ')); while (RE_ALL_BLOCKS.test(out));
   out = out.replace(/@@var\d+/g, _ => temps[_]);
+  out.replace(/\bawait\b/g, (_, offset) => {
+    awaits.push(offset);
+    return _;
+  });
 
   /* istanbul ignore else */
   if (RE_EXPORTED_ALIASES.test(code)) {
@@ -178,13 +181,7 @@ function vars(code) {
       const key = x.split(RE_SPLIT_EQUAL)[0].trim();
 
       /* istanbul ignore else */
-      if (key && !locals[key]) {
-        /* istanbul ignore else */
-        if (kind === '$:') {
-          effects.push(key);
-          return true;
-        }
-
+      if (key && !locals[key] && !kind.includes(':')) {
         if (kind === 'let') {
           locals[key] = aliases[key] ? 'export' : 'var';
         } else {
@@ -201,12 +198,8 @@ function vars(code) {
     });
   } while (true); // eslint-disable-line
 
-  const variables = (code.match(RE_EFFECT_LOCALS) || [])
-    .map(x => x.split(/[:=]/)[1].trim())
-    .filter(local => !locals[local]);
-
   return {
-    hasVars, variables, children, imports, aliases, effects, locals, keys, deps, code,
+    hasVars, children, imports, aliases, awaits, locals, keys, deps, code,
   };
 }
 

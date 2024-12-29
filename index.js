@@ -7,12 +7,11 @@ const {
   RE_CODING_BLOCKS,
   RE_CONTEXT_MODULE,
   RE_DIRECTIVE_TAGS,
+  RE_DIRECTIVE_CONST,
   RE_TYPE_MODULE,
   RE_MATCH_QUOTED,
   RE_MATCH_ROUTES,
   RE_SPLIT_MARKER,
-  RE_EFFECT_LABEL,
-  RE_AWAIT_BACK,
   RE_BLOCK_MARK,
   RE_BLOCK_TAGS,
   RE_EACH_CLOSE,
@@ -35,21 +34,28 @@ const {
 
 function preprocess(text) {
   const scripts = [];
+  const _module = [];
 
   text = text.replace(RE_CODING_BLOCKS, (_, kind, attr, body) => {
+    /* istanbul ignore else */
     if (kind === 'script' && !attr.includes(' src')) {
       const info = vars(` ${kind.replace(RE_SAFE_WHITESPACE, ' ')}${attr.replace(RE_SAFE_WHITESPACE, ' ')} ${body}`);
 
       scripts.push(info);
 
-      _ = _.replace(RE_EFFECT_LABEL, '/* */');
-
       // eslint-disable-next-line arrow-body-style
       _ = _.replace(RE_MATCH_ROUTES, ($0, verb, path, alias) => {
         return alias ? $0.replace(alias, `/* ${alias.split(' as ').pop().trim()} */`) : $0;
+      }).replace(/\bawait\b/, (_, offset) => {
+        /* istanbul ignore else */
+        if (info.awaits.includes(offset)) return '/* */';
+        return _;
       });
 
-      _ = _.replace(/(?<!\$|(?:let|const)\s+)\$(\w+)/g, ($0, name) => (name in info.locals ? `${name}\t` : $0));
+      /* istanbul ignore else */
+      if (RE_CONTEXT_MODULE.test(attr)) {
+        _module.push(...info.deps.concat(info.keys));
+      }
     }
     return _;
   });
@@ -99,10 +105,12 @@ function preprocess(text) {
     .replace(RE_SNIPPET_CLOSE, '          ;;')
     .replace(RE_EACH_CLOSE, '      ;;')
     .replace(RE_SAFE_SEPARATOR, ' ');
-  buffer = buffer.replace(RE_FIX_SEMI, '}').replace(RE_DIRECTIVE_TAGS, '{$1_:');
+  buffer = buffer.replace(RE_FIX_SEMI, '}')
+    .replace(RE_DIRECTIVE_CONST, '{   var ')
+    .replace(RE_DIRECTIVE_TAGS, '{$1_:');
   buffer = buffer.replace(RE_FIX_SPREAD, ':{   ');
 
-  const globals = disable('let $$slots, $$props;', [
+  const globals = disable('let $$props;', [
     'one-var-declaration-per-line',
     'no-unused-vars',
     'semi-spacing',
@@ -113,7 +121,7 @@ function preprocess(text) {
   tpl = tpl.replace(RE_CODING_BLOCKS, (_, kind, attr) => {
     /* istanbul ignore else */
     if (kind === 'script' && !attr.includes(' src')) {
-      let prefix = 'let $$slots, $$props;';
+      let prefix = 'let $$props;';
       let suffix = '';
 
       const used = [];
@@ -138,8 +146,6 @@ function preprocess(text) {
           const fixedDeps = [...new Set(info.keys.concat(info.deps))].filter(x => names.some(y => y.name === x));
           const consts = fixedDeps.filter(x => info.locals[x] !== 'var' && info.locals[x] !== 'let');
           const lets = fixedDeps.filter(x => info.locals[x] === 'var');
-
-          deps.push(...info.variables);
 
           /* istanbul ignore else */
           if (info.hasVars) {
@@ -201,6 +207,7 @@ function preprocess(text) {
         }
       }
 
+      /* istanbul ignore else */
       if (fns.length > 0) {
         prefix += `let ${fns.join(',')};`;
       }
@@ -288,7 +295,7 @@ function preprocess(text) {
         ].concat(fns.length ? [
           'vars-on-top',
           'no-var',
-        ] : []), true)}\n${buffer}</script>`,
+        ] : []), true)}\n${buffer};${fns.join(';')}</script>`,
       });
     }
   }
@@ -315,7 +322,19 @@ function preprocess(text) {
     }
   });
 
-  return [text, ...chunks.filter(x => !x.names).map(x => x.code.replace('<script>', () => `<script>${globals}`))];
+  /* istanbul ignore else */
+  if (_module.length) {
+    const _used = used.filter(_ => _module.includes(_));
+
+    text = text.replace('</script>', `${disable(_used.join(';'), [
+      'semi',
+      'semi-spacing',
+      'no-unused-expressions',
+    ], true)}</script>`);
+  }
+
+  return [text, ...chunks.filter(x => !x.names)
+    .map(x => x.code.replace('<script>', () => `<script>${globals}`))];
 }
 
 function postprocess(messages, filename) {
@@ -329,11 +348,6 @@ function postprocess(messages, filename) {
     if (['no-tabs', 'key-spacing', 'comma-spacing', 'space-in-parens', 'array-bracket-spacing'].includes(chunk.ruleId)) {
       if (chunk.source.charAt(chunk.column - 1) === '\t') return null;
       if (chunk.source.charAt(chunk.column - 2) === '\t') return null;
-    }
-
-    /* istanbul ignore else */
-    if (chunk.source) {
-      chunk.source = chunk.source.replace(RE_AWAIT_BACK, 'await');
     }
 
     /* istanbul ignore else */

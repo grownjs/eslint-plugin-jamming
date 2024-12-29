@@ -2,20 +2,17 @@
   function scoped() {
   }
 
-  export const truth = 42;
+  const truth = 42;
 </script>
 <script scoped>
   import { Fragment } from 'jamrock';
 </script>
 <script>
-  $: await undef;
+  $: await truth;
 </script>
 <script>
   let cssClass = null;
   export { cssClass as class };
 </script>
-<div className="{cssClass}"></div>
-<script>
-  $: fx = 42;
-</script>
-{fx}
+<div className="{cssClass}" use:scoped></div>
+{truth}

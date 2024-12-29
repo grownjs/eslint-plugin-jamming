@@ -1,611 +1,587 @@
 [
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'max-len').",
-    "line": 1,
-    "column": 9,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$slots, $$props;/* eslint-enable */"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'one-var').",
-    "line": 1,
-    "column": 9,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$slots, $$props;/* eslint-enable */"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'no-void').",
-    "line": 1,
-    "column": 9,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$slots, $$props;/* eslint-enable */"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
-    "line": 1,
-    "column": 9,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$slots, $$props;/* eslint-enable */"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
-    "line": 1,
-    "column": 9,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$slots, $$props;/* eslint-enable */"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'one-var-declaration-per-line').",
-    "line": 1,
-    "column": 9,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$slots, $$props;/* eslint-enable */"
-  },
-  {
-    "ruleId": "no-unused-vars",
-    "severity": 2,
-    "message": "'local' is assigned a value but never used.",
-    "line": 3,
-    "column": 9,
-    "nodeType": "Identifier",
-    "messageId": "unusedVar",
-    "endLine": 3,
-    "endColumn": 14,
-    "source": "  const local = '';"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'semi').",
-    "line": 7,
-    "column": 1,
-    "severity": 2,
-    "nodeType": null,
-    "source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */value;count</script>"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
-    "line": 7,
-    "column": 1,
-    "severity": 2,
-    "nodeType": null,
-    "source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */value;count</script>"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
-    "line": 7,
-    "column": 1,
-    "severity": 2,
-    "nodeType": null,
-    "source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */value;count</script>"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'max-len').",
-    "line": 11,
-    "column": 9,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$slots, $$props;let external, value, count;/* eslint-enable */"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'one-var').",
-    "line": 11,
-    "column": 9,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$slots, $$props;let external, value, count;/* eslint-enable */"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'no-void').",
-    "line": 11,
-    "column": 9,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$slots, $$props;let external, value, count;/* eslint-enable */"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
-    "line": 11,
-    "column": 9,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$slots, $$props;let external, value, count;/* eslint-enable */"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
-    "line": 11,
-    "column": 9,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$slots, $$props;let external, value, count;/* eslint-enable */"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'one-var-declaration-per-line').",
-    "line": 11,
-    "column": 9,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$slots, $$props;let external, value, count;/* eslint-enable */"
-  },
-  {
-    "ruleId": "no-unused-vars",
-    "severity": 2,
-    "message": "'color' is assigned a value but never used.",
-    "line": 12,
-    "column": 9,
-    "nodeType": "Identifier",
-    "messageId": "unusedVar",
-    "endLine": 12,
-    "endColumn": 14,
-    "source": "  const color = 'red';"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'semi').",
-    "line": 13,
-    "column": 1,
-    "severity": 2,
-    "nodeType": null,
-    "source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */external;value;count</script>"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
-    "line": 13,
-    "column": 1,
-    "severity": 2,
-    "nodeType": null,
-    "source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */external;value;count</script>"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
-    "line": 13,
-    "column": 1,
-    "severity": 2,
-    "nodeType": null,
-    "source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */external;value;count</script>"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'max-len').",
-    "line": 27,
-    "column": 9,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$slots, $$props;let external, value, count;/* eslint-enable */"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'one-var').",
-    "line": 27,
-    "column": 9,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$slots, $$props;let external, value, count;/* eslint-enable */"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'no-void').",
-    "line": 27,
-    "column": 9,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$slots, $$props;let external, value, count;/* eslint-enable */"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
-    "line": 27,
-    "column": 9,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$slots, $$props;let external, value, count;/* eslint-enable */"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
-    "line": 27,
-    "column": 9,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$slots, $$props;let external, value, count;/* eslint-enable */"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'one-var-declaration-per-line').",
-    "line": 27,
-    "column": 9,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$slots, $$props;let external, value, count;/* eslint-enable */"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'semi').",
-    "line": 32,
-    "column": 1,
-    "severity": 2,
-    "nodeType": null,
-    "source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */external;value;count</script>"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
-    "line": 32,
-    "column": 1,
-    "severity": 2,
-    "nodeType": null,
-    "source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */external;value;count</script>"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
-    "line": 32,
-    "column": 1,
-    "severity": 2,
-    "nodeType": null,
-    "source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */external;value;count</script>"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'one-var-declaration-per-line').",
-    "line": 1,
-    "column": 9,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$slots, $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
-    "line": 1,
-    "column": 9,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$slots, $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'max-len').",
-    "line": 1,
-    "column": 9,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$slots, $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'one-var').",
-    "line": 1,
-    "column": 9,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$slots, $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'semi').",
-    "line": 1,
-    "column": 146,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$slots, $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'semi-style').",
-    "line": 1,
-    "column": 146,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$slots, $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
-    "line": 1,
-    "column": 146,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$slots, $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'indent').",
-    "line": 1,
-    "column": 146,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$slots, $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'one-var').",
-    "line": 1,
-    "column": 146,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$slots, $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'max-len').",
-    "line": 1,
-    "column": 146,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$slots, $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'no-empty').",
-    "line": 1,
-    "column": 146,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$slots, $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'brace-style').",
-    "line": 1,
-    "column": 146,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$slots, $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'padded-blocks').",
-    "line": 1,
-    "column": 146,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$slots, $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'one-var-declaration-per-line').",
-    "line": 1,
-    "column": 146,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$slots, $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'no-multiple-empty-lines').",
-    "line": 1,
-    "column": 146,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$slots, $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'no-multi-spaces').",
-    "line": 1,
-    "column": 146,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$slots, $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'no-trailing-spaces').",
-    "line": 1,
-    "column": 146,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$slots, $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'no-extra-semi').",
-    "line": 1,
-    "column": 146,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$slots, $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'no-sequences').",
-    "line": 1,
-    "column": 146,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$slots, $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'block-spacing').",
-    "line": 1,
-    "column": 146,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$slots, $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'space-before-blocks').",
-    "line": 1,
-    "column": 146,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$slots, $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
-  },
-  {
-    "ruleId": null,
-    "message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
-    "line": 1,
-    "column": 146,
-    "severity": 2,
-    "nodeType": null,
-    "source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$slots, $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
-  },
-  {
-    "ruleId": "no-undef",
-    "severity": 2,
-    "message": "'undef' is not defined.",
-    "line": 8,
-    "column": 9,
-    "nodeType": "Identifier",
-    "messageId": "undef",
-    "endLine": 8,
-    "endColumn": 14,
-    "source": ";_00000:{debug_:undef, external}"
-  },
-  {
-    "ruleId": "no-undef",
-    "severity": 2,
-    "message": "'noope' is not defined.",
-    "line": 14,
-    "column": 6,
-    "nodeType": "Identifier",
-    "messageId": "undef",
-    "endLine": 14,
-    "endColumn": 11,
-    "source": "    ;_00002:{noope}         ;_00003:{expr:x}              ;_00004:{expr:colorx}         ;_00005:{bg}          "
-  },
-  {
-    "ruleId": "no-undef",
-    "severity": 2,
-    "message": "'x' is not defined.",
-    "line": 14,
-    "column": 19,
-    "nodeType": "Identifier",
-    "messageId": "undef",
-    "endLine": 14,
-    "endColumn": 20,
-    "source": "    ;_00002:{noope}         ;_00003:{expr:x}              ;_00004:{expr:colorx}         ;_00005:{bg}          "
-  },
-  {
-    "ruleId": "no-undef",
-    "severity": 2,
-    "message": "'colorx' is not defined.",
-    "line": 14,
-    "column": 27,
-    "nodeType": "Identifier",
-    "messageId": "undef",
-    "endLine": 14,
-    "endColumn": 33,
-    "source": "    ;_00002:{noope}         ;_00003:{expr:x}              ;_00004:{expr:colorx}         ;_00005:{bg}          "
-  },
-  {
-    "ruleId": "no-undef",
-    "severity": 2,
-    "message": "'bg' is not defined.",
-    "line": 14,
-    "column": 43,
-    "nodeType": "Identifier",
-    "messageId": "undef",
-    "endLine": 14,
-    "endColumn": 45,
-    "source": "    ;_00002:{noope}         ;_00003:{expr:x}              ;_00004:{expr:colorx}         ;_00005:{bg}          "
-  },
-  {
-    "ruleId": "no-undef",
-    "severity": 2,
-    "message": "'wut' is not defined.",
-    "line": 20,
-    "column": 12,
-    "nodeType": "Identifier",
-    "messageId": "undef",
-    "endLine": 20,
-    "endColumn": 15,
-    "source": ";_00010:{each: [] ;_00011:{wut}      }"
-  },
-  {
-    "ruleId": "no-undef",
-    "severity": 2,
-    "message": "'a' is not defined.",
-    "line": 21,
-    "column": 9,
-    "nodeType": "Identifier",
-    "messageId": "undef",
-    "endLine": 21,
-    "endColumn": 10,
-    "source": ";_00012:{each: [a];let b ;_00013:{c}      }"
-  },
-  {
-    "ruleId": "no-unused-vars",
-    "severity": 2,
-    "message": "'b' is defined but never used.",
-    "line": 21,
-    "column": 15,
-    "nodeType": "Identifier",
-    "messageId": "unusedVar",
-    "endLine": 21,
-    "endColumn": 16,
-    "source": ";_00012:{each: [a];let b ;_00013:{c}      }"
-  },
-  {
-    "ruleId": "no-undef",
-    "severity": 2,
-    "message": "'c' is not defined.",
-    "line": 21,
-    "column": 18,
-    "nodeType": "Identifier",
-    "messageId": "undef",
-    "endLine": 21,
-    "endColumn": 19,
-    "source": ";_00012:{each: [a];let b ;_00013:{c}      }"
-  },
-  {
-    "ruleId": "no-undef",
-    "severity": 2,
-    "message": "'reply' is not defined.",
-    "line": 25,
-    "column": 7,
-    "nodeType": "Identifier",
-    "messageId": "undef",
-    "endLine": 25,
-    "endColumn": 12,
-    "source": "            ;_00014:{expr:reply}   "
-  },
-  {
-    "ruleId": "no-undef",
-    "severity": 2,
-    "message": "'foo' is not defined.",
-    "line": 35,
-    "column": 11,
-    "nodeType": "Identifier",
-    "messageId": "undef",
-    "endLine": 35,
-    "endColumn": 14,
-    "source": "  ;_00015:{const_:foo = 42}"
-  },
-  {
-    "ruleId": "no-undef",
-    "severity": 2,
-    "message": "'foo' is not defined.",
-    "line": 36,
-    "column": 9,
-    "nodeType": "Identifier",
-    "messageId": "undef",
-    "endLine": 36,
-    "endColumn": 12,
-    "source": "       ;_00016:{foo}"
-  }
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'max-len').",
+		"line": 1,
+		"column": 9,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$props;/* eslint-enable */"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'one-var').",
+		"line": 1,
+		"column": 9,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$props;/* eslint-enable */"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'no-void').",
+		"line": 1,
+		"column": 9,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$props;/* eslint-enable */"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
+		"line": 1,
+		"column": 9,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$props;/* eslint-enable */"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
+		"line": 1,
+		"column": 9,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$props;/* eslint-enable */"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'one-var-declaration-per-line').",
+		"line": 1,
+		"column": 9,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$props;/* eslint-enable */"
+	},
+	{
+		"ruleId": "no-unused-vars",
+		"severity": 2,
+		"message": "'local' is assigned a value but never used.",
+		"line": 3,
+		"column": 9,
+		"nodeType": "Identifier",
+		"messageId": "unusedVar",
+		"endLine": 3,
+		"endColumn": 14,
+		"source": "  const local = '';"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'semi').",
+		"line": 7,
+		"column": 1,
+		"severity": 2,
+		"nodeType": null,
+		"source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */value;count</script>"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
+		"line": 7,
+		"column": 1,
+		"severity": 2,
+		"nodeType": null,
+		"source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */value;count</script>"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
+		"line": 7,
+		"column": 1,
+		"severity": 2,
+		"nodeType": null,
+		"source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */value;count</script>"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'max-len').",
+		"line": 11,
+		"column": 9,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$props;let external, value, count;/* eslint-enable */"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'one-var').",
+		"line": 11,
+		"column": 9,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$props;let external, value, count;/* eslint-enable */"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'no-void').",
+		"line": 11,
+		"column": 9,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$props;let external, value, count;/* eslint-enable */"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
+		"line": 11,
+		"column": 9,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$props;let external, value, count;/* eslint-enable */"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
+		"line": 11,
+		"column": 9,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$props;let external, value, count;/* eslint-enable */"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'one-var-declaration-per-line').",
+		"line": 11,
+		"column": 9,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$props;let external, value, count;/* eslint-enable */"
+	},
+	{
+		"ruleId": "no-unused-vars",
+		"severity": 2,
+		"message": "'color' is assigned a value but never used.",
+		"line": 12,
+		"column": 9,
+		"nodeType": "Identifier",
+		"messageId": "unusedVar",
+		"endLine": 12,
+		"endColumn": 14,
+		"source": "  const color = 'red';"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'semi').",
+		"line": 13,
+		"column": 1,
+		"severity": 2,
+		"nodeType": null,
+		"source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */external;value;count</script>"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
+		"line": 13,
+		"column": 1,
+		"severity": 2,
+		"nodeType": null,
+		"source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */external;value;count</script>"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
+		"line": 13,
+		"column": 1,
+		"severity": 2,
+		"nodeType": null,
+		"source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */external;value;count</script>"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'max-len').",
+		"line": 27,
+		"column": 9,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$props;let external, value, count;/* eslint-enable */"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'one-var').",
+		"line": 27,
+		"column": 9,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$props;let external, value, count;/* eslint-enable */"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'no-void').",
+		"line": 27,
+		"column": 9,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$props;let external, value, count;/* eslint-enable */"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
+		"line": 27,
+		"column": 9,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$props;let external, value, count;/* eslint-enable */"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
+		"line": 27,
+		"column": 9,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$props;let external, value, count;/* eslint-enable */"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'one-var-declaration-per-line').",
+		"line": 27,
+		"column": 9,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable max-len, one-var, no-void, semi-spacing, no-unused-vars, no-unused-expressions, one-var-declaration-per-line */let $$props;let external, value, count;/* eslint-enable */"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'semi').",
+		"line": 32,
+		"column": 1,
+		"severity": 2,
+		"nodeType": null,
+		"source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */external;value;count</script>"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
+		"line": 32,
+		"column": 1,
+		"severity": 2,
+		"nodeType": null,
+		"source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */external;value;count</script>"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
+		"line": 32,
+		"column": 1,
+		"severity": 2,
+		"nodeType": null,
+		"source": "/* eslint-disable semi, semi-spacing, no-unused-expressions */external;value;count</script>"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'one-var-declaration-per-line').",
+		"line": 1,
+		"column": 9,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
+		"line": 1,
+		"column": 9,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'max-len').",
+		"line": 1,
+		"column": 9,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'one-var').",
+		"line": 1,
+		"column": 9,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'semi').",
+		"line": 1,
+		"column": 137,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'semi-style').",
+		"line": 1,
+		"column": 137,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'semi-spacing').",
+		"line": 1,
+		"column": 137,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'indent').",
+		"line": 1,
+		"column": 137,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'one-var').",
+		"line": 1,
+		"column": 137,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'max-len').",
+		"line": 1,
+		"column": 137,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'no-empty').",
+		"line": 1,
+		"column": 137,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'brace-style').",
+		"line": 1,
+		"column": 137,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'padded-blocks').",
+		"line": 1,
+		"column": 137,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'one-var-declaration-per-line').",
+		"line": 1,
+		"column": 137,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'no-multiple-empty-lines').",
+		"line": 1,
+		"column": 137,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'no-multi-spaces').",
+		"line": 1,
+		"column": 137,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'no-trailing-spaces').",
+		"line": 1,
+		"column": 137,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'no-extra-semi').",
+		"line": 1,
+		"column": 137,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'no-sequences').",
+		"line": 1,
+		"column": 137,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'block-spacing').",
+		"line": 1,
+		"column": 137,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'space-before-blocks').",
+		"line": 1,
+		"column": 137,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
+	},
+	{
+		"ruleId": null,
+		"message": "Unused eslint-disable directive (no problems were reported from 'no-unused-expressions').",
+		"line": 1,
+		"column": 137,
+		"severity": 2,
+		"nodeType": null,
+		"source": "<script>/* eslint-disable one-var-declaration-per-line, no-unused-vars, semi-spacing, max-len, one-var */let $$props;/* eslint-enable *//* eslint-disable semi, semi-style, semi-spacing, indent, one-var, max-len, no-empty, brace-style, padded-blocks, one-var-declaration-per-line, no-multiple-empty-lines, no-multi-spaces, no-trailing-spaces, no-extra-semi, no-sequences, block-spacing, space-before-blocks, no-unused-expressions */let external, value, count;"
+	},
+	{
+		"ruleId": "no-undef",
+		"severity": 2,
+		"message": "'undef' is not defined.",
+		"line": 8,
+		"column": 9,
+		"nodeType": "Identifier",
+		"messageId": "undef",
+		"endLine": 8,
+		"endColumn": 14,
+		"source": ";_00000:{debug_:undef, external}"
+	},
+	{
+		"ruleId": "no-undef",
+		"severity": 2,
+		"message": "'noope' is not defined.",
+		"line": 14,
+		"column": 6,
+		"nodeType": "Identifier",
+		"messageId": "undef",
+		"endLine": 14,
+		"endColumn": 11,
+		"source": "    ;_00002:{noope}         ;_00003:{expr:x}              ;_00004:{expr:colorx}         ;_00005:{bg}          "
+	},
+	{
+		"ruleId": "no-undef",
+		"severity": 2,
+		"message": "'x' is not defined.",
+		"line": 14,
+		"column": 19,
+		"nodeType": "Identifier",
+		"messageId": "undef",
+		"endLine": 14,
+		"endColumn": 20,
+		"source": "    ;_00002:{noope}         ;_00003:{expr:x}              ;_00004:{expr:colorx}         ;_00005:{bg}          "
+	},
+	{
+		"ruleId": "no-undef",
+		"severity": 2,
+		"message": "'colorx' is not defined.",
+		"line": 14,
+		"column": 27,
+		"nodeType": "Identifier",
+		"messageId": "undef",
+		"endLine": 14,
+		"endColumn": 33,
+		"source": "    ;_00002:{noope}         ;_00003:{expr:x}              ;_00004:{expr:colorx}         ;_00005:{bg}          "
+	},
+	{
+		"ruleId": "no-undef",
+		"severity": 2,
+		"message": "'bg' is not defined.",
+		"line": 14,
+		"column": 43,
+		"nodeType": "Identifier",
+		"messageId": "undef",
+		"endLine": 14,
+		"endColumn": 45,
+		"source": "    ;_00002:{noope}         ;_00003:{expr:x}              ;_00004:{expr:colorx}         ;_00005:{bg}          "
+	},
+	{
+		"ruleId": "no-undef",
+		"severity": 2,
+		"message": "'wut' is not defined.",
+		"line": 20,
+		"column": 12,
+		"nodeType": "Identifier",
+		"messageId": "undef",
+		"endLine": 20,
+		"endColumn": 15,
+		"source": ";_00010:{each: [] ;_00011:{wut}      }"
+	},
+	{
+		"ruleId": "no-undef",
+		"severity": 2,
+		"message": "'a' is not defined.",
+		"line": 21,
+		"column": 9,
+		"nodeType": "Identifier",
+		"messageId": "undef",
+		"endLine": 21,
+		"endColumn": 10,
+		"source": ";_00012:{each: [a];let b ;_00013:{c}      }"
+	},
+	{
+		"ruleId": "no-unused-vars",
+		"severity": 2,
+		"message": "'b' is defined but never used.",
+		"line": 21,
+		"column": 15,
+		"nodeType": "Identifier",
+		"messageId": "unusedVar",
+		"endLine": 21,
+		"endColumn": 16,
+		"source": ";_00012:{each: [a];let b ;_00013:{c}      }"
+	},
+	{
+		"ruleId": "no-undef",
+		"severity": 2,
+		"message": "'c' is not defined.",
+		"line": 21,
+		"column": 18,
+		"nodeType": "Identifier",
+		"messageId": "undef",
+		"endLine": 21,
+		"endColumn": 19,
+		"source": ";_00012:{each: [a];let b ;_00013:{c}      }"
+	},
+	{
+		"ruleId": "no-undef",
+		"severity": 2,
+		"message": "'reply' is not defined.",
+		"line": 25,
+		"column": 7,
+		"nodeType": "Identifier",
+		"messageId": "undef",
+		"endLine": 25,
+		"endColumn": 12,
+		"source": "            ;_00014:{expr:reply}   "
+	}
 ]

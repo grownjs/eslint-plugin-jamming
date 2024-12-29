@@ -3,14 +3,14 @@
 
   const local = 42;
 
-  export const messages = [];
-  export function* sendMessage1() {
+  const messages = [];
+  function* sendMessage1() {
     yield -1;
   }
   function *sendMessage2() {
     yield 0;
   }
-  export function * sendMessage3() {
+  function * sendMessage3() {
     yield * undefined;
   }
 </script>
